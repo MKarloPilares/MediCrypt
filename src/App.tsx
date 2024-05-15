@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container, Row, Col, Nav, Navbar, NavDropdown, Button, Form} from 'react-bootstrap';
+import {Container, Nav, Navbar, NavDropdown, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'react-bootstrap';
 import PersInfo from './Components/Pages/PersonalInformation';
@@ -8,9 +8,10 @@ import VisitInfo from './Components/Pages/VisitInfo';
 import VisitHist from './Components/Pages/VisitHist';
 import RecList from './Components/Pages/RecordsList';
 import logo from './Components/Images/logo.png';
+import HomePage from './Components/Pages/Home';
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(6);
 
  
   const nextPage = () => {
@@ -44,30 +45,25 @@ const App = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link onClick={() => setPage(6)}>Home</Nav.Link>
                 <Nav.Link href="#link">About</Nav.Link>
                 <NavDropdown title="Records" id="basic-nav-dropdown">
-                  <NavDropdown.Item onClick={() => setPage(5)}>Record List</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => setPage(1)}>New Record</NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => setPage(5)}>Records List </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
             </Navbar.Collapse>
-              <Button variant='success' style={{position: 'sticky', left: '180%'}}>Connect Metamask</Button>
+              <Button size='sm' variant='success' style={{position: 'sticky', left: '180%', width: '9%', marginRight: '50px'}}>Connect Metamask</Button>
         </Navbar>    
-      <body style={{overflowY: 'auto', boxSizing: 'border-box', display: '-ms-flexbox', backgroundColor: 'mintcream', position: 'fixed', padding: '0', margin: '0', width: '100%', height:'20px', bottom: '0px', color: 'green'}} >
+      <body style={{overflowY: 'auto', boxSizing: 'border-box', display: '-ms-flexbox', backgroundColor: 'mintcream',
+       position: 'fixed', padding: '0', margin: '0', width: '100%', height:'20px', bottom: '0px', color:'green', fontFamily: 'MontSerrat'}} >
         <Container style={{width: '100%', paddingLeft: '100px'}}>
             {currentPage === 1 && <PersInfo nextPage={nextPage} prevPage={prevPage}/>}
             {currentPage === 2 && <MedInfo nextPage={nextPage} prevPage={prevPage}/>}
             {currentPage === 3 && <VisitInfo nextPage={nextPage} prevPage={prevPage}/>}
             {currentPage === 4 && <VisitHist setCurrentPage={prevPage}/>}
             {currentPage === 5 && <RecList setPage={setPage}/>}
+            {currentPage === 6 && <HomePage setPage={setPage}/>}
         </Container>
       </body>
     </ThemeProvider>

@@ -67,8 +67,8 @@ const RecList = ({setPage}) => {
           <ListGroup.Item>
             <Col>
             {data}
-            <Button size='sm' variant="success" style={{position: 'sticky', left: '70%'}} onClick={() => setPage(1)}>OPEN RECORD</Button>
-            <Button size='sm' variant="success" style={{position: 'sticky', left: '80%'}} onClick={handleShareShow}>SHARE ACCESS</Button>
+            <Button size='sm' variant="success" style={{position: 'sticky', left: '67%', width: '12%'}} onClick={() => setPage(1)}>OPEN RECORD</Button>
+            <Button size='sm' variant="success" style={{position: 'sticky', left: '80%', width: '12%'}} onClick={handleShareShow}>SHARE ACCESS</Button>
             </Col>
           </ListGroup.Item>
         </ListGroup>

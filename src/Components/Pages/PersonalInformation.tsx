@@ -9,7 +9,7 @@ import {ThemeProvider} from 'react-bootstrap';
 
 
 const PersInfo = ({nextPage, prevPage}) => {
-  const test = ['1', '2'];
+
   return (
     <ThemeProvider
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -23,7 +23,7 @@ const PersInfo = ({nextPage, prevPage}) => {
             <p></p>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Name</Form.Label>
-              <Form.Control placeholder='Name' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Name' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Row>
               <Col md='4'>
@@ -56,19 +56,19 @@ const PersInfo = ({nextPage, prevPage}) => {
             </Row>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Date of Birth</Form.Label>
-              <Form.Control placeholder='Date of Birth' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Date of Birth' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Address</Form.Label>
-              <Form.Control placeholder='Address' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Address' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Email</Form.Label>
-              <Form.Control placeholder='Email' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Email' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control placeholder='Phone Number' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Phone Number' style={{width: '71%'}}></Form.Control>
             </Form.Group>
           </Form>
         </Col>
@@ -79,15 +79,15 @@ const PersInfo = ({nextPage, prevPage}) => {
           <p></p>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Emergency Contact</Form.Label>
-              <Form.Control placeholder='Name' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Name' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Emergency Contact Number</Form.Label>
-              <Form.Control placeholder='Contact Number' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Contact Number' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Relationship With Patient</Form.Label>
-              <Form.Control placeholder='Relationship' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Relationship' style={{width: '71%'}}></Form.Control>
             </Form.Group>
           </Form>
         </Col>

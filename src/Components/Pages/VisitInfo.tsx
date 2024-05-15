@@ -23,7 +23,7 @@ const VisitInfo = ({nextPage, prevPage}) => {
             <p></p>
             <Form.Group className='mb-3' controlId='chiefComplaintForm.ControlInput'>
               <Form.Label>Chief Complaint</Form.Label>
-              <Form.Control placeholder='Chief Complaint' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Chief Complaint' style={{width: '71%'}}></Form.Control>
             </Form.Group>
                 <Form.Label>Patient Type</Form.Label>
                 {['radio'].map((type) => (
@@ -46,19 +46,19 @@ const VisitInfo = ({nextPage, prevPage}) => {
                 ))}
             <Form.Group className='mb-3' controlId='hostDateForm.ControlInput'>
               <Form.Label>Date of Hospitalization</Form.Label>
-              <Form.Control placeholder='Date of Hospitalization  ' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Date of Hospitalization  ' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='diagnosisForm.ControlInput'>
               <Form.Label>Diagnosis</Form.Label>
-              <Form.Control placeholder='Diagnosis' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Diagnosis' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='procDoneForm.ControlInput'>
               <Form.Label>Procedure Done</Form.Label>
-              <Form.Control placeholder='Procedure' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Procedure' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='prognosisForm.ControlInput'>
               <Form.Label>Prognosis</Form.Label>
-              <Form.Control placeholder='Prognosis' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Prognosis' style={{width: '71%'}}></Form.Control>
             </Form.Group>
           </Form>
         </Col>
@@ -69,15 +69,15 @@ const VisitInfo = ({nextPage, prevPage}) => {
           <p></p>
             <Form.Group className='mb-3' controlId='FacNameForm.ControlInput'>
               <Form.Label>Facility Name</Form.Label>
-              <Form.Control placeholder='Name' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Name' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='FacContactForm.ControlInput'>
               <Form.Label>Facility Contact Number</Form.Label>
-              <Form.Control placeholder='Contact Number' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Contact Number' style={{width: '71%'}}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='FacAddForm.ControlInput'>
               <Form.Label>Facility Address</Form.Label>
-              <Form.Control placeholder='Address' style={{width: '420px'}}></Form.Control>
+              <Form.Control placeholder='Address' style={{width: '71%'}}></Form.Control>
             </Form.Group>
           </Form>
         </Col>

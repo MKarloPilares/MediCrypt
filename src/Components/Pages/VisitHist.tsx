@@ -24,7 +24,7 @@ const VisitHist = ({setCurrentPage}) => {
             <p></p>
             <p></p>
             {VisitHist.map((data: any) => 
-              <Card style={{width: '18rem'}}>
+              <Card style={{width: '18rem', marginBottom: '30px'}}>
                 <Card.Body>
                     <ListGroup variant='flush'>
                       <ListGroup.Item>{data}</ListGroup.Item>
@@ -46,7 +46,7 @@ const VisitHist = ({setCurrentPage}) => {
           <p></p>
           <p></p>
           {FacHist.map((data: any) => 
-            <Card style={{width: '18rem'}}>
+            <Card style={{width: '18rem', marginBottom: '154px'}}>
               <Card.Body>
                   <ListGroup variant='flush'>
                     <ListGroup.Item>{data}</ListGroup.Item>
