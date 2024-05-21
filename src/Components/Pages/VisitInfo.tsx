@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Form } from 'react-bootstrap';
-import { Card } from 'react-bootstrap';
+import { useState } from 'react';
+import {  Form, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Row} from 'react-bootstrap';
@@ -9,12 +9,29 @@ import {ThemeProvider} from 'react-bootstrap';
 
 
 const VisitInfo = ({nextPage, prevPage}) => {
-  const test = ['1', '2'];
+  const [AddedShow, setAddedShow] = useState(false);
+  const handleAddedShow = () => setAddedShow(true);
+  const handleAddedClose = () => setAddedShow(false);
+
   return (
+
     <ThemeProvider
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
     minBreakpoint="xxs"
   >
+          <Modal show={AddedShow} onHide={handleAddedClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Access Key Generated!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Record Added!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleAddedClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+        </Modal>
+
+
       <Row style={{position: 'relative', bottom: '180px', height: '30vh'}}>
         <Col>
           <Form>
@@ -88,6 +105,9 @@ const VisitInfo = ({nextPage, prevPage}) => {
           <Col>
             <Button size='lg' variant="success" style={{width: '120px', position: 'sticky'}} onClick={nextPage}>Next</Button>
           </Col>
+        </Row>
+        <Row style={{marginTop: '50px'}}>
+          <Button variant='success' style={{width: '25%', position:'relative', left: '32%'}} onClick={setAddedShow}>Submit Record</Button>
         </Row>
       </Row>
   </ThemeProvider>

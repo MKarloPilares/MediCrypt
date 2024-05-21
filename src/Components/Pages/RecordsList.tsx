@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ListGroup, Modal} from 'react-bootstrap';
+import {ListGroup, Modal, Form} from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,10 +11,16 @@ import {ThemeProvider} from 'react-bootstrap';
 const RecList = ({setPage}) => {
   const [Shareshow, setShareShow] = useState(false);
   const [Keyshow, setKeyShow] = useState(false);
+  const [AddShow, setAddShow] = useState(false);
+  const [AddedShow, setAddedShow] = useState(false);
   const handleShareClose = () => setShareShow(false);
   const handleShareShow = () => setShareShow(true);
   const handleKeyClose = () => setKeyShow(false);
   const handleKeyShow = () => setKeyShow(true);
+  const handleAddShow = () => setAddShow(true);
+  const handleAddClose = () => setAddShow(false);
+  const handleAddedShow = () => setAddedShow(true);
+  const handleAddedClose = () => setAddedShow(false);
   const VisitHist = ['Lorem Ipsum1', 'Lorem Ipsum2', 'Lorem Ipsum3', 'Lorem Ipsum4', 'Lorem Ipsum5', 'Lorem Ipsum6', 'Lorem Ipsum7', 'Lorem Ipsum8'];
   return (
     <ThemeProvider
@@ -58,8 +64,39 @@ const RecList = ({setPage}) => {
         </Modal.Footer>
       </Modal>
 
+      <Modal show={AddShow} onHide={handleAddClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Access Key Generated!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Label>Enter Access Key</Form.Label>
+            <Form.Control placeholder='Access Key'></Form.Control>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={() => {handleAddClose(); handleAddedShow();}}>
+            Add
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      
+      <Modal show={AddedShow} onHide={handleAddedClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Access Key Generated!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Record Added!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleAddedClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     <Row style={{position: 'relative', bottom: '180px', height: '30vh'}}>
     <h3 style={{marginBottom: '30px'}}>Records</h3>
+    <Button variant='success' style={{position: 'sticky', width: '12%', left: '80%', bottom: '100%'}} onClick={handleAddShow}>+ Add Record</Button>
     <Card>
       <Card.Body>
     {VisitHist.map((data: any) => 
