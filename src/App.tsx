@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Container, Nav, Navbar, NavDropdown, Button, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'react-bootstrap';
@@ -75,7 +75,7 @@ const App = () => {
        position: 'fixed', padding: '0', margin: '0', width: '100%', height:'20px', bottom: '0px', color:'green', fontFamily: 'MontSerrat'}} >
         <Image src={logoNoTag} style={currentPage != 6 ? ({zIndex: '-1', width: '100%', position: 'absolute', opacity: '0.2', top: '40px'}) : ({visibility: 'hidden', zIndex: '-1', width: '100%', position: 'absolute'})}></Image>
         <Container style={{width: '100%', paddingLeft: '100px'}}>
-            {currentPage === 1 && <PersInfo nextPage={nextPage} prevPage={prevPage}/>}
+            {currentPage === 1 && <PersInfo nextPage={nextPage}/>}
             {currentPage === 2 && <MedInfo nextPage={nextPage} prevPage={prevPage}/>}
             {currentPage === 3 && <VisitInfo nextPage={nextPage} prevPage={prevPage}/>}
             {currentPage === 4 && <VisitHist setCurrentPage={prevPage}/>}

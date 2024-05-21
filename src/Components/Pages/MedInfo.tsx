@@ -1,6 +1,4 @@
-import React from 'react';
-import { Container, Form } from 'react-bootstrap';
-import { Card } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Row} from 'react-bootstrap';
@@ -9,7 +7,6 @@ import {ThemeProvider} from 'react-bootstrap';
 
 
 const MedInfo = ({nextPage, prevPage}) => {
-  const test = ['1', '2'];
   return (
     <ThemeProvider
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -30,14 +27,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                       inline
                       label="Yes"
                       name="HeartCheck"
-                      type={type}
                       id={`inline-${type}-1`}
                     />
                     <Form.Check
                       inline
                       label="No"
                       name="HeartCheck"
-                      type={type}
                       id={`inline-${type}-2`}
                     />
                     </div>
@@ -51,14 +46,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                         inline
                         label="Yes"
                         name="LungCheck"
-                        type={type}
                         id={`inline-${type}-1`}
                       />
                       <Form.Check
                         inline
                         label="No"
                         name="LungCheck"
-                        type={type}
                         id={`inline-${type}-2`}
                       />
                       </div>
@@ -74,14 +67,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                       inline
                       label="Yes"
                       name="KidCheck"
-                      type={type}
                       id={`inline-${type}-1`}
                     />
                     <Form.Check
                       inline
                       label="No"
                       name="KidCheck"
-                      type={type}
                       id={`inline-${type}-2`}
                     />
                     </div>
@@ -95,14 +86,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                         inline
                         label="Yes"
                         name="ExtCheck"
-                        type={type}
                         id={`inline-${type}-1`}
                       />
                       <Form.Check
                         inline
                         label="No"
                         name="ExtCheck"
-                        type={type}
                         id={`inline-${type}-2`}
                       />
                       </div>
@@ -118,14 +107,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                       inline
                       label="Yes"
                       name="CanCheck"
-                      type={type}
                       id={`inline-${type}-1`}
                     />
                     <Form.Check
                       inline
                       label="No"
                       name="CanCheck"
-                      type={type}
                       id={`inline-${type}-2`}
                     />
                     </div>
@@ -139,14 +126,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                         inline
                         label="Yes"
                         name="DigCheck"
-                        type={type}
                         id={`inline-${type}-1`}
                       />
                       <Form.Check
                         inline
                         label="No"
                         name="DigCheck"
-                        type={type}
                         id={`inline-${type}-2`}
                       />
                       </div>
@@ -162,14 +147,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                       inline
                       label="Yes"
                       name="STDCheck"
-                      type={type}
                       id={`inline-${type}-1`}
                     />
                     <Form.Check
                       inline
                       label="No"
                       name="STDCheck"
-                      type={type}
                       id={`inline-${type}-2`}
                     />
                     </div>
@@ -183,14 +166,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                           inline
                           label="Yes"
                           name="HeadCheck"
-                          type={type}
                           id={`inline-${type}-1`}
                         />
                         <Form.Check
                           inline
                           label="No"
                           name="HeadCheck"
-                          type={type}
                           id={`inline-${type}-2`}
                         />
                         </div>
@@ -206,14 +187,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                       inline
                       label="Yes"
                       name="MentCheck"
-                      type={type}
                       id={`inline-${type}-1`}
                     />
                     <Form.Check
                       inline
                       label="No"
                       name="MentCheck"
-                      type={type}
                       id={`inline-${type}-2`}
                     />
                     </div>
@@ -227,14 +206,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                         inline
                         label="Yes"
                         name="DrugCheck"
-                        type={type}
                         id={`inline-${type}-1`}
                       />
                       <Form.Check
                         inline
                         label="No"
                         name="DrugCheck"
-                        type={type}
                         id={`inline-${type}-2`}
                       />
                       </div>
@@ -250,14 +227,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                       inline
                       label="Yes"
                       name="PregCheck"
-                      type={type}
                       id={`inline-${type}-1`}
                     />
                     <Form.Check
                       inline
                       label="No"
                       name="PregCheck"
-                      type={type}
                       id={`inline-${type}-2`}
                     />
                     </div>
@@ -271,14 +246,12 @@ const MedInfo = ({nextPage, prevPage}) => {
                           inline
                           label="Yes"
                           name="SmokerCheck"
-                          type={type}
                           id={`inline-${type}-1`}
                         />
                         <Form.Check
                           inline
                           label="No"
                           name="SmokerCheck"
-                          type={type}
                           id={`inline-${type}-2`}
                         />
                         </div>

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';

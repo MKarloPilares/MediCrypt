@@ -1,6 +1,4 @@
-import React from 'react';
-import { Container, Form } from 'react-bootstrap';
-import { Card } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Row} from 'react-bootstrap';
@@ -8,7 +6,7 @@ import {Col} from 'react-bootstrap';
 import {ThemeProvider} from 'react-bootstrap';
 
 
-const PersInfo = ({nextPage, prevPage}) => {
+const PersInfo = ({nextPage}) => {
 
   return (
     <ThemeProvider
@@ -34,14 +32,12 @@ const PersInfo = ({nextPage, prevPage}) => {
                     inline
                     label="Male"
                     name="group1"
-                    type={type}
                     id={`inline-${type}-1`}
                   />
                   <Form.Check
                     inline
                     label="Female"
                     name="group1"
-                    type={type}
                     id={`inline-${type}-2`}
                   />
                   </div>

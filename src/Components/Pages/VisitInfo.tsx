@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+  import { useState } from 'react';
 import {  Form, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,14 +48,12 @@ const VisitInfo = ({nextPage, prevPage}) => {
                     inline
                     label="InPatient"
                     name="group1"
-                    type={type}
                     id={`inline-${type}-1`}
                   />
                   <Form.Check
                     inline
                     label="OutPatient"
                     name="group1"
-                    type={type}
                     id={`inline-${type}-2`}
                   />
                   </div>
@@ -107,7 +104,7 @@ const VisitInfo = ({nextPage, prevPage}) => {
           </Col>
         </Row>
         <Row style={{marginTop: '50px'}}>
-          <Button variant='success' style={{width: '25%', position:'relative', left: '32%'}} onClick={setAddedShow}>Submit Record</Button>
+          <Button variant='success' style={{width: '25%', position:'relative', left: '32%'}} onClick={handleAddedShow}>Submit Record</Button>
         </Row>
       </Row>
   </ThemeProvider>
