@@ -5,7 +5,7 @@ import {ThemeProvider} from 'react-bootstrap';
 import logo from '../Images/MediCrypt_Logo.png';
 
 
-const HomePage = ({setPage, connectMetamaskWallet, ethereumAccount}) => {
+const HomePage = ({setPage, connectMetamaskWallet, ethereumAccount, setTest}) => {
 
   return (
     <ThemeProvider
@@ -14,16 +14,16 @@ const HomePage = ({setPage, connectMetamaskWallet, ethereumAccount}) => {
   >
       <Container style={{position: 'relative', top: '50px', width: '100vw'}}>
         <Row>
-            <Image src={logo} style={{width: '85%', position: 'sticky', left: '18.5%', marginBottom: '5%'}}/>
+            <Image src={logo} style={{width: '85%', position: 'relative', left: 0, bottom: 130}}/>
         </Row>
         <Row>
             {ethereumAccount === null ? (
-            <Button variant='success' style={ethereumAccount === null ? ({position: 'fixed', right: '43%', width: '15%', top: '90%'}) : ({visibility: 'hidden'})}
+            <Button variant='success' style={ethereumAccount === null ? ({position: 'relative', left: '35%', width: '15%', bottom: 120}) : ({display: 'none'})}
               onClick={connectMetamaskWallet}>Connect Metamask</Button>): (
             <>
-            <Button variant='success' style={ethereumAccount !== null ? ({position: 'fixed', right: '52%', width: '7.5%', top: '90%'}) : ({visibility: 'hidden'})}
-              onClick={() => setPage(1)}>Create Record</Button>             
-            <Button variant='success' style={ethereumAccount !== null? ({position: 'fixed', right: '42%', width: '7.5%', top: '90%'}) : ({visibility: 'hidden'})}
+            <Button variant='success' style={ethereumAccount !== null ? ({position: 'relative', left: '15%', width: '15%', bottom: 120}) : ({display: 'none'})}
+              onClick={() => {setPage(1);setTest('0')}}>Create Record</Button>             
+            <Button variant='success' style={ethereumAccount !== null? ({position: 'relative', left: '40%', width: '15%', bottom: 120}) : ({display: 'none'})}
               onClick={() => setPage(5)}>Records List</Button>
             </>)}
         </Row> 

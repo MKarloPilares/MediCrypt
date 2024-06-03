@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Container, Nav, Navbar, NavDropdown, Button, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'react-bootstrap';
@@ -9,13 +9,16 @@ import VisitHist from './Components/Pages/VisitHist';
 import RecList from './Components/Pages/RecordsList';
 import logoSolo from './Components/Images/MEDICRYPT LOGO_SOLO.png';
 import HomePage from './Components/Pages/Home';
-import logoNoTag from './Components/Images/MediCrypt_Logo_NoTagLine.png';
 import About from './Components/Pages/About';
 
 const App = () => {
+  const[test, setTest] = useState('0');
   const [currentPage, setCurrentPage] = useState(6);
   const [ethereumAccount, setEthereumAccount] = useState<string | null>(null);
 
+  useEffect(() => {
+    document.title = 'MediCrypt';
+  }, []); 
  
   const nextPage = () => {
     setCurrentPage(currentPage+1);
@@ -52,8 +55,8 @@ const App = () => {
             <img
               alt=""
               src={logoSolo}
-              width="35"
-              height="30"
+              width="55"
+              height="35"
               className="d-inline-block align-top"
             />{' '}
             MediCrypt
@@ -64,7 +67,7 @@ const App = () => {
                 <Nav.Link onClick={() => setPage(6)}>Home</Nav.Link>
                 <Nav.Link onClick={() => setPage(7)}>About</Nav.Link>
                 <NavDropdown title="Records" id="basic-nav-dropdown">
-                  <NavDropdown.Item onClick={() => setPage(1)}>New Record</NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => {setPage(1);setTest('0')}}>New Record</NavDropdown.Item>
                   <NavDropdown.Item onClick={() => setPage(5)}>Records List </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
@@ -73,14 +76,14 @@ const App = () => {
         </Navbar>    
       <body style={{overflowY: 'auto', boxSizing: 'border-box', display: '-ms-flexbox', backgroundColor: 'mintcream',
        position: 'fixed', padding: '0', margin: '0', width: '100%', height:'20px', bottom: '0px', color:'green', fontFamily: 'MontSerrat'}} >
-        <Image src={logoNoTag} style={currentPage != 6 ? ({zIndex: '-1', width: '100%', position: 'absolute', opacity: '0.2', top: '40px'}) : ({visibility: 'hidden', zIndex: '-1', width: '100%', position: 'absolute'})}></Image>
+        <Image src={logoSolo} style={currentPage != 6 ? ({zIndex: '-1', width: '85%', position: 'absolute', opacity: '0.2', top: '40px', left: '150px'}) : ({visibility: 'hidden', zIndex: '-1', width: '100%', position: 'absolute'})}></Image>
         <Container style={{width: '100%', paddingLeft: '100px'}}>
-            {currentPage === 1 && <PersInfo nextPage={nextPage}/>}
-            {currentPage === 2 && <MedInfo nextPage={nextPage} prevPage={prevPage}/>}
-            {currentPage === 3 && <VisitInfo nextPage={nextPage} prevPage={prevPage}/>}
-            {currentPage === 4 && <VisitHist setCurrentPage={prevPage}/>}
-            {currentPage === 5 && <RecList setPage={setPage}/>}
-            {currentPage === 6 && <HomePage setPage={setPage} connectMetamaskWallet={connectMetamaskWallet} ethereumAccount={ethereumAccount}/>}
+            {currentPage === 1 && <PersInfo nextPage={nextPage} test={test}/>}
+            {currentPage === 2 && <MedInfo nextPage={nextPage} prevPage={prevPage} test={test}/>}
+            {currentPage === 3 && <VisitInfo nextPage={nextPage} prevPage={prevPage} test={test}/>}
+            {currentPage === 4 && <VisitHist setCurrentPage={prevPage} test={test}/>}
+            {currentPage === 5 && <RecList setPage={setPage} setTest={setTest}/>}
+            {currentPage === 6 && <HomePage setPage={setPage} connectMetamaskWallet={connectMetamaskWallet} ethereumAccount={ethereumAccount} setTest={setTest}/>}
             {currentPage === 7 && <About/>}
         </Container>
       </body>

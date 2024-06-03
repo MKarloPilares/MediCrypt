@@ -8,7 +8,7 @@ import {Col} from 'react-bootstrap';
 import {ThemeProvider} from 'react-bootstrap';
 
 
-const RecList = ({setPage}) => {
+const RecList = ({setPage, setTest}) => {
   const [Shareshow, setShareShow] = useState(false);
   const [Keyshow, setKeyShow] = useState(false);
   const [AddShow, setAddShow] = useState(false);
@@ -21,7 +21,7 @@ const RecList = ({setPage}) => {
   const handleAddClose = () => setAddShow(false);
   const handleAddedShow = () => setAddedShow(true);
   const handleAddedClose = () => setAddedShow(false);
-  const VisitHist = ['Lorem Ipsum1', 'Lorem Ipsum2', 'Lorem Ipsum3', 'Lorem Ipsum4', 'Lorem Ipsum5', 'Lorem Ipsum6', 'Lorem Ipsum7', 'Lorem Ipsum8'];
+  const Records = ['Mhar Karlo Pilares']
   return (
     <ThemeProvider
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -96,15 +96,15 @@ const RecList = ({setPage}) => {
 
     <Row style={{position: 'relative', bottom: '180px', height: '30vh'}}>
     <h3 style={{marginBottom: '30px'}}>Records</h3>
-    <Button variant='success' style={{position: 'sticky', width: '12%', left: '80%', bottom: '100%'}} onClick={handleAddShow}>+ Add Record</Button>
-    <Card>
+    <Button variant='success' style={{position: 'sticky', width: '12%', left: '80%', bottom: '100%', height: '12%'}} onClick={handleAddShow}>+ Add Record</Button>
+    <Card style={{bottom: 60}}>
       <Card.Body>
-    {VisitHist.map((data: any) => 
+    {Records.map((data: any) => 
         <ListGroup>
           <ListGroup.Item>
             <Col>
             {data}
-            <Button size='sm' variant="success" style={{position: 'sticky', left: '67%', width: '12%'}} onClick={() => setPage(1)}>OPEN RECORD</Button>
+            <Button size='sm' variant="success" style={{position: 'sticky', left: '67%', width: '12%'}} onClick={() => {setPage(1);setTest('1')}}>OPEN RECORD</Button>
             <Button size='sm' variant="success" style={{position: 'sticky', left: '80%', width: '12%'}} onClick={handleShareShow}>SHARE ACCESS</Button>
             </Col>
           </ListGroup.Item>
