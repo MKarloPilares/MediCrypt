@@ -1,0 +1,53 @@
+.row-records {
+  position: relative;
+  bottom: 180px;
+  height: 30vh;
+}
+
+.h3-records {
+  margin-bottom: 30px;
+}
+
+.card-records {
+  bottom: 60px;
+}
+
+.modal-header-title {
+  font-size: 1.25rem;
+}
+
+.modal-body-form-label {
+  font-size: 1rem;
+}
+
+.modal-body-form-control {
+  margin-bottom: 1rem;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-open-record {
+  position: sticky;
+  left: 59vw;
+  width: 12%;
+}
+
+.button-share-access {
+  position: sticky;
+  left: 67vw;
+  width: 12%;
+}
+
+.modal-body-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body-col {
+  font-size: 20px;
+}

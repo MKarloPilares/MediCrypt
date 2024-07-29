@@ -1,0 +1,33 @@
+.container-custom {
+  position: relative;
+  top: 50px;
+  width: 100vw;
+}
+
+.logo-image {
+  width: 85%;
+  position: relative;
+  left: 0;
+  bottom: 130px;
+}
+
+.button-connect {
+  position: relative;
+  left: 35%;
+  width: 15%;
+  bottom: 120px;
+}
+
+.button-recordpage {
+  position: relative;
+  left: 15%;
+  width: 15%;
+  bottom: 120px;
+}
+
+.button-recordlist {
+  position: relative;
+  left: 40%;
+  width: 15%;
+  bottom: 120px;
+}

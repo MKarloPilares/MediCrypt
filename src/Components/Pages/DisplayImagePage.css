@@ -1,0 +1,17 @@
+.image-page-form {
+  position: relative;
+  top: 2vh;
+}
+
+.image-page-col {
+  margin-bottom: 5px;
+}
+
+.image-page-inner-form {
+  border: 1px solid black;
+}
+
+.image-page-image {
+  width: 48.2vh;
+  height: 45vh;
+}

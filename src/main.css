@@ -1,0 +1,218 @@
+.connect-metamask {
+  position: sticky;
+  left: 180%;
+  width: 9%;
+  margin-right: 50px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.main-body {
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  background-color: mintcream;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 20px;
+  bottom: 0px;
+  color: green;
+  font-family: 'MontSerrat';
+}
+
+.main-container {
+  width: 100vw;
+  padding-left: 100px;
+}
+
+.button-group-container {
+  position: fixed;
+  top: 10vh;
+  left: 28vw;
+}
+
+.toggle-button {
+  width: 15vw;
+}
+
+.profile-heading {
+  position: fixed;
+  top: 16vh;
+  left: 26vw;
+}
+
+.profile-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 20vh;
+  left: 25vw;
+  height: 32vh;
+  width: 50vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.emergency-heading {
+  position: fixed;
+  top: 16vh;
+  left: 78vw;
+}
+
+.emergency-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 20vh;
+  left: 77vw;
+  height: 32vh;
+  width: 20vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.medical-heading {
+  position: fixed;
+  top: 56vh;
+  left: 26vw;
+}
+
+.medical-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 60vh;
+  left: 25vw;
+  height: 32vh;
+  width: 50vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.vitals-heading {
+  position: fixed;
+  top: 56vh;
+  left: 78vw;
+}
+
+.vitals-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 60vh;
+  left: 77vw;
+  height: 32vh;
+  width: 20vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.diagnosis-heading {
+  position: fixed;
+  top: 16vh;
+  left: 26vw;
+}
+
+.diagnosis-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 20vh;
+  left: 25vw;
+  height: 35vh;
+  width: 50vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.diagnosis-history-heading {
+  position: fixed;
+  top: 16vh;
+  left: 78vw;
+}
+
+.diagnosis-history-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 20vh;
+  left: 77vw;
+  height: 35vh;
+  width: 20vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.medications-heading {
+  position: fixed;
+  top: 58vh;
+  left: 26vw;
+}
+
+.medications-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 62vh;
+  left: 25vw;
+  height: 35vh;
+  width: 50vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.medication-history-heading {
+  position: fixed;
+  top: 58vh;
+  left: 78vw;
+}
+
+.medication-history-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 62vh;
+  left: 77vw;
+  height: 35vh;
+  width: 20vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.add-image-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 20vh;
+  left: 25vw;
+  height: 13vh;
+  width: 70vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}
+
+.display-image-container {
+  border: 1px solid green;
+  position: fixed;
+  top: 40vh;
+  left: 25vw;
+  height: 55vh;
+  width: 70vw;
+  background-color: white;
+  border-radius: 30px;
+  overflow-y: auto;
+  padding-left: 1vw;
+}

@@ -1,0 +1,23 @@
+/* styles.css */
+.form-container {
+  position: relative;
+  top: 2vh;
+}
+
+.input-file {
+  width: 11.6vw;
+}
+
+.input-description {
+  width: 30vw;
+}
+
+.input-date {
+  width: 10vw;
+}
+
+.button-add {
+  position: fixed;
+  top: 25.5vh;
+  width: 10vw;
+}

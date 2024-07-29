@@ -1,0 +1,16 @@
+.form-container {
+  position: relative;
+  top: 2vh;
+}
+
+.name-input,
+.birthday-input,
+.address-input,
+.email-input,
+.phone-input {
+  width: 20vw;
+}
+
+.form-container .age-input {
+  width: 3vw;
+}

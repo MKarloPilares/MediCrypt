@@ -1,0 +1,8 @@
+.diag-form {
+  position: relative;
+  top: 2vh;
+}
+
+.diag-row {
+  border-bottom: 1px solid green;
+}

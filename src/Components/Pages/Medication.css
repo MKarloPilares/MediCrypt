@@ -1,0 +1,12 @@
+.medication-form {
+  position: relative;
+  top: 2vh;
+}
+
+.input-field {
+  width: 20vw;
+}
+
+.submit-button {
+  margin-left: 21vw;
+}

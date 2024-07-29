@@ -1,0 +1,12 @@
+.form-container {
+  position: relative;
+  top: 2vh;
+}
+
+.form-control {
+  width: 20vw;
+}
+
+.add-button {
+  margin-left: 21vw;
+}

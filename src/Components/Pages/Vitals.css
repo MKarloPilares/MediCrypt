@@ -1,0 +1,16 @@
+.form-container {
+  position: relative;
+  top: 2vh;
+}
+
+.form-group-width-50 {
+  width: 50px;
+}
+
+.form-group-width-80 {
+  width: 80px;
+}
+
+.form-group-width-60 {
+  width: 60px;
+}
