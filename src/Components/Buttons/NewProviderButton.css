@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
-import './GetWhiteListedNamesButton.css'; // Import the CSS file
 
 interface WhiteListButtonProps {
+  address: string;
   tokenID: number | null;
-  setWhiteListNames: any;
-  setWhiteListAddresses: any;
-  setWhiteListModalShow: () => void;
+  whiteListName: string;
+  setAddShow: () => void;
 }
 
-const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, setWhiteListNames, setWhiteListAddresses, setWhiteListModalShow }) => {
+const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whiteListName, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
     }
   }, []);
 
-  const getWhiteListedNames = async () => {
+  const WhiteListAddress = async () => {
     if (!provider) {
       console.error('User is not connected to an Ethereum wallet.');
       return;
@@ -31,6 +30,11 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
     // Ensure tokenID and address are valid
     if (tokenID === null) {
       console.error('Invalid tokenID.');
+      return;
+    }
+
+    if (!address) {
+      console.error('Invalid address.');
       return;
     }
 
@@ -51,20 +55,18 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
 
     try {
       // Call the whitelistAddress function of the smart contract
-      const result = await contract.getWhitelistedAddressesAndNames(tokenID);
-
-      setWhiteListNames(result.names);
-      setWhiteListAddresses(result.addresses);
+      await contract.whitelistAddress(tokenID, address, whiteListName);
+      setAddShow();
     } catch (error) {
       console.error('Error whitelisting address:', error);
     }
   };
 
   return (
-    <Button size='sm' variant="success" onClick={() => { getWhiteListedNames(); setWhiteListModalShow(); }} className="whitelist-button">
-      WHITELIST
+    <Button variant='success' onClick={WhiteListAddress}>
+      Give Access
     </Button>
   );
 };
 
-export default GetWhiteListedNamesButton;
+export default WhiteListButton;

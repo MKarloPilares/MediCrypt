@@ -1,11 +1,10 @@
-import {useState, useEffect} from 'react';
-import {Container, Nav, Navbar, NavDropdown, Button, ButtonGroup, ToggleButton} from 'react-bootstrap';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Container, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'react-bootstrap';
 import PersInfo from './Components/Pages/PersonalInformation';
 import MedInfo from './Components/Pages/MedInfo';
-import logoSolo from './Components/Images/MEDICRYPT LOGO_SOLO.png';
 import Sidebar from './Components/Sidebar/sidebar';
 import EmerInfo from './Components/Pages/EmergencyInformation';
 import Vitals from './Components/Pages/Vitals';
@@ -16,12 +15,12 @@ import MedicationHist from './Components/Pages/MedicationHist';
 import AddImagePage from './Components/Pages/AddImagePage';
 import DisplayImagePage from './Components/Pages/DisplayImagePage';
 import RecList from './Components/Pages/RecordsList';
-import { useNavigate, useLocation } from 'react-router-dom';
-import './main.css'
 import HomePage from './Components/Pages/Home';
+import NavbarComponent from './Components/Navbar/navbar';
+import Providers from './Components/Pages/Providers';
+import './main.css';
 
-const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJkOGY1YTBhYi1lN2VjLTRiNTMtOTNmYy0xYmZkNzJiN2UzMTgiLCJlbWFpbCI6ImF6YXplbGwyOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJGUkExIn0seyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJOWUMxIn1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiZWI3MGEzYTBkNThhNjU0ZTA1ODgiLCJzY29wZWRLZXlTZWNyZXQiOiI0MzAxMGYxZWNlODk1ZDJkMTQ1MjFkNmQzNGJkMmNlNDFmMDg5ZmM4ZWQ1ZGFlMWUyMjIwZTU3NTczZWQ2YzlkIiwiZXhwIjoxNzUzMTU5OTkyfQ.Meyzh7TmWi5816v-OTORWTfq86kHl0O8l3jwhdLW5O8';
-
+const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJkOGY1YTBhYi1lN2VjLTRiNTMtOTNmYy0xYmZkNzJiN2UzMTgiLCJlbWFpbCI6ImF6YXplbGwyOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJGUkExIn0seyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJOWUMxIn1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiMjgyODRhODI3MjQzYzk3ZDcwNmYiLCJzY29wZWRLZXlTZWNyZXQiOiI2NDJiMTI5MWM1YzliNzEzOGE2OGNiMDE4YzI3Nzk0OWYxYTcyNzg3OWE4ZDZiZjMyZDI3NjQ0ODM0NGQ5MDM2IiwiZXhwIjoxNzU0MDEyNzg1fQ.u81FAJn_dL_OuE2xdSz7bGrWM5f7m3KtZ7cmfwp5r70';
 
 type PersonalInfo = {
   name: string;
@@ -93,7 +92,9 @@ const MainPage = () => {
   let navigate = useNavigate();
   let location = useLocation();
   const [ethereumAccount, setEthereumAccount] = useState<string | null>(null);
-  const [tokenID, setTokenID] = useState<Number | null>(null);
+  const [tokenID, setTokenID] = useState<number | null>(null);
+  const [isOwner, setIsOwner] = useState<Boolean>(false);
+  const [isMedicalProvider, setIsMedicalProvider] = useState<Boolean>(false);
 
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
     name: 'Name',
@@ -230,7 +231,7 @@ const MainPage = () => {
 
   useEffect(() => {
     document.title = 'MediCrypt';
-  }, []); 
+  }, []);
 
   const radios = [
     { name: 'Profile', value: '/Profile' },
@@ -238,26 +239,12 @@ const MainPage = () => {
     { name: 'Images', value: '/Images' },
   ];
 
-  async function connectMetamaskWallet(): Promise<void> {
-    (window as any).ethereum
-      .request({
-          method: "eth_requestAccounts",
-      })
-      .then((accounts : string[]) => {
-        setEthereumAccount(accounts[0]);
-      })
-      .catch((error: any) => {
-          alert(`Something went wrong: ${error}`);
-      });
-  }
-
-
   const uploadImageToIPFS = async (event, file) => {
 
     try {
       const data = new FormData();
       data.append("file", file);
-  
+
       const res = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
         method: "POST",
         headers: {
@@ -275,140 +262,111 @@ const MainPage = () => {
           uri: [...prevDetails.uri, `https://ipfs.io/ipfs/${resData.IpfsHash}`],
         }))
       }
-    console.log(resData)
-    console.log(PatientImages)
-  } catch (error) {
-    console.log(error);
+    } catch (error) {
+      console.log(error);
+    }
   }
-}
 
-const shouldRenderSidebar = ['/Profile', '/Diagnosis', '/Images'].includes(location.pathname);
+  const shouldRenderSidebar = ['/Profile', '/Diagnosis', '/Images'].includes(location.pathname);
 
   return (
     <ThemeProvider
-    breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
-    minBreakpoint="xxs"
-  >
-    <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
-      <Navbar.Brand>
-        <img
-          alt=""
-          src={logoSolo}
-          width="55"
-          height="35"
-          className="d-inline-block align-top"
-        />{' '}
-        MediCrypt
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
-          <NavDropdown title="Records" id="basic-nav-dropdown">
-            <NavDropdown.Item onClick={() => navigate("Profile")}>Record Page</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => navigate("RecList")}>Records List </NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-      </Navbar.Collapse>
-      <Button
-        size="sm"
-        variant="success"
-        className={ethereumAccount === null ? 'connect-metamask' : 'hidden'}
-        onClick={connectMetamaskWallet}
-      >
-        Connect Metamask
-      </Button>
-    </Navbar>
-    {shouldRenderSidebar && (
-      <Sidebar
-        combinedData={combinedData}
-        uploadImageToIPFS={uploadImageToIPFS}
-        imageSource={personalInfo.profilePictureUri}
-        ethereumAccount={ethereumAccount}
-        tokenID={tokenID}
-        updateCombinedData={updateCombinedData}
-      />
-    )}
-    <body className="main-body">
-      <Container className="main-container">
-        <Container className="button-group-container">
-          {shouldRenderSidebar && (
-            <ButtonGroup>
-              {radios.map((radio, idx) => (
-                <ToggleButton
-                  key={idx}
-                  id={`radio-${idx}`}
-                  type="radio"
-                  variant={idx % 2 ? 'outline-success' : 'outline-success'}
-                  className="toggle-button"
-                  name="radio"
-                  value={radio.value}
-                  checked={location.pathname === radio.value}
-                  onChange={(e) => navigate(e.currentTarget.value)}
-                >
-                  {radio.name}
-                </ToggleButton>
-              ))}
-            </ButtonGroup>
-          )}
+      breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+      minBreakpoint="xxs"
+    >
+      <NavbarComponent ethereumAccount={ethereumAccount} setEthereumAccount={setEthereumAccount} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider}/>
+      {shouldRenderSidebar && (
+        <Sidebar
+          combinedData={combinedData}
+          uploadImageToIPFS={uploadImageToIPFS}
+          imageSource={personalInfo.profilePictureUri}
+          ethereumAccount={ethereumAccount}
+          tokenID={tokenID}
+          isMedicalProvider={isMedicalProvider}
+        />
+      )}
+      <body className="main-body">
+        <Container className="main-container">
+          <Container className="button-group-container">
+            {shouldRenderSidebar && (
+              <ButtonGroup>
+                {radios.map((radio, idx) => (
+                  <ToggleButton
+                    key={idx}
+                    id={`radio-${idx}`}
+                    type="radio"
+                    variant={idx % 2 ? 'outline-success' : 'outline-success'}
+                    className="toggle-button"
+                    name="radio"
+                    value={radio.value}
+                    checked={location.pathname === radio.value}
+                    onChange={(e) => navigate(e.currentTarget.value)}
+                  >
+                    {radio.name}
+                  </ToggleButton>
+                ))}
+              </ButtonGroup>
+            )}
+          </Container>
+          <Routes>
+            <Route path="/" element={<HomePage ethereumAccount={ethereumAccount} setEthereumAccount={setEthereumAccount} setIsOwner={setIsOwner} updateCombinedData={updateCombinedData} 
+              isOwner={isOwner} setIsMedicalProvider={setIsMedicalProvider}></HomePage>} />
+            <Route path="/Profile" element={
+              <>
+                <h2 className="profile-heading">Patient Information</h2>
+                <Container className="profile-container">
+                  <PersInfo personalInfo={personalInfo} setPersonalInfo={handlePersonalInfoChange} />
+                </Container>
+                <h2 className="emergency-heading">Emergency Information</h2>
+                <Container className="emergency-container">
+                  <EmerInfo emergencyInfo={emergencyInfo} setEmergencyInfo={handleEmergencyInfoChange} />
+                </Container>
+                <h2 className="medical-heading">Medical Information</h2>
+                <Container className="medical-container">
+                  <MedInfo medicalInfo={medicalInfo} setMedicalInfo={handleMedicalInfoChange} />
+                </Container>
+                <h2 className="vitals-heading">Vitals</h2>
+                <Container className="vitals-container">
+                  <Vitals vitals={vitals} setVitals={handleVitalsChange} />
+                </Container>
+              </>
+            } />
+            <Route path="/Diagnosis" element={
+              <>
+                <h2 className="diagnosis-heading">Diagnosis</h2>
+                <Container className="diagnosis-container">
+                  <Diagnosis appendDiagnosis={appendDiagnosis} />
+                </Container>
+                <h2 className="diagnosis-history-heading">Diagnosis History</h2>
+                <Container className="diagnosis-history-container">
+                  <DiagHist diagDetails={diagDetails} />
+                </Container>
+                <h2 className="medications-heading">Medications</h2>
+                <Container className="medications-container">
+                  <Medication appendMedication={appendMedication} />
+                </Container>
+                <h2 className="medication-history-heading">Medication History</h2>
+                <Container className="medication-history-container">
+                  <MedicationHist medicationDetails={medicationDetails} />
+                </Container>
+              </>
+            } />
+            <Route path="/Images" element={
+              <>
+                <Container className="add-image-container">
+                  <AddImagePage appendImage={appendImage} uploadImageToIPFS={uploadImageToIPFS} />
+                </Container>
+                <Container className="display-image-container">
+                  <DisplayImagePage patientImages={PatientImages} />
+                </Container>
+              </>
+            } />
+            <Route path="/RecList" element={<RecList updateCombinedData={updateCombinedData} setTokenID={setTokenID} />} />
+            <Route path="/Providers" element={<Providers />} />
+          </Routes>
         </Container>
-        <Routes>
-          <Route path="/" element={<HomePage ethereumAccount={ethereumAccount} connectMetamaskWallet={connectMetamaskWallet}/>} />
-          <Route path="/Profile" element={
-            <>
-              <h2 className="profile-heading">Patient Information</h2>
-              <Container className="profile-container">
-                <PersInfo personalInfo={personalInfo} setPersonalInfo={handlePersonalInfoChange} />
-              </Container>
-              <h2 className="emergency-heading">Emergency Information</h2>
-              <Container className="emergency-container">
-                <EmerInfo emergencyInfo={emergencyInfo} setEmergencyInfo={handleEmergencyInfoChange} />
-              </Container>
-              <h2 className="medical-heading">Medical Information</h2>
-              <Container className="medical-container">
-                <MedInfo medicalInfo={medicalInfo} setMedicalInfo={handleMedicalInfoChange} />
-              </Container>
-              <h2 className="vitals-heading">Vitals</h2>
-              <Container className="vitals-container">
-                <Vitals vitals={vitals} setVitals={handleVitalsChange} />
-              </Container>
-            </>
-          } />
-          <Route path="/Diagnosis" element={
-            <>
-              <h2 className="diagnosis-heading">Diagnosis</h2>
-              <Container className="diagnosis-container">
-                <Diagnosis appendDiagnosis={appendDiagnosis} />
-              </Container>
-              <h2 className="diagnosis-history-heading">Diagnosis History</h2>
-              <Container className="diagnosis-history-container">
-                <DiagHist diagDetails={diagDetails} />
-              </Container>
-              <h2 className="medications-heading">Medications</h2>
-              <Container className="medications-container">
-                <Medication appendMedication={appendMedication} />
-              </Container>
-              <h2 className="medication-history-heading">Medication History</h2>
-              <Container className="medication-history-container">
-                <MedicationHist medicationDetails={medicationDetails} />
-              </Container>
-            </>
-          } />
-          <Route path="/Images" element={
-            <>
-              <Container className="add-image-container">
-                <AddImagePage appendImage={appendImage} uploadImageToIPFS={uploadImageToIPFS} />
-              </Container>
-              <Container className="display-image-container">
-                <DisplayImagePage patientImages={PatientImages} />
-              </Container>
-            </>
-          } />
-          <Route path="/RecList" element={<RecList updateCombinedData={updateCombinedData} setTokenID={setTokenID} />} />
-        </Routes>
-      </Container>
-    </body>
-  </ThemeProvider>
+      </body>
+    </ThemeProvider>
   );
 };
 

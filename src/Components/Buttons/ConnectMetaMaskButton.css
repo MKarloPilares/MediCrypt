@@ -1,0 +1,11 @@
+.navbar-button {
+  position: fixed;
+  left: 90vw;
+}
+
+.default-button {
+  position: fixed;
+  top: 85vh;
+  width: 20vw;
+  left: 40.2vw;
+}

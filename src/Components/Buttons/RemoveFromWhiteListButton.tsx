@@ -36,7 +36,6 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
     const signer: Signer = provider.getSigner();
 
     // Retrieve the contract address from the environment variables
-
     const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
 
     if (!contractAddress) {
@@ -48,17 +47,16 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
     try {
-      // Call the whitelistAddress function of the smart contract
-     await contract.removeWhitelistedAddress(tokenID, address);
-     setWhiteListModalShow();
-
+      // Call the removeWhitelistedAddress function of the smart contract
+      await contract.removeWhitelistedAddress(tokenID, address);
+      setWhiteListModalShow();
     } catch (error) {
       console.error('Error whitelisting address:', error);
     }
   };
 
   return (
-    <Button size='sm' variant= "success" onClick={removeFromWhiteList}>
+    <Button size="sm" variant="success" onClick={removeFromWhiteList} className="remove-whitelist-button">
       REMOVE
     </Button>
   );

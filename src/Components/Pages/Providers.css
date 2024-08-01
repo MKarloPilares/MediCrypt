@@ -30,11 +30,6 @@
   align-items: center;
 }
 
-.button-share-access {
-  position: sticky;
-  left: 67vw;
-  width: 12%;
-}
 
 .modal-body-row {
   display: flex;
@@ -44,4 +39,10 @@
 
 .modal-body-col {
   font-size: 20px;
+}
+
+.button-addProvider{
+  position: fixed;
+  left: 74.3vw;
+  width: 8vw
 }

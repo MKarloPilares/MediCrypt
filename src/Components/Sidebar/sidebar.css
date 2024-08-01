@@ -1,37 +1,57 @@
-.sidebar {
+.sidebar-container {
   position: fixed;
-  top: 0;
-  left: -500px;
-  width: 400px;
-  height: 100%;
-  background-color: #228b22;
-  transition: left 0.3s ease;
+  top: 0px;
+  left: 0px;
+  width: 20vw;
+  height: 100vh;
+  background-color: green;
   z-index: 99;
-  font-weight: bold;
-  font-size: 40px;
-  font-family: Helvetica, sans-serif;
 }
 
-.sidebar.open {
-  left: 0;
+.sidebar-image {
+  position: fixed;
+  width: 10vw;
+  height: 20vh;
+  top: 15vh;
+  left: 4.5vw;
+  border: 5px solid white;
 }
 
-.sidebar-menu {
-  list-style-type: none;
-  position: absolute;
-  top: 50px;
-  width: 100%;
-  padding: 0px;
-  margin: 50px 0 0 0;
+.new-image-button {
+  position: fixed;
+  top: 40vh;
+  left: 6vw;
+  width: 7vw;
 }
 
-.sidebar-menu li {
-  padding: 10px;
-  color: #fff;
-  cursor: pointer;
+.upload-form-visible {
+  visibility: visible;
+  position: fixed;
+  top: 45vh;
+  left: 2vw;
 }
 
-.sidebar-menu li:hover {
-  background-color: #ffd700;
-  color: #228b22;
+.upload-form-hidden {
+  visibility: hidden;
+  position: fixed;
+  top: 45vh;
+  left: 2vw;
+}
+
+.file-input {
+  width: 16vw;
+}
+
+.upload-button {
+  position: fixed;
+  top: 50vh;
+  left: 7vw;
+  width: 5vw;
+}
+
+.view-only-mode {
+  position: fixed;
+  top: 90vh;
+  left: 5vw;
+  color: white;
 }

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import './NewRecordButton.css'; // Import the CSS file
 
 type PersonalInfo = {
   name: string;
@@ -66,9 +68,14 @@ type PatientImages = {
   date: string[];
 };
 
+interface NewRecordButtonProps {
+  updateCombinedData: (a) => void; // User's Ethereum account
+  className: string;
+}
 
-const NewRecordButton = ({updateCombinedData}) => {
-  const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
+const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, className }) => {
+  const navigate = useNavigate();
+  const [personalInfo] = useState<PersonalInfo>({
     name: 'Name',
     gender: 'Gender',
     age: 'Age',
@@ -79,55 +86,55 @@ const NewRecordButton = ({updateCombinedData}) => {
     profilePictureUri: '',
   });
 
-  const [emergencyInfo, setEmergencyInfo] = useState<EmergencyInfo>({
+  const [emergencyInfo] = useState<EmergencyInfo>({
     emName: 'Name',
     emNum: 'Contact Number',
     relationship: 'Relationship',
   });
 
-  const [medicalInfo, setMedicalInfo] = useState<MedicalInfo>({
-    heart: "heart",
-    lung: "lung",
-    kidney: "kid",
-    extremities: "extr",
-    cancer: "canc",
-    digestive: "dige",
-    std: "std",
-    head: "head",
-    mental: "ment",
-    drug: "drg",
-    preg: "prg",
-    smoke: "smk"
+  const [medicalInfo] = useState<MedicalInfo>({
+    heart: 'heart',
+    lung: 'lung',
+    kidney: 'kid',
+    extremities: 'extr',
+    cancer: 'canc',
+    digestive: 'dige',
+    std: 'std',
+    head: 'head',
+    mental: 'ment',
+    drug: 'drg',
+    preg: 'prg',
+    smoke: 'smk',
   });
 
-  const [vitals, setVitals] = useState<Vitals>({
-    weight: "kg",
-    height: "ft",
-    bp: "mmHG",
-    temp: "C",
-    pr: "ppM",
-    rr: "rpM"
+  const [vitals] = useState<Vitals>({
+    weight: 'kg',
+    height: 'ft',
+    bp: 'mmHG',
+    temp: 'C',
+    pr: 'ppM',
+    rr: 'rpM',
   });
 
-  const [diagDetails, setDiagDetails] = useState<DiagDetails>({
+  const [diagDetails] = useState<DiagDetails>({
     diagnosis: [],
     prognosis: [],
     treatment: [],
     date: [],
     doctor: [],
-    facility: []
+    facility: [],
   });
 
-  const [medicationDetails, setMedicationDetails] = useState<MedicationDetails>({
+  const [medicationDetails] = useState<MedicationDetails>({
     generic: [],
     brand: [],
     dose: [],
     diag: [],
     date: [],
-    doctor: []
+    doctor: [],
   });
 
-  const [PatientImages, setPatientImages] = useState<PatientImages>({
+  const [patientImages] = useState<PatientImages>({
     uri: [],
     description: [],
     date: [],
@@ -140,12 +147,16 @@ const NewRecordButton = ({updateCombinedData}) => {
     vitals,
     diagDetails,
     medicationDetails,
-    PatientImages
+    patientImages,
   };
 
+  const handleNewRecord = () => {
+    updateCombinedData(combinedData);
+    navigate("/Profile");
+  }
 
   return (
-    <Button onClick={() => updateCombinedData(combinedData)}>
+    <Button variant="success" onClick={handleNewRecord} className={className}>
       New Record
     </Button>
   );

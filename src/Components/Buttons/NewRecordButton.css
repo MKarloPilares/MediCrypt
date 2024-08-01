@@ -1,0 +1,12 @@
+.home-button-newRecord {
+  position: fixed;
+  left: 36vw;
+  top: 85.2vh;
+  width: 10vw
+}
+
+.recList-button-newRecord {
+  position: fixed;
+  left: 74.3vw;
+  width: 8vw
+}

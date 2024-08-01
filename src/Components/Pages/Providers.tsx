@@ -5,22 +5,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'react-bootstrap';
 import { ethers, Signer } from 'ethers';
 import MyAbi from '../Buttons/MyAbi.json';
-import WhiteListButton from '../Buttons/WhiteListButton';
-import GetWhiteListedNamesButton from '../Buttons/GetWhiteListedNamesButton';
-import RemoveFromWhiteListButton from '../Buttons/RemoveFromWhiteListButton';
-import NewRecordButton from '../Buttons/NewRecordButton';
-import './RecordsList.css';
-import GetRecordFromContractButton from '../Buttons/GetRecordFromContractButton';
+import NewProviderButton from '../Buttons/NewProviderButton';
+import './Providers.css';
+import RemoveProviderButton from '../Buttons/RemoveProvider';
 
-const RecList = ({ updateCombinedData, setTokenID }) => {
+const Providers = () => {
   const [AddShow, setAddShow] = useState(false);
   const [whiteListModalShow, setWhiteListModalShow] = useState(false);
-  const [names, setNames] = useState<string[]>([]);
-  const [ids, setIds] = useState<number[]>([]);
+  const [name, setName] = useState<string>("");
   const [address, setAddress] = useState<string>("");
-  const [whiteListName, setWhiteListName] = useState<string>("");
-  const [whiteListNames, setWhiteListNames] = useState<string[]>([]);
-  const [whiteListAddresses, setWhiteListAddresses] = useState<string[]>([]);
+  const [ProviderNames, setProviderNames] = useState<string[]>([]);
+  const [ProviderAddresses, setProviderAddresses] = useState<string[]>([]);
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
   const [isProviderReady, setIsProviderReady] = useState(false); // Track provider readiness
 
@@ -34,14 +29,14 @@ const RecList = ({ updateCombinedData, setTokenID }) => {
       if (window.ethereum) {
         const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
         setProvider(web3Provider);
-        setIsProviderReady(true); // Indicate that provider is ready
+        setIsProviderReady(true);
       }
     };
     initializeProvider();
   }, []);
 
   useEffect(() => {
-    const getNamesFromContract = async () => {
+    const getProviders = async () => {
       if (!provider) {
         console.error('User is not connected to an Ethereum wallet.');
         return;
@@ -58,27 +53,21 @@ const RecList = ({ updateCombinedData, setTokenID }) => {
       const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
       try {
-        const names = await contract.getAllOwnedTokenNames("0x3fcc9F262124D96B48e03CC3683462C08049384E");
-        const ids = await contract.getAllOwnedTokenIds("0x3fcc9F262124D96B48e03CC3683462C08049384E");
-        // Convert BigNumber IDs to plain numbers
-        const plainIds = ids.map((id: ethers.BigNumber) => id.toNumber());
+        const names = await contract.listMedicalProviderNames();
+        const addresses = await contract.listMedicalProviderAddresses();
+        // Convert BigNumber IDs to plain number
 
-        setNames(names);
-        setIds(plainIds)
+        setProviderNames(names);
+        setProviderAddresses(addresses)
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
     };
 
     if (isProviderReady) {
-      getNamesFromContract();
+      getProviders();
     }
   }, [provider, isProviderReady]);
-
-  const openAddModal = (tokenID) => {
-    setTokenID(tokenID);
-    handleAddShow();
-  }
 
   return (
     <ThemeProvider
@@ -87,39 +76,38 @@ const RecList = ({ updateCombinedData, setTokenID }) => {
     >
       <Row className="row-records">
         <Col>
-          <h3 className="h3-records">Records</h3>
+          <h3 className="h3-records">Providers</h3>
         </Col>
         <Col>
-          <NewRecordButton updateCombinedData={updateCombinedData} className={"recList-button-newRecord"}/>
+          <Button variant='success' className={"button-addProvider"} onClick={handleAddShow}>Add Provider</Button>
         </Col>
         <Card className="card-records">
           <Card.Body>
-            {names.map((data: any, index: number) =>
+            {ProviderNames.map((data: any, index: number) =>
             <>
               <Modal show={AddShow} onHide={handleAddShow}>
                 <Modal.Header closeButton>
-                  <Modal.Title className="modal-header-title">Give an address access to this record.</Modal.Title>
+                  <Modal.Title className="modal-header-title">Add Provider</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <Form>
-                    <Form.Label className="modal-body-form-label">Enter Wallet Address</Form.Label>
+                  <Form.Label className="modal-body-form-label">Enter Wallet Address</Form.Label>
                     <Form.Control className="modal-body-form-control" placeholder='Wallet Address' onChange={(e) => setAddress(e.target.value)}></Form.Control>
                     <Form.Label className="modal-body-form-label">Enter Name of Address Owner</Form.Label>
-                    <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setWhiteListName(e.target.value)}></Form.Control>
+                    <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setName(e.target.value)}></Form.Control>
                   </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                  <WhiteListButton address={address} tokenID={ids[index]} whiteListName={whiteListName} setAddShow={handleAddShow}/>
+                  <NewProviderButton address={address} providerName={name} setAddShow={handleAddShow}/>
                 </Modal.Footer>
               </Modal>
               <Modal show={whiteListModalShow} onHide={handleWhiteListModalShow}>
                   <Modal.Header closeButton>
                     <Modal.Title className="modal-header-title">Whitelist</Modal.Title>
                   </Modal.Header>
-                  {whiteListNames.map((data: any, index: number) =>
+                  {ProviderNames.map((data: any, index: number) =>
                   <Modal.Body key={index} className="modal-body-row">
                     <Col md='8' className="modal-body-col">{index+1}. {data}</Col>
-                    <Col><RemoveFromWhiteListButton tokenID={ids[index]} address={whiteListAddresses[index]} setWhiteListModalShow={handleWhiteListModalShow}/></Col>
                   </Modal.Body>
                   )}
                   <Modal.Footer>
@@ -130,9 +118,7 @@ const RecList = ({ updateCombinedData, setTokenID }) => {
                 <ListGroup.Item className="list-group-item">
                   <Col>
                     {data}
-                    <GetRecordFromContractButton tokenID={ids[index]} updateCombinedData={updateCombinedData} setTokenID={setTokenID}/>
-                    <Button size='sm' variant="success" className="button-share-access" onClick={() => openAddModal(ids[index])}>SHARE ACCESS</Button>
-                    <GetWhiteListedNamesButton tokenID={ids[index]} setWhiteListNames={setWhiteListNames} setWhiteListAddresses ={setWhiteListAddresses} setWhiteListModalShow={handleWhiteListModalShow}/>
+                    <RemoveProviderButton address={ProviderAddresses[index]}/>
                   </Col>
                 </ListGroup.Item>
               </ListGroup>
@@ -145,4 +131,4 @@ const RecList = ({ updateCombinedData, setTokenID }) => {
   );
 };
 
-export default RecList;
+export default Providers;

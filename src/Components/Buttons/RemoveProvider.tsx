@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
-import './GetWhiteListedNamesButton.css'; // Import the CSS file
+import './RemoveProvider.css'; // Import the CSS file
 
-interface WhiteListButtonProps {
-  tokenID: number | null;
-  setWhiteListNames: any;
-  setWhiteListAddresses: any;
-  setWhiteListModalShow: () => void;
+interface RemoveProviderButtonProps {
+  address: string;
 }
 
-const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, setWhiteListNames, setWhiteListAddresses, setWhiteListModalShow }) => {
+const RemoveProviderButton: React.FC<RemoveProviderButtonProps> = ({ address }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -22,15 +19,9 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
     }
   }, []);
 
-  const getWhiteListedNames = async () => {
+  const removeProvider = async () => {
     if (!provider) {
       console.error('User is not connected to an Ethereum wallet.');
-      return;
-    }
-
-    // Ensure tokenID and address are valid
-    if (tokenID === null) {
-      console.error('Invalid tokenID.');
       return;
     }
 
@@ -41,30 +32,23 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
 
     const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
 
-    if (!contractAddress) {
-      console.error('Contract address is not defined.');
-      return;
-    }
-
     // Connect to the contract using the ABI and address
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
     try {
       // Call the whitelistAddress function of the smart contract
-      const result = await contract.getWhitelistedAddressesAndNames(tokenID);
+      await contract.removeMedicalProvider(address);
 
-      setWhiteListNames(result.names);
-      setWhiteListAddresses(result.addresses);
     } catch (error) {
-      console.error('Error whitelisting address:', error);
+      console.error('Error Removing Provider:', error);
     }
   };
 
   return (
-    <Button size='sm' variant="success" onClick={() => { getWhiteListedNames(); setWhiteListModalShow(); }} className="whitelist-button">
-      WHITELIST
+    <Button size='sm' variant="success" onClick={removeProvider} className="removeProvider-button">
+      REMOVE
     </Button>
   );
 };
 
-export default GetWhiteListedNamesButton;
+export default RemoveProviderButton;
