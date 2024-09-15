@@ -8,11 +8,12 @@ import './GetRecordFromContractButton.css'
 
 interface GetRecordFromContractButtonProps {
   tokenID: number;
+  className: string;
   updateCombinedData: (a) => void;
   setTokenID: (a) => void;
 }
 
-const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = ({ tokenID, updateCombinedData, setTokenID }) => {
+const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = ({ tokenID, className, updateCombinedData, setTokenID }) => {
   const navigate = useNavigate();
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
@@ -38,6 +39,7 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
       return;
     }
 
+    try {
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
     const record = await contract.getTokenMetadata(tokenID);
@@ -58,7 +60,6 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
 
     navigate("/Profile");
 
-    try {
 
     } catch (error) {
       console.error('Error Getting Record:', error);
@@ -66,8 +67,8 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
   };
 
   return (
-    <Button onClick={getRecordFromContract} variant="success" size='sm' className="recList-button-openRecord">
-      OPEN RECORD
+    <Button onClick={getRecordFromContract} variant="success" size='sm' className={className}>
+      OPEN
     </Button>
   );
 };

@@ -1,11 +1,25 @@
-import { Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
-import { ThemeProvider } from 'react-bootstrap';
+import { ThemeProvider, Row, Col, Form } from 'react-bootstrap';
+import moment from 'moment';
 import './PersonalInformation.css';
 
 const PersInfo = ({ personalInfo, setPersonalInfo }) => {
+
+  const calcAge = (e) => {
+    const inputDate = e.target.value;
+    const dateObj = new Date(inputDate);
+    const formattedDate = dateObj.toISOString().split('T')[0];
+    const today = moment();
+    const birthMoment = moment(formattedDate);
+    const age = today.diff(birthMoment, 'years');
+    handlePersonalInfoChange('birthday', formattedDate)
+    handlePersonalInfoChange('age', age.toString());
+  }
+
+  const handlePersonalInfoChange = (field, value) => {
+    setPersonalInfo({ ...personalInfo, [field]: value });
+  };
+
   return (
     <ThemeProvider
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -14,12 +28,12 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
       <Form className="form-container">
         <Row>
           <Col>
-            <Form.Group className="mb-3" controlId="nameForm.ControlInput">
+            <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
-                value={personalInfo.name}
+                defaultValue={personalInfo.patientName}
                 className="name-input"
-                onChange={(e) => setPersonalInfo('name', e.target.value)}
+                onChange={(e) => handlePersonalInfoChange('patientName', e.target.value)}
               />
             </Form.Group>
             <Row>
@@ -32,63 +46,62 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
                       label="Male"
                       name="group1"
                       id={`inline-${type}-1`}
-                      {...(personalInfo.gender === 'Male' ? { checked: true } : { checked: false })}
-                      onChange={() => setPersonalInfo('gender', 'Male')}
+                      checked={personalInfo.gender === 'Male'}
+                      onChange={() => handlePersonalInfoChange('gender', 'Male')}
                     />
                     <Form.Check
                       inline
                       label="Female"
                       name="group1"
                       id={`inline-${type}-2`}
-                      {...(personalInfo.gender === 'Female' ? { checked: true } : { checked: false })}
-                      onChange={() => setPersonalInfo('gender', 'Female')}
+                      checked={personalInfo.gender === 'Female'}
+                      onChange={() => handlePersonalInfoChange('gender', 'Female')}
                     />
                   </div>
                 ))}
               </Col>
               <Col>
-                <Form.Group className="mb-3" controlId="nameForm.ControlInput">
-                  <Form.Label>Age</Form.Label>
-                  <Form.Control
-                    value={personalInfo.age}
-                    className="age-input"
-                    onChange={(e) => setPersonalInfo('age', e.target.value)}
-                  />
+                <Form.Group className="mb-3">
+                  <Row>
+                    <Form.Label>Age</Form.Label>
+                  </Row>
+                  <Form.Label>{personalInfo.age}</Form.Label>
                 </Form.Group>
               </Col>
             </Row>
-            <Form.Group className="mb-3" controlId="nameForm.ControlInput">
+            <Form.Group className="mb-3">
               <Form.Label>Date of Birth</Form.Label>
               <Form.Control
-                value={personalInfo.birthday}
+                type="date"
+                defaultValue={personalInfo.birthday}
                 className="birthday-input"
-                onChange={(e) => setPersonalInfo('birthday', e.target.value)}
+                onChange={calcAge}
               />
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group className="mb-3" controlId="nameForm.ControlInput">
+            <Form.Group className="mb-3">
               <Form.Label>Address</Form.Label>
               <Form.Control
-                value={personalInfo.address}
+                defaultValue={personalInfo.address}
                 className="address-input"
-                onChange={(e) => setPersonalInfo('address', e.target.value)}
+                onChange={(e) => handlePersonalInfoChange('address', e.target.value)}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="nameForm.ControlInput">
+            <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                value={personalInfo.email}
+                defaultValue={personalInfo.email}
                 className="email-input"
-                onChange={(e) => setPersonalInfo('email', e.target.value)}
+                onChange={(e) => handlePersonalInfoChange('email', e.target.value)}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="nameForm.ControlInput">
+            <Form.Group className="mb-3">
               <Form.Label>Phone Number</Form.Label>
               <Form.Control
-                value={personalInfo.phonenum}
+                defaultValue={personalInfo.phonenum}
                 className="phone-input"
-                onChange={(e) => setPersonalInfo('phonenum', e.target.value)}
+                onChange={(e) => handlePersonalInfoChange('phonenum', e.target.value)}
               />
             </Form.Group>
           </Col>

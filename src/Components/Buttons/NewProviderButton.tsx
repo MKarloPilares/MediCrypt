@@ -3,13 +3,13 @@ import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
 
-interface WhiteListButtonProps {
+interface NewProviderButtonProps {
   address: string;
   providerName: string;
   setAddShow: () => void;
 }
 
-const NewProviderButton: React.FC<WhiteListButtonProps> = ({ address, providerName, setAddShow }) => {
+const NewProviderButton: React.FC<NewProviderButtonProps> = ({ address, providerName, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {

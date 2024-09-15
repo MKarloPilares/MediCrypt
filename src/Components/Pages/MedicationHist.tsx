@@ -8,9 +8,9 @@ const MedicationHist = ({ medicationDetails }) => {
     generic: medicationDetails.generic[index],
     brand: medicationDetails.brand[index],
     dose: medicationDetails.dose[index],
-    diag: medicationDetails.diag[index],
-    date: medicationDetails.date[index],
-    doctor: medicationDetails.doctor[index],
+    medDiag: medicationDetails.medDiag[index],
+    medDate: medicationDetails.medDate[index],
+    medDoctor: medicationDetails.medDoctor[index],
   }));
 
   return (
@@ -42,17 +42,17 @@ const MedicationHist = ({ medicationDetails }) => {
               <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
                 <Form.Label>Diagnosis</Form.Label>
                 <br />
-                <Form.Text>{item.diag}</Form.Text>
+                <Form.Text>{item.medDiag}</Form.Text>
               </Form.Group>
               <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
                 <Form.Label>Date of Prescription</Form.Label>
                 <br />
-                <Form.Text>{item.date}</Form.Text>
+                <Form.Text>{item.medDate}</Form.Text>
               </Form.Group>
               <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
                 <Form.Label>Prescribing Doctor</Form.Label>
                 <br />
-                <Form.Text>{item.doctor}</Form.Text>
+                <Form.Text>{item.medDoctor}</Form.Text>
               </Form.Group>
             </Col>
           </Row>

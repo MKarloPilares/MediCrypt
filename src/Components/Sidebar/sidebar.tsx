@@ -1,11 +1,22 @@
 import { useState } from 'react';
 import { Col, ThemeProvider, Container, Image, Button, Form } from 'react-bootstrap';
 import MintButton from '../Buttons/MintButton';
+import UploadToIPFSButton from '../Buttons/UploadToIPFSButton';
 import './sidebar.css';
 
-const Sidebar = ({combinedData, uploadImageToIPFS, imageSource, ethereumAccount, tokenID, isMedicalProvider}) => {
+const Sidebar = ({combinedData, tokenID, isMedicalProvider, setPersonalInfo, personalInfo}) => {
   const [newImage, setnewImage] = useState<Boolean>(false);
   const [file, setFile] = useState<any>([]);
+  const [ownerWalletAddress, setOwnerWalletAddress] = useState<string>("")
+
+  const handleUploadProfilePicture = (link) => {
+    setPersonalInfo({ ...personalInfo, profilePictureUri: link})
+  }
+
+  const clearForm = () => {
+    setnewImage(false)
+    setFile(null)
+  }
 
   return (
     <ThemeProvider
@@ -14,14 +25,16 @@ const Sidebar = ({combinedData, uploadImageToIPFS, imageSource, ethereumAccount,
     >
       <Container className="sidebar-container">
         <Col>
-          <Image src={imageSource} alt="No Image" className="sidebar-image" />
-          <Button variant='warning' className="new-image-button" onClick={() => setnewImage(!newImage)}>New Image</Button>
+          <Image src={personalInfo.profilePictureUri} alt="No Image" className="sidebar-image"  onClick={() => setnewImage(!newImage)}/>
           <Form.Group className={newImage ? "upload-form-visible" : "upload-form-hidden"}>
             <Form.Control type="file" className="file-input" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFile(e.target.files?.[0])}/>
-            <Button variant='warning' className="upload-button" onClick={() =>uploadImageToIPFS("profileChange",file)}>Upload</Button>
+            <UploadToIPFSButton appendImageUri={handleUploadProfilePicture} ActionAfterAppend={clearForm} file={file} className="sidebar-button-upload"/>
           </Form.Group>
           {isMedicalProvider ? (
-            <MintButton account={ethereumAccount} combinedData={combinedData} tokenID={tokenID}></MintButton>
+            <>
+              <Form.Control placeholder='Input Owner Wallet Address' className="wallet-input" onChange={(e) => setOwnerWalletAddress(e.target.value)}></Form.Control>
+              <MintButton account={ownerWalletAddress} combinedData={combinedData} tokenID={tokenID}></MintButton>
+            </>
           ) : (
             <h5 className="view-only-mode">VIEW ONLY MODE</h5>
           )}

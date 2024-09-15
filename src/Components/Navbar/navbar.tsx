@@ -3,7 +3,7 @@ import ConnectMetaMaskButton from "../Buttons/ConnectMetaMaskButton";
 import { useNavigate } from "react-router-dom";
 import logoSolo from '../Images/MEDICRYPT LOGO_SOLO.png';
 
-const NavbarComponent = ({ethereumAccount, setEthereumAccount, setIsOwner, setIsMedicalProvider}) => {
+const NavbarComponent = ({userWalletAddress, setUserWalletAddress, setIsOwner, setIsMedicalProvider}) => {
   const navigate = useNavigate();
 
   return (
@@ -28,10 +28,10 @@ const NavbarComponent = ({ethereumAccount, setEthereumAccount, setIsOwner, setIs
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        {ethereumAccount === null ? (
-          <ConnectMetaMaskButton setEthereumAccount={setEthereumAccount} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"navbar"} />
+        {userWalletAddress === null ? (
+          <ConnectMetaMaskButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"navbar-button-connectToMetamask"} />
         ) : (
-          <h6>Logged in as: {ethereumAccount}</h6>
+          <h6>Logged in as: {userWalletAddress}</h6>
         )}
       </Navbar>
   );

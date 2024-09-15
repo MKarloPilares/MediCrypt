@@ -1,5 +1,15 @@
 .whitelist-button {
   position: sticky;
-  left: 75vw;
-  width: 12%;
+  left: 40%;
+  width: 20%;
+  border-style: solid;
+  border-color: white;
+}
+
+@media (max-width: 768px) {
+  .whitelist-button {
+    position: sticky;
+    left: 0%;
+    width: 35%;
+  }
 }

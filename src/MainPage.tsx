@@ -18,12 +18,11 @@ import RecList from './Components/Pages/RecordsList';
 import HomePage from './Components/Pages/Home';
 import NavbarComponent from './Components/Navbar/navbar';
 import Providers from './Components/Pages/Providers';
+import Agencies from './Components/Pages/Agencies';
 import './main.css';
 
-const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJkOGY1YTBhYi1lN2VjLTRiNTMtOTNmYy0xYmZkNzJiN2UzMTgiLCJlbWFpbCI6ImF6YXplbGwyOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJGUkExIn0seyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJOWUMxIn1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiMjgyODRhODI3MjQzYzk3ZDcwNmYiLCJzY29wZWRLZXlTZWNyZXQiOiI2NDJiMTI5MWM1YzliNzEzOGE2OGNiMDE4YzI3Nzk0OWYxYTcyNzg3OWE4ZDZiZjMyZDI3NjQ0ODM0NGQ5MDM2IiwiZXhwIjoxNzU0MDEyNzg1fQ.u81FAJn_dL_OuE2xdSz7bGrWM5f7m3KtZ7cmfwp5r70';
-
 type PersonalInfo = {
-  name: string;
+  patientName: string;
   gender: string;
   age: string;
   birthday: string;
@@ -64,11 +63,11 @@ type Vitals = {
 };
 
 type DiagDetails = {
-  diagnosis: string[];
+  diagDiagnosis: string[];
   prognosis: string[];
   treatment: string[];
-  date: string[];
-  doctor: string[];
+  diagDate: string[];
+  diagDoctor: string[];
   facility: string[];
 };
 
@@ -76,35 +75,35 @@ type MedicationDetails = {
   generic: string[];
   brand: string[];
   dose: string[];
-  diag: string[];
-  date: string[];
-  doctor: string[];
+  medDiag: string[];
+  medDate: string[];
+  medDoctor: string[];
 };
 
 type PatientImages = {
-  uri: string[];
+  imageUri: string[];
   description: string[];
-  date: string[];
+  imageDate: string[];
 };
 
 
 const MainPage = () => {
   let navigate = useNavigate();
   let location = useLocation();
-  const [ethereumAccount, setEthereumAccount] = useState<string | null>(null);
+  const [userWalletAddress, setUserWalletAddress] = useState<string | null>(null);
   const [tokenID, setTokenID] = useState<number | null>(null);
   const [isOwner, setIsOwner] = useState<Boolean>(false);
   const [isMedicalProvider, setIsMedicalProvider] = useState<Boolean>(false);
 
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
-    name: 'Name',
+    patientName: 'Name',
     gender: 'Gender',
     age: 'Age',
     birthday: 'Date of Birth',
     address: 'Address',
     email: 'Email',
     phonenum: 'Phone Number',
-    profilePictureUri: '',
+    profilePictureUri: 'https://ipfs.io/ipfs/QmNXVoaLNFGbTnuM5UpUbPy9rqEFXYWoT39kmrpVmwuuSn',
   });
 
   const [emergencyInfo, setEmergencyInfo] = useState<EmergencyInfo>({
@@ -138,11 +137,11 @@ const MainPage = () => {
   });
 
   const [diagDetails, setDiagDetails] = useState<DiagDetails>({
-    diagnosis: [],
+    diagDiagnosis: [],
     prognosis: [],
     treatment: [],
-    date: [],
-    doctor: [],
+    diagDate: [],
+    diagDoctor: [],
     facility: []
   });
 
@@ -150,15 +149,15 @@ const MainPage = () => {
     generic: [],
     brand: [],
     dose: [],
-    diag: [],
-    date: [],
-    doctor: []
+    medDiag: [],
+    medDate: [],
+    medDoctor: []
   });
 
   const [PatientImages, setPatientImages] = useState<PatientImages>({
-    uri: [],
+    imageUri: [],
     description: [],
-    date: [],
+    imageDate: [],
   });
 
   const combinedData = {
@@ -169,55 +168,6 @@ const MainPage = () => {
     diagDetails,
     medicationDetails,
     PatientImages
-  };
-
-
-  const handlePersonalInfoChange = (field, value) => {
-    setPersonalInfo({ ...personalInfo, [field]: value });
-  };
-
-  const handleEmergencyInfoChange = (field, value) => {
-    setEmergencyInfo({ ...emergencyInfo, [field]: value });
-  };
-
-  const handleMedicalInfoChange = (field, value) => {
-    setMedicalInfo({ ...medicalInfo, [field]: value });
-  };
-
-  const handleVitalsChange = (field, value) => {
-    setVitals({ ...vitals, [field]: value });
-  };
-
-  const appendDiagnosis = (newDiagnosis, newPrognosis, newTreatment, newDate, newDoctor, newFacility) => {
-    setDiagDetails(prevDetails => ({
-      ...prevDetails,
-      diagnosis: [...prevDetails.diagnosis, newDiagnosis],
-      prognosis: [...prevDetails.prognosis, newPrognosis],
-      treatment: [...prevDetails.treatment, newTreatment],
-      date: [...prevDetails.date, newDate],
-      doctor: [...prevDetails.doctor, newDoctor],
-      facility: [...prevDetails.facility, newFacility],
-    }));
-  };
-
-  const appendMedication = (newGeneric, newBrand, newDose, newDiag, newDate, newDoctor) => {
-    setMedicationDetails(prevDetails => ({
-      ...prevDetails,
-      generic: [...prevDetails.generic, newGeneric],
-      brand: [...prevDetails.brand, newBrand],
-      dose: [...prevDetails.dose, newDose],
-      diag: [...prevDetails.diag, newDiag],
-      date: [...prevDetails.date, newDate],
-      doctor: [...prevDetails.doctor, newDoctor],
-    }));
-  };
-
-  const appendImage = (newDesc, newDate) => {
-    setPatientImages(prevDetails => ({
-      ...prevDetails,
-      description: [...prevDetails.description, newDesc],
-      date: [...prevDetails.date, newDate],
-    }));
   };
 
   const updateCombinedData = (newData) => {
@@ -239,34 +189,6 @@ const MainPage = () => {
     { name: 'Images', value: '/Images' },
   ];
 
-  const uploadImageToIPFS = async (event, file) => {
-
-    try {
-      const data = new FormData();
-      data.append("file", file);
-
-      const res = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${JWT}`,
-        },
-        body: data,
-      });
-      const resData = await res.json();
-      if (event === 'profileChange') {
-        setPersonalInfo({ ...personalInfo, profilePictureUri: `https://ipfs.io/ipfs/${resData.IpfsHash}` })
-      }
-      else {
-        setPatientImages(prevDetails => ({
-          ...prevDetails,
-          uri: [...prevDetails.uri, `https://ipfs.io/ipfs/${resData.IpfsHash}`],
-        }))
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   const shouldRenderSidebar = ['/Profile', '/Diagnosis', '/Images'].includes(location.pathname);
 
   return (
@@ -274,15 +196,14 @@ const MainPage = () => {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
-      <NavbarComponent ethereumAccount={ethereumAccount} setEthereumAccount={setEthereumAccount} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider}/>
+      <NavbarComponent userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider}/>
       {shouldRenderSidebar && (
         <Sidebar
           combinedData={combinedData}
-          uploadImageToIPFS={uploadImageToIPFS}
-          imageSource={personalInfo.profilePictureUri}
-          ethereumAccount={ethereumAccount}
           tokenID={tokenID}
           isMedicalProvider={isMedicalProvider}
+          setPersonalInfo={setPersonalInfo}
+          personalInfo={personalInfo}
         />
       )}
       <body className="main-body">
@@ -309,25 +230,25 @@ const MainPage = () => {
             )}
           </Container>
           <Routes>
-            <Route path="/" element={<HomePage ethereumAccount={ethereumAccount} setEthereumAccount={setEthereumAccount} setIsOwner={setIsOwner} updateCombinedData={updateCombinedData} 
+            <Route path="/" element={<HomePage userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} updateCombinedData={updateCombinedData} 
               isOwner={isOwner} setIsMedicalProvider={setIsMedicalProvider}></HomePage>} />
             <Route path="/Profile" element={
               <>
                 <h2 className="profile-heading">Patient Information</h2>
                 <Container className="profile-container">
-                  <PersInfo personalInfo={personalInfo} setPersonalInfo={handlePersonalInfoChange} />
+                  <PersInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} />
                 </Container>
                 <h2 className="emergency-heading">Emergency Information</h2>
                 <Container className="emergency-container">
-                  <EmerInfo emergencyInfo={emergencyInfo} setEmergencyInfo={handleEmergencyInfoChange} />
+                  <EmerInfo emergencyInfo={emergencyInfo} setEmergencyInfo={setEmergencyInfo} />
                 </Container>
                 <h2 className="medical-heading">Medical Information</h2>
                 <Container className="medical-container">
-                  <MedInfo medicalInfo={medicalInfo} setMedicalInfo={handleMedicalInfoChange} />
+                  <MedInfo medicalInfo={medicalInfo} setMedicalInfo={setMedicalInfo} />
                 </Container>
                 <h2 className="vitals-heading">Vitals</h2>
                 <Container className="vitals-container">
-                  <Vitals vitals={vitals} setVitals={handleVitalsChange} />
+                  <Vitals vitals={vitals} setVitals={setVitals} />
                 </Container>
               </>
             } />
@@ -335,7 +256,7 @@ const MainPage = () => {
               <>
                 <h2 className="diagnosis-heading">Diagnosis</h2>
                 <Container className="diagnosis-container">
-                  <Diagnosis appendDiagnosis={appendDiagnosis} />
+                  <Diagnosis setDiagDetails={setDiagDetails} />
                 </Container>
                 <h2 className="diagnosis-history-heading">Diagnosis History</h2>
                 <Container className="diagnosis-history-container">
@@ -343,7 +264,7 @@ const MainPage = () => {
                 </Container>
                 <h2 className="medications-heading">Medications</h2>
                 <Container className="medications-container">
-                  <Medication appendMedication={appendMedication} />
+                  <Medication setMedicationDetails={setMedicationDetails} />
                 </Container>
                 <h2 className="medication-history-heading">Medication History</h2>
                 <Container className="medication-history-container">
@@ -354,15 +275,16 @@ const MainPage = () => {
             <Route path="/Images" element={
               <>
                 <Container className="add-image-container">
-                  <AddImagePage appendImage={appendImage} uploadImageToIPFS={uploadImageToIPFS} />
+                  <AddImagePage setPatientImages={setPatientImages}/>
                 </Container>
                 <Container className="display-image-container">
                   <DisplayImagePage patientImages={PatientImages} />
                 </Container>
               </>
             } />
-            <Route path="/RecList" element={<RecList updateCombinedData={updateCombinedData} setTokenID={setTokenID} />} />
+            <Route path="/RecList" element={<RecList userWalletAddress={userWalletAddress} updateCombinedData={updateCombinedData} setTokenID={setTokenID} />} />
             <Route path="/Providers" element={<Providers />} />
+            <Route path="/Agencies" element={<Agencies/>} />
           </Routes>
         </Container>
       </body>

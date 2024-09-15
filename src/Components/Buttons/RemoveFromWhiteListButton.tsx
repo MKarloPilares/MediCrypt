@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
+import './RemoveFromWhiteListButton.css'
 import MyAbi from './MyAbi.json';
 
 interface RemoveFromWhiteListButtonProps {
   tokenID: number;
   address: string;
+  tokenName: string;
   setWhiteListModalShow: () => void;
 }
 
-const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ tokenID, address, setWhiteListModalShow }) => {
+const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ tokenID, address, tokenName, setWhiteListModalShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
 
     try {
       // Call the removeWhitelistedAddress function of the smart contract
-      await contract.removeWhitelistedAddress(tokenID, address);
+      await contract.removeWhitelistedAddress(tokenID, address, tokenName);
       setWhiteListModalShow();
     } catch (error) {
       console.error('Error whitelisting address:', error);
@@ -56,7 +58,7 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
   };
 
   return (
-    <Button size="sm" variant="success" onClick={removeFromWhiteList} className="remove-whitelist-button">
+    <Button size="sm" variant="success" onClick={removeFromWhiteList} className='recordList-button-removeWhiteList'>
       REMOVE
     </Button>
   );

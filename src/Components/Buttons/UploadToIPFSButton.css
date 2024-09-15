@@ -1,0 +1,13 @@
+.sidebar-button-upload {
+  position: absolute;
+  top: 42%;
+  left: 27%;
+  width: 45%;
+}
+
+.addImagePage-button-upload {
+  position: fixed;
+  top: 25.5vh;
+  width: 10vw;
+}
+

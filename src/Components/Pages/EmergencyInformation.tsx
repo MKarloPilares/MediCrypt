@@ -4,6 +4,11 @@ import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './EmergencyInformation.css'
 
 const EmerInfo = ({ emergencyInfo, setEmergencyInfo }) => {
+
+  const handleEmergencyInfoChange = (field, value) => {
+    setEmergencyInfo({ ...emergencyInfo, [field]: value });
+  };
+
   return (
     <ThemeProvider
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -14,15 +19,15 @@ const EmerInfo = ({ emergencyInfo, setEmergencyInfo }) => {
           <Col>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Emergency Contact</Form.Label>
-              <Form.Control value={emergencyInfo.emName} className="input-field" onChange={(e) => setEmergencyInfo('emName', e.target.value)} />
+              <Form.Control defaultValue={emergencyInfo.emName} className="input-field" onChange={(e) => handleEmergencyInfoChange('emName', e.target.value)} />
             </Form.Group>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Emergency Contact Number</Form.Label>
-              <Form.Control value={emergencyInfo.emNum} className="input-field" onChange={(e) => setEmergencyInfo('emNum', e.target.value)} />
+              <Form.Control defaultValue={emergencyInfo.emNum} className="input-field" onChange={(e) => handleEmergencyInfoChange('emNum', e.target.value)} />
             </Form.Group>
             <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
               <Form.Label>Relationship With Patient</Form.Label>
-              <Form.Control value={emergencyInfo.relationship} className="input-field" onChange={(e) => setEmergencyInfo('relationship', e.target.value)} />
+              <Form.Control defaultValue={emergencyInfo.relationship} className="input-field" onChange={(e) => handleEmergencyInfoChange('relationship', e.target.value)} />
             </Form.Group>
           </Col>
         </Row>

@@ -8,7 +8,7 @@ import ConnectMetaMaskButton from '../Buttons/ConnectMetaMaskButton';
 import NewRecordButton from '../Buttons/NewRecordButton';
 import './Home.css'
 
-const HomePage = ({ethereumAccount, setEthereumAccount, setIsOwner, updateCombinedData, isOwner, setIsMedicalProvider }) => {
+const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCombinedData, isOwner, setIsMedicalProvider }) => {
   const navigate = useNavigate();
 
   return (
@@ -16,20 +16,19 @@ const HomePage = ({ethereumAccount, setEthereumAccount, setIsOwner, updateCombin
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
-      <Container className="container-custom">
+      <Container className="container-home">
         <Row>
           <Image src={logo} className="logo-image" />
         </Row>
         <Row>
-          {ethereumAccount === null ? (
-            <ConnectMetaMaskButton setEthereumAccount={setEthereumAccount} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={""}/>
+          {userWalletAddress === null ? (
+            <ConnectMetaMaskButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"home-button-connectToMetamask"}/>
           ) : (
             <>
               <NewRecordButton updateCombinedData={updateCombinedData} className={"home-button-newRecord"}/>
-              <Button variant='success' className="button-recordList" onClick={() => navigate("/RecList")}>
-                Records List
-              </Button>
+              <Button variant='success' className="button-recordList" onClick={() => navigate("/RecList")}>Records List</Button>
               {isOwner === true && <Button variant='success' className='button-providerList' onClick={() => navigate("/Providers")}>Provider List</Button>}
+              {isOwner === true && <Button variant='success' className='button-agencyList' onClick={() => navigate("/Agencies")}>Agency List</Button>}
             </>
           )}
         </Row>

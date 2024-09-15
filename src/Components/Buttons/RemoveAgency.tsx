@@ -1,0 +1,54 @@
+import React, { useState, useEffect } from 'react';
+import { ethers, Signer } from 'ethers';
+import { Button } from 'react-bootstrap';
+import MyAbi from './MyAbi.json';
+import './RemoveProvider.css'; // Import the CSS file
+
+interface RemoveAgencyButtonProps {
+  address: string;
+}
+
+const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ address }) => {
+  const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
+
+  useEffect(() => {
+    // Connect to the Ethereum wallet using Web3
+    if (window.ethereum) {
+      const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+      setProvider(web3Provider);
+    }
+  }, []);
+
+  const removeAgency = async () => {
+    if (!provider) {
+      console.error('User is not connected to an Ethereum wallet.');
+      return;
+    }
+
+    // Create a signer from the user's Ethereum account
+    const signer: Signer = provider.getSigner();
+
+    // Retrieve the contract address from the environment variables
+
+    const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
+
+    // Connect to the contract using the ABI and address
+    const contract = new ethers.Contract(contractAddress, MyAbi, signer);
+
+    try {
+      // Call the whitelistAddress function of the smart contract
+      await contract.removeAgency(address);
+
+    } catch (error) {
+      console.error('Error Removing Provider:', error);
+    }
+  };
+
+  return (
+    <Button size='sm' variant="success" onClick={removeAgency} className="removeProvider-button">
+      REMOVE
+    </Button>
+  );
+};
+
+export default RemoveAgencyButton;

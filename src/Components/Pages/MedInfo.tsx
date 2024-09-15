@@ -3,6 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './MedInfo.css';
 
 const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
+
+  const handleMedicalInfoChange = (field, value) => {
+    setMedicalInfo({ ...medicalInfo, [field]: value });
+  };
+
   return (
     <ThemeProvider
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -20,7 +25,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="HeartCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.heart === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("heart", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("heart", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -28,7 +33,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="HeartCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.heart === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("heart", 'No')}
+                  onChange={() => handleMedicalInfoChange("heart", 'No')}
                 />
               </div>
             ))}
@@ -41,7 +46,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="LungCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.lung === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("lung", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("lung", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -49,7 +54,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="LungCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.lung === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("lung", 'No')}
+                  onChange={() => handleMedicalInfoChange("lung", 'No')}
                 />
               </div>
             ))}
@@ -62,7 +67,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="KidCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.kidney === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("kidney", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("kidney", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -70,7 +75,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="KidCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.kidney === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("kidney", 'No')}
+                  onChange={() => handleMedicalInfoChange("kidney", 'No')}
                 />
               </div>
             ))}
@@ -85,7 +90,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="ExtCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.extremities === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("extremities", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("extremities", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -93,7 +98,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="ExtCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.extremities === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("extremities", 'No')}
+                  onChange={() => handleMedicalInfoChange("extremities", 'No')}
                 />
               </div>
             ))}
@@ -106,7 +111,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="CanCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.cancer === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("cancer", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("cancer", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -114,7 +119,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="CanCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.cancer === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("cancer", 'No')}
+                  onChange={() => handleMedicalInfoChange("cancer", 'No')}
                 />
               </div>
             ))}
@@ -127,7 +132,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="DigCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.digestive === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("digestive", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("digestive", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -135,7 +140,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="DigCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.digestive === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("digestive", 'No')}
+                  onChange={() => handleMedicalInfoChange("digestive", 'No')}
                 />
               </div>
             ))}
@@ -150,7 +155,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="STDCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.std === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("std", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("std", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -158,7 +163,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="STDCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.std === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("std", 'No')}
+                  onChange={() => handleMedicalInfoChange("std", 'No')}
                 />
               </div>
             ))}
@@ -171,7 +176,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="HeadCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.head === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("head", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("head", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -179,7 +184,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="HeadCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.head === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("head", 'No')}
+                  onChange={() => handleMedicalInfoChange("head", 'No')}
                 />
               </div>
             ))}
@@ -192,7 +197,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="MentCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.mental === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("mental", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("mental", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -200,7 +205,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="MentCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.mental === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("mental", 'No')}
+                  onChange={() => handleMedicalInfoChange("mental", 'No')}
                 />
               </div>
             ))}
@@ -215,7 +220,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="DrugCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.drug === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("drug", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("drug", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -223,7 +228,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="DrugCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.drug === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("drug", 'No')}
+                  onChange={() => handleMedicalInfoChange("drug", 'No')}
                 />
               </div>
             ))}
@@ -236,7 +241,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="PregCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.preg === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("preg", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("preg", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -244,7 +249,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="PregCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.preg === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("preg", 'No')}
+                  onChange={() => handleMedicalInfoChange("preg", 'No')}
                 />
               </div>
             ))}
@@ -257,7 +262,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="SmokerCheck"
                   id={`inline-${type}-1`}
                   {...medicalInfo.smoke === 'Yes' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("smoke", 'Yes')}
+                  onChange={() => handleMedicalInfoChange("smoke", 'Yes')}
                 />
                 <Form.Check
                   inline
@@ -265,7 +270,7 @@ const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
                   name="SmokerCheck"
                   id={`inline-${type}-2`}
                   {...medicalInfo.smoke === 'No' ? { checked: true } : { checked: false }}
-                  onChange={() => setMedicalInfo("smoke", 'No')}
+                  onChange={() => handleMedicalInfoChange("smoke", 'No')}
                 />
               </div>
             ))}

@@ -1,11 +1,26 @@
-.navbar-button {
+.navbar-button-connectToMetamask {
   position: fixed;
   left: 90vw;
 }
 
-.default-button {
+.home-button-connectToMetamask {
   position: fixed;
   top: 85vh;
   width: 20vw;
   left: 40.2vw;
+}
+
+@media (max-width: 768px) {
+  .home-button-connectToMetamask {
+    width: 70vw;
+    top: 60vh;
+    left: 15.5vw;
+  }
+
+  .navbar-button-connectToMetamask {
+    position: fixed;
+    width: 30vw;
+    height: 5vh;
+    left: 45vw;
+  }
 }

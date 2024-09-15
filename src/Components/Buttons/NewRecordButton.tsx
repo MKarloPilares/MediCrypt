@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './NewRecordButton.css'; // Import the CSS file
 
 type PersonalInfo = {
-  name: string;
+  patientName: string;
   gender: string;
   age: string;
   birthday: string;
@@ -45,11 +45,11 @@ type Vitals = {
 };
 
 type DiagDetails = {
-  diagnosis: string[];
+  diagDiagnosis: string[];
   prognosis: string[];
   treatment: string[];
-  date: string[];
-  doctor: string[];
+  diagDate: string[];
+  diagDoctor: string[];
   facility: string[];
 };
 
@@ -57,15 +57,15 @@ type MedicationDetails = {
   generic: string[];
   brand: string[];
   dose: string[];
-  diag: string[];
-  date: string[];
-  doctor: string[];
+  medDiag: string[];
+  medDate: string[];
+  medDoctor: string[];
 };
 
 type PatientImages = {
-  uri: string[];
+  imageUri: string[];
   description: string[];
-  date: string[];
+  imageDate: string[];
 };
 
 interface NewRecordButtonProps {
@@ -76,14 +76,14 @@ interface NewRecordButtonProps {
 const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, className }) => {
   const navigate = useNavigate();
   const [personalInfo] = useState<PersonalInfo>({
-    name: 'Name',
+    patientName: 'Name',
     gender: 'Gender',
     age: 'Age',
     birthday: 'Date of Birth',
     address: 'Address',
     email: 'Email',
     phonenum: 'Phone Number',
-    profilePictureUri: '',
+    profilePictureUri: 'https://ipfs.io/ipfs/QmNXVoaLNFGbTnuM5UpUbPy9rqEFXYWoT39kmrpVmwuuSn',
   });
 
   const [emergencyInfo] = useState<EmergencyInfo>({
@@ -117,27 +117,27 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
   });
 
   const [diagDetails] = useState<DiagDetails>({
-    diagnosis: [],
+    diagDiagnosis: [],
     prognosis: [],
     treatment: [],
-    date: [],
-    doctor: [],
-    facility: [],
+    diagDate: [],
+    diagDoctor: [],
+    facility: []
   });
 
   const [medicationDetails] = useState<MedicationDetails>({
     generic: [],
     brand: [],
     dose: [],
-    diag: [],
-    date: [],
-    doctor: [],
+    medDiag: [],
+    medDate: [],
+    medDoctor: []
   });
 
   const [patientImages] = useState<PatientImages>({
-    uri: [],
+    imageUri: [],
     description: [],
-    date: [],
+    imageDate: [],
   });
 
   const combinedData = {

@@ -1,5 +1,21 @@
-.recList-button-openRecord {
+.recList-openButton-ownedRecord {
   position: sticky;
-  left: 59vw;
-  width: 12%;
+  left: 28%;
+  width: 19%;
+  border-style: solid;
+  border-color: white;
+}
+
+.recList-openButton-sharedRecord {
+  position: sticky;
+  left: 80%;
+  width: 21%;
+}
+
+@media (max-width: 768px) {
+  .recList-openButton-ownedRecord {
+    position: sticky;
+    left: 100%;
+    width: 30%;
+  }
 }

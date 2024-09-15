@@ -4,12 +4,12 @@ import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './DiagHist.css';
 
 const DiagHist = ({ diagDetails }) => {
-  const entries = diagDetails.diagnosis.map((_, index) => ({
-    diagnosis: diagDetails.diagnosis[index],
+  const entries = diagDetails.diagDiagnosis.map((_, index) => ({
+    diagDiagnosis: diagDetails.diagDiagnosis[index],
     prognosis: diagDetails.prognosis[index],
     treatment: diagDetails.treatment[index],
-    date: diagDetails.date[index],
-    doctor: diagDetails.doctor[index],
+    diagDate: diagDetails.diagDate[index],
+    diagDoctor: diagDetails.diagDoctor[index], 
     facility: diagDetails.facility[index],
   }));
 
@@ -25,7 +25,7 @@ const DiagHist = ({ diagDetails }) => {
               <Form.Group className='mb-3' controlId={`diagnosis-${index}`}>
                 <Form.Label>Diagnosis</Form.Label>
                 <br />
-                <Form.Text>{item.diagnosis}</Form.Text>
+                <Form.Text>{item.diagDiagnosis}</Form.Text>
               </Form.Group>
               <Form.Group className='mb-3' controlId={`prognosis-${index}`}>
                 <Form.Label>Prognosis</Form.Label>
@@ -42,12 +42,12 @@ const DiagHist = ({ diagDetails }) => {
               <Form.Group className='mb-3' controlId={`date-${index}`}>
                 <Form.Label>Date</Form.Label>
                 <br />
-                <Form.Text>{item.date}</Form.Text>
+                <Form.Text>{item.diagDate}</Form.Text>
               </Form.Group>
               <Form.Group className='mb-3' controlId={`doctor-${index}`}>
                 <Form.Label>Doctor</Form.Label>
                 <br />
-                <Form.Text>{item.doctor}</Form.Text>
+                <Form.Text>{item.diagDoctor}</Form.Text>
               </Form.Group>
               <Form.Group className='mb-3' controlId={`facility-${index}`}>
                 <Form.Label>Facility</Form.Label>

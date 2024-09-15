@@ -3,3 +3,10 @@
   left: 75vw;
   width: 12%;
 }
+
+@media (max-width: 768px) {
+  .removeProvider-button {
+    position: sticky;
+    width: 35%
+  }
+}

@@ -8,10 +8,10 @@ interface WhiteListButtonProps {
   tokenID: number | null;
   setWhiteListNames: any;
   setWhiteListAddresses: any;
-  setWhiteListModalShow: () => void;
+  openWhiteListModal: () => void;
 }
 
-const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, setWhiteListNames, setWhiteListAddresses, setWhiteListModalShow }) => {
+const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, setWhiteListNames, setWhiteListAddresses, openWhiteListModal }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -61,8 +61,8 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
   };
 
   return (
-    <Button size='sm' variant="success" onClick={() => { getWhiteListedNames(); setWhiteListModalShow(); }} className="whitelist-button">
-      WHITELIST
+    <Button size='sm' variant="success" onClick={() => { getWhiteListedNames(); openWhiteListModal(); }} className="whitelist-button">
+      UNSHARE
     </Button>
   );
 };

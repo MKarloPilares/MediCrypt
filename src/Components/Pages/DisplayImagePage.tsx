@@ -3,10 +3,10 @@ import './DisplayImagePage.css';
 import { Row, Col, ThemeProvider, Image, Form } from 'react-bootstrap';
 
 const ImagePage = ({ patientImages }) => {
-  const entries = patientImages.uri.map((_, index) => ({
-    uri: patientImages.uri[index],
+  const entries = patientImages.imageUri.map((_, index) => ({
+    imageUri: patientImages.imageUri[index],
     description: patientImages.description[index],
-    date: patientImages.date[index],
+    imageDate: patientImages.imageDate[index],
   }));
 
   return (
@@ -24,10 +24,10 @@ const ImagePage = ({ patientImages }) => {
                     <Form.Label>{item.description}</Form.Label>
                   </Col>
                   <Col>
-                    <Form.Label>{item.date}</Form.Label>
+                    <Form.Label>{item.imageDate}</Form.Label>
                   </Col>
                 </Row>
-                <Image src={item.uri} className="image-page-image"></Image>
+                <Image src={item.imageUri} className="image-page-image"></Image>
               </Form>
             </Col>
           ))}

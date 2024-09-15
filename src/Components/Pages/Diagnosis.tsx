@@ -5,36 +5,48 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './Diagnosis.css';
 
-const Diagnosis = ({ appendDiagnosis }) => {
-  const [diagnosis, setDiagnosis] = useState('');
+const Diagnosis = ({ setDiagDetails }) => {
+  const [diagDiagnosis, setDiagDiagnosis] = useState('');
   const [prognosis, setPrognosis] = useState('');
   const [treatment, setTreatment] = useState('');
-  const [date, setDate] = useState('');
-  const [doctor, setDoctor] = useState('');
+  const [diagDate, setDiagDate] = useState('');
+  const [diagDoctor, setDiagDoctor] = useState('');
   const [facility, setFacility] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     checkFormValidity();
-  }, [diagnosis, prognosis, treatment, date, doctor, facility]);
+  }, [diagDiagnosis, prognosis, treatment, diagDate, diagDoctor, facility]);
 
   const checkFormValidity = () => {
     setIsFormValid(
-      diagnosis !== '' &&
+      diagDiagnosis !== '' &&
       prognosis !== '' &&
       treatment !== '' &&
-      date !== '' &&
-      doctor !== '' &&
+      diagDate !== '' &&
+      diagDoctor !== '' &&
       facility !== ''
     );
   };
 
+  const appendDiagnosis = (newDiagnosis, newPrognosis, newTreatment, newDate, newDoctor, newFacility) => {
+    setDiagDetails(prevDetails => ({
+      ...prevDetails,
+      diagDiagnosis: [...prevDetails.diagDiagnosis, newDiagnosis],
+      prognosis: [...prevDetails.prognosis, newPrognosis],
+      treatment: [...prevDetails.treatment, newTreatment],
+      diagDate: [...prevDetails.diagDate, newDate],
+      diagDoctor: [...prevDetails.diagDoctor, newDoctor],
+      facility: [...prevDetails.facility, newFacility],
+    }));
+  };
+
   const resetForm = () => {
-    setDiagnosis('');
+    setDiagDiagnosis('');
     setPrognosis('');
     setTreatment('');
-    setDate('');
-    setDoctor('');
+    setDiagDate('');
+    setDiagDoctor('');
     setFacility('');
   };
 
@@ -46,16 +58,16 @@ const Diagnosis = ({ appendDiagnosis }) => {
       <Form className="form-container">
         <Row>
           <Col>
-            <Form.Group className='mb-3' controlId='diagnosisForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Diagnosis</Form.Label>
               <Form.Control
                 placeholder='Diagnosis'
-                value={diagnosis}
+                value={diagDiagnosis}
                 className="form-control"
-                onChange={(e) => setDiagnosis(e.target.value)}
+                onChange={(e) => setDiagDiagnosis(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='prognosisForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Prognosis</Form.Label>
               <Form.Control
                 placeholder='Prognosis'
@@ -64,7 +76,7 @@ const Diagnosis = ({ appendDiagnosis }) => {
                 onChange={(e) => setPrognosis(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='treatmentForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Treatment</Form.Label>
               <Form.Control
                 placeholder='Treatment'
@@ -75,25 +87,26 @@ const Diagnosis = ({ appendDiagnosis }) => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group className='mb-3' controlId='dateForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Date</Form.Label>
               <Form.Control
+                type="date"
                 placeholder='Date'
-                value={date}
+                value={diagDate}
                 className="form-control"
-                onChange={(e) => setDate(e.target.value)}
+                onChange={(e) => setDiagDate(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='doctorForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Doctor</Form.Label>
               <Form.Control
                 placeholder='Doctor'
-                value={doctor}
+                value={diagDoctor}
                 className="form-control"
-                onChange={(e) => setDoctor(e.target.value)}
+                onChange={(e) => setDiagDoctor(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='facilityForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Facility</Form.Label>
               <Form.Control
                 placeholder='Facility'
@@ -105,7 +118,7 @@ const Diagnosis = ({ appendDiagnosis }) => {
           </Col>
         </Row>
         <Button variant='success' disabled={!isFormValid} className="add-button"
-         onClick={() => {appendDiagnosis(diagnosis, prognosis, treatment, date, doctor, facility); resetForm()}}>Add</Button>
+         onClick={() => {appendDiagnosis(diagDiagnosis, prognosis, treatment, diagDate, diagDoctor, facility); resetForm()}}>Add</Button>
       </Form>
     </ThemeProvider>
   );

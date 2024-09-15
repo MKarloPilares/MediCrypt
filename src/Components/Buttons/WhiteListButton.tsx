@@ -7,10 +7,11 @@ interface WhiteListButtonProps {
   address: string;
   tokenID: number | null;
   whiteListName: string;
+  tokenName: string
   setAddShow: () => void;
 }
 
-const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whiteListName, setAddShow }) => {
+const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whiteListName, tokenName, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -55,7 +56,7 @@ const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whi
 
     try {
       // Call the whitelistAddress function of the smart contract
-      await contract.whitelistAddress(tokenID, address, whiteListName);
+      await contract.whitelistAddress(tokenID, address, whiteListName, tokenName);
       setAddShow();
     } catch (error) {
       console.error('Error whitelisting address:', error);

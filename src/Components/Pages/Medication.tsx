@@ -7,27 +7,27 @@ import { Col } from 'react-bootstrap';
 import { ThemeProvider } from 'react-bootstrap';
 import './Medication.css';
 
-const Medication = ({ appendMedication }) => {
+const Medication = ({ setMedicationDetails }) => {
   const [generic, setGeneric] = useState('');
   const [brand, setBrand] = useState('');
   const [dose, setDose] = useState('');
-  const [diag, setDiag] = useState('');
-  const [date, setDate] = useState('');
-  const [doctor, setDoctor] = useState('');
+  const [medDiag, setMedDiag] = useState('');
+  const [medDate, setMedDate] = useState('');
+  const [medDoctor, setMedDoctor] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     checkFormValidity();
-  }, [generic, brand, dose, diag, date, doctor]);
+  }, [generic, brand, dose, medDiag, medDate, medDoctor]);
 
   const checkFormValidity = () => {
     setIsFormValid(
       generic !== '' &&
       brand !== '' &&
       dose !== '' &&
-      diag !== '' &&
-      date !== '' &&
-      doctor !== ''
+      medDiag !== '' &&
+      medDate !== '' &&
+      medDoctor !== ''
     );
   };
 
@@ -35,9 +35,21 @@ const Medication = ({ appendMedication }) => {
     setGeneric('');
     setBrand('');
     setDose('');
-    setDate('');
-    setDoctor('');
-    setDiag('');
+    setMedDate('');
+    setMedDoctor('');
+    setMedDiag('');
+  };
+
+  const appendMedication = (newGeneric, newBrand, newDose, newDiag, newDate, newDoctor) => {
+    setMedicationDetails(prevDetails => ({
+      ...prevDetails,
+      generic: [...prevDetails.generic, newGeneric],
+      brand: [...prevDetails.brand, newBrand],
+      dose: [...prevDetails.dose, newDose],
+      medDiag: [...prevDetails.medDiag, newDiag],
+      medDate: [...prevDetails.medDate, newDate],
+      medDoctor: [...prevDetails.medDoctor, newDoctor],
+    }));
   };
 
   return (
@@ -48,35 +60,35 @@ const Medication = ({ appendMedication }) => {
       <Form className="medication-form">
         <Row>
           <Col>
-            <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Generic Name</Form.Label>
               <Form.Control placeholder='Generic Name' value={generic} className="input-field" onChange={(e) => setGeneric(e.target.value)} />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Brand Name</Form.Label>
               <Form.Control placeholder='Brand Name' value={brand} className="input-field" onChange={(e) => setBrand(e.target.value)} />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Dosage</Form.Label>
               <Form.Control placeholder='Dosage' value={dose} className="input-field" onChange={(e) => setDose(e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Diagnosis</Form.Label>
-              <Form.Control placeholder='Diagnosis' value={diag} className="input-field" onChange={(e) => setDiag(e.target.value)} />
+              <Form.Control placeholder='Diagnosis' value={medDiag} className="input-field" onChange={(e) => setMedDiag(e.target.value)} />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Date of Prescription</Form.Label>
-              <Form.Control placeholder='Date' value={date} className="input-field" onChange={(e) => setDate(e.target.value)} />
+              <Form.Control placeholder='Date' type='date' value={medDate} className="input-field" onChange={(e) => setMedDate(e.target.value)} />
             </Form.Group>
-            <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+            <Form.Group className='mb-3'>
               <Form.Label>Prescribing Doctor</Form.Label>
-              <Form.Control placeholder='Name of Doctor' value={doctor} className="input-field" onChange={(e) => setDoctor(e.target.value)} />
+              <Form.Control placeholder='Name of Doctor' value={medDoctor} className="input-field" onChange={(e) => setMedDoctor(e.target.value)} />
             </Form.Group>
           </Col>
         </Row>
-        <Button variant='success' disabled={!isFormValid} className="submit-button" onClick={() => { appendMedication(generic, brand, dose, diag, date, doctor); resetForm() }}>Add</Button>
+        <Button variant='success' disabled={!isFormValid} className="submit-button" onClick={() => { appendMedication(generic, brand, dose, medDiag, medDate, medDoctor); resetForm() }}>Add</Button>
       </Form>
     </ThemeProvider>
   );

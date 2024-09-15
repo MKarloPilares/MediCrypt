@@ -1,5 +1,6 @@
 .commit-record-button {
   position: fixed;
-  left: 6vw;
+  left: 5vw;
   top: 90vh;
+  width: 10%;
 }

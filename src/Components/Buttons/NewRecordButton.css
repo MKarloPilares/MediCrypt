@@ -10,3 +10,18 @@
   left: 74.3vw;
   width: 8vw
 }
+
+@media (max-width: 768px) {
+  .home-button-newRecord {
+    width: 70vw;
+    top: 54vh;
+    left: 15.5vw;
+  }
+
+  .recList-button-newRecord {
+    position: relative;
+    left: 27%;
+    top: 60%;
+    width: 75%;
+  }
+}

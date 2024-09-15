@@ -1,32 +1,52 @@
 import { Form } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
+import UploadToIPFSButton from '../Buttons/UploadToIPFSButton';
 import './AddImagePage.css';
 
-const AddImagePage = ({appendImage, uploadImageToIPFS}) => {
+const AddImagePage = ({setPatientImages}) => {
   const [file, setFile] = useState<any>(null);
   const [description, setDescription] = useState<string>('');
-  const [date, setDate] = useState<string>('');
+  const [imageDate, setImageDate] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     checkFormValidity();
-  }, [file, description, date]);
+  }, [file, description, imageDate]);
 
   const checkFormValidity = () => {
     setIsFormValid(
       file !== null &&
       description !== '' &&
-      date !== ''
+      imageDate !== ''
     );
   };
 
   const resetForm = () => {
     setFile(null);
     setDescription('');
-    setDate('');
+    setImageDate('');
+  };
+
+  const appendImageUri = (link) => {
+    setPatientImages(prevDetails => ({
+      ...prevDetails,
+      imageUri: [...prevDetails.imageUri, link],
+    }))
+  }
+
+  const appendDetailsAndClear = async () => {
+    appendDetails(description, imageDate);
+    resetForm();
+};
+
+  const appendDetails = (newDesc, newDate) => {
+    setPatientImages(prevDetails => ({
+      ...prevDetails,
+      description: [...prevDetails.description, newDesc],
+      imageDate: [...prevDetails.imageDate, newDate],
+    }));
   };
 
   return (
@@ -37,7 +57,7 @@ const AddImagePage = ({appendImage, uploadImageToIPFS}) => {
     <Form className="form-container">
       <Row>
         <Col md='auto'>
-          <Form.Group className='mb-3' controlId='diagnosisForm.ControlInput'>
+          <Form.Group className='mb-3'>
             <Form.Label>Image</Form.Label>
             <Form.Control
               type="file"
@@ -47,7 +67,7 @@ const AddImagePage = ({appendImage, uploadImageToIPFS}) => {
           </Form.Group>
         </Col>
         <Col md='auto'>
-          <Form.Group className='mb-3' controlId='prognosisForm.ControlInput'>
+          <Form.Group className='mb-3'>
             <Form.Label>Description</Form.Label>
             <Form.Control
               placeholder='Description'
@@ -58,25 +78,21 @@ const AddImagePage = ({appendImage, uploadImageToIPFS}) => {
           </Form.Group>
         </Col>
         <Col>
-          <Form.Group className='mb-3' controlId='treatmentForm.ControlInput'>
+          <Form.Group className='mb-3'>
             <Form.Label>Date</Form.Label>
             <Form.Control
+              type="date"
               placeholder='Date'
-              value={date}
+              value={imageDate}
               className="input-date"
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => setImageDate(e.target.value)}
             />
           </Form.Group>
         </Col>
         <Col>
-          <Button 
-            variant='success' 
-            disabled={!isFormValid} 
-            className="button-add"
-            onClick={() => {appendImage(description, date); uploadImageToIPFS("", file); resetForm()}}
-          >
-            Add
-          </Button>
+          {isFormValid && 
+            <UploadToIPFSButton  appendImageUri={appendImageUri} ActionAfterAppend={appendDetailsAndClear} file={file} className='addImagePage-button-upload'/>
+          }
         </Col>
       </Row>
     </Form>

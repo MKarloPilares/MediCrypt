@@ -24,6 +24,11 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
     }
   }, []);
 
+    const extractHash = (url) => {
+      const parts = url.split('/');
+      return parts[parts.length - 1];
+    };
+
   const combineAndEncryptData = async () => {
     // Convert combined data to a JSON string
     const jsonString = JSON.stringify(combinedData);
@@ -48,21 +53,7 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
         body: data,
       });
       const resData = await res.json();
-      console.log(resData);
       const fileUrl = `https://ipfs.io/ipfs/${resData.IpfsHash}`;
-      const fileRes = await fetch(fileUrl);
-      const fileContent = await fileRes.text();
-      console.log('File contents:', fileContent);
-
-      const bytes = CryptoJS.AES.decrypt(fileContent, encryptionKey);
-
-      // Convert the decrypted bytes back to a JSON string
-      const decryptedJsonString = bytes.toString(CryptoJS.enc.Utf8);
-
-      // Parse the JSON string back into an object
-      const decryptedData = JSON.parse(decryptedJsonString);
-
-      console.log(decryptedData.personalInfo.name);
       if (!provider || !account) {
         console.error('User is not connected to an Ethereum wallet.');
         return;
@@ -73,30 +64,42 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
 
       const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
 
-      if (!contractAddress) {
-        console.error('Contract address is not defined.');
-        return;
-      }
-
       // Connect to the contract using the ABI and address
       const contract = new ethers.Contract(contractAddress, MyAbi, signer);
-
+      
       try {
         if (tokenID === null) {
-          console.log(tokenID);
-          // Call the stakeTokens function of smart contract
-          await contract.mint(account, fileUrl, combinedData.personalInfo.name, encryptionKey);
+          console.log(account)
+          console.log(fileUrl)
+          console.log(combinedData.personalInfo.patientName)
+          console.log(encryptionKey)
+          await contract.mint(account, fileUrl, combinedData.personalInfo.patientName, encryptionKey);
         } else {
-          await contract.editTokenMetadata(tokenID, fileUrl, combinedData.personalInfo.name, encryptionKey);
+          const record =  await contract.getTokenMetadata(tokenID);
+          const hash = extractHash(record[0])
+          try {
+            await fetch(
+              `https://api.pinata.cloud/pinning/unpin/${hash}`,
+              {
+                method: "DELETE",
+                headers: {
+                  Authorization: `Bearer ${JWT}`,
+                },
+              }
+            );
+          } catch (error) {
+            console.log('Error deleting from IPFS: error');
+          }
         }
-      } catch (error) {
+          await contract.editTokenMetadata(tokenID, fileUrl, combinedData.personalInfo.patientName, encryptionKey);
+        }
+       catch (error) {
         console.error('Error minting NFT:', error);
       }
     } catch (error) {
-      console.log(error);
-    }
-  };
-
+      console.error('Uploading to IPFS:', error);
+  }
+}
   return (
     <Button onClick={combineAndEncryptData} variant="warning" className="commit-record-button">
       Commit Record

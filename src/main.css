@@ -11,9 +11,8 @@
 
 .main-body {
   overflow-y: auto;
-  box-sizing: border-box;
-  display: -ms-flexbox;
-  background-color: mintcream;
+  display: flex;
+  background: mintcream;
   position: fixed;
   padding: 0;
   margin: 0;
@@ -21,12 +20,12 @@
   height: 20px;
   bottom: 0px;
   color: green;
-  font-family: 'MontSerrat';
+  font-family: 'Arial', sans-serif; 
+  min-height: 100vh;
 }
 
 .main-container {
-  width: 100vw;
-  padding-left: 100px;
+  flex: 1;
 }
 
 .button-group-container {
@@ -215,4 +214,195 @@
   border-radius: 30px;
   overflow-y: auto;
   padding-left: 1vw;
+}
+
+@media (max-width: 768px) {
+
+  .button-group-container {
+    position: absolute;
+    top: 15vh;
+    left: -2vw;
+  }
+
+  .toggle-button {
+    width: 32.5vw;
+  }
+  
+  .profile-heading {
+    position: relative;
+    top: 52vh;
+    left: 5vw;
+  }
+
+  .profile-container {
+    border: 1px solid green;
+    position: relative;
+    top: 53vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+
+  .emergency-heading {
+    position: relative;
+    top: 54vh;
+    left: 5vw;
+  }
+
+  .emergency-container {
+    border: 1px solid green;
+    position: relative;
+    top: 55vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+
+  .medical-heading {
+    position: relative;
+    top: 56vh;
+    left: 5vw;
+  }
+
+  .medical-container {
+    border: 1px solid green;
+    position: relative;
+    top: 57vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+
+  .vitals-heading {
+    position: relative;
+    top: 58vh;
+    left: 5vw;
+  }
+  .vitals-container {
+    border: 1px solid green;
+    position: relative;
+    top: 59vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+
+  .diagnosis-heading {
+    position: relative;
+    top: 52vh;
+    left: 5vw;
+  }
+  
+  .diagnosis-container {
+    border: 1px solid green;
+    position: relative;
+    top: 53vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+  
+  .diagnosis-history-heading {
+    position: relative;
+    top: 54vh;
+    left: 5vw;
+  }
+
+  .diagnosis-history-container {
+    border: 1px solid green;
+    position: relative;
+    top: 55vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+
+  .medications-heading {
+    position: relative;
+    top: 56vh;
+    left: 5vw;
+  }
+
+  .medications-container {
+    border: 1px solid green;
+    position: relative;
+    top: 57vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+
+  .medication-history-heading {
+    position: relative;
+    top: 58vh;
+    left: 5vw;
+  }
+
+  .medication-history-container {
+    border: 1px solid green;
+    position: relative;
+    top: 59vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+
+  .add-image-container {
+    border: 1px solid green;
+    position: relative;
+    top: 13vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+  
+  .display-image-container {
+    border: 1px solid green;
+    position: relative;
+    top: 15vh;
+    left: 0vw;
+    height: 32vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+    padding-left: 1vw;
+  }
+  
 }

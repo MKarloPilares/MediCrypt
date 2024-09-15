@@ -5,20 +5,20 @@ import MyAbi from './MyAbi.json';
 import './ConnectMetaMaskButton.css'; // Import the CSS file
 
 interface ConnectMetaMaskButtonProps {
-  setEthereumAccount: (a: string) => void;
+  setUserWalletAddress: (a: string) => void;
   setIsOwner: (a: boolean) => void;
   setIsMedicalProvider: (a: boolean) => void;
   className: string;
 }
 
-const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setEthereumAccount, setIsOwner, setIsMedicalProvider, className }) => {
+const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
 
   const connectMetamaskWallet = async () => {
     try {
       const accounts: string[] = await (window as any).ethereum.request({
         method: "eth_requestAccounts",
       });
-      setEthereumAccount(accounts[0]);
+      setUserWalletAddress(accounts[0]);
 
       const web3Provider = new ethers.providers.Web3Provider((window as any).ethereum);
 
@@ -60,7 +60,7 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setEthere
     <Button
       onClick={connectMetamaskWallet}
       variant="success"
-      className={className === "navbar" ? "navbar-button" : "default-button"}
+      className={className}
     >
       Connect Metamask
     </Button>

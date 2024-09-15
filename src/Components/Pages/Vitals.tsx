@@ -4,6 +4,11 @@ import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './Vitals.css';
 
 const Vitals = ({ vitals, setVitals }) => {
+
+  const handleVitalsChange = (field, value) => {
+    setVitals({ ...vitals, [field]: value });
+  };
+
   return (
     <ThemeProvider
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -14,13 +19,13 @@ const Vitals = ({ vitals, setVitals }) => {
           <Col md="5">
             <Form.Group className="mb-3">
               <Form.Label>Weight</Form.Label>
-              <Form.Control value={vitals.weight} className="form-group-width-50" onChange={(e) => setVitals("weight", e.target.value)} />
+              <Form.Control defaultValue={vitals.weight} className="form-group-width-50" onChange={(e) => handleVitalsChange("weight", e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Height</Form.Label>
-              <Form.Control value={vitals.height} className="form-group-width-50" onChange={(e) => setVitals("height", e.target.value)} />
+              <Form.Control defaultValue={vitals.height} className="form-group-width-50" onChange={(e) => handleVitalsChange("height", e.target.value)} />
             </Form.Group>
           </Col>
         </Row>
@@ -28,13 +33,13 @@ const Vitals = ({ vitals, setVitals }) => {
           <Col md="5">
             <Form.Group className="mb-3">
               <Form.Label>Blood Pressure</Form.Label>
-              <Form.Control value={vitals.bp} className="form-group-width-80" onChange={(e) => setVitals("bp", e.target.value)} />
+              <Form.Control defaultValue={vitals.bp} className="form-group-width-80" onChange={(e) => handleVitalsChange("bp", e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Temperature</Form.Label>
-              <Form.Control value={vitals.temp} className="form-group-width-50" onChange={(e) => setVitals("temp", e.target.value)} />
+              <Form.Control defaultValue={vitals.temp} className="form-group-width-50" onChange={(e) => handleVitalsChange("temp", e.target.value)} />
             </Form.Group>
           </Col>
         </Row>
@@ -42,13 +47,13 @@ const Vitals = ({ vitals, setVitals }) => {
           <Col md="5">
             <Form.Group className="mb-3">
               <Form.Label>Pulse Rate</Form.Label>
-              <Form.Control defaultValue={vitals.pr} className="form-group-width-60" onChange={(e) => setVitals("pr", e.target.value)} />
+              <Form.Control defaultValue={vitals.pr} className="form-group-width-60" onChange={(e) => handleVitalsChange("pr", e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Respiration Rate</Form.Label>
-              <Form.Control defaultValue={vitals.rr} className="form-group-width-60" onChange={(e) => setVitals("rr", e.target.value)} />
+              <Form.Control defaultValue={vitals.rr} className="form-group-width-60" onChange={(e) => handleVitalsChange("rr", e.target.value)} />
             </Form.Group>
           </Col>
         </Row>
