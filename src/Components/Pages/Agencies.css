@@ -1,15 +1,18 @@
-.row-records {
+.container-agencies {
   position: relative;
   bottom: 180px;
   height: 30vh;
 }
 
-.h3-records {
+.agencies-heading {
+  position: absolute;
   margin-bottom: 30px;
 }
 
-.card-records {
-  bottom: 60px;
+.card-agencies {
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
 }
 
 .modal-header-title {
@@ -24,7 +27,7 @@
   margin-bottom: 1rem;
 }
 
-.list-group-item {
+.list-group-agencies {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +46,29 @@
 
 .button-addAgencies{
   position: absolute;
-  top: 20%;
+  top: 0%;
   left: 90%;
+}
+
+@media (max-width: 768px) {
+  .agencies-heading {
+    position: absolute;
+    top: 35%;
+  }
+  
+  .card-agencies {
+    position: relative;
+    top: 60%;
+    width: 110%;
+    right: 5%;
+  }
+  
+  
+  .button-addAgencies{
+    position: absolute;
+    top: 30%;
+    left: 65%;
+    width: 35.5%;
+  }
 }
 

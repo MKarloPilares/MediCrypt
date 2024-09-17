@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ListGroup, Modal, Form } from 'react-bootstrap';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'react-bootstrap';
 import { ethers, Signer } from 'ethers';
@@ -70,12 +70,12 @@ const Agencies = () => {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
-      <Row className="row-records">
+      <Container className="container-agencies">
         <Col>
-          <h3 className="h3-records">Agencies</h3>
+          <h3 className="agencies-heading">Agencies</h3>
         </Col>
         <Col>
-          <Button variant='success' className="button-addProvider" onClick={handleAddShow}>Add Agency</Button>
+          <Button variant='success' className="button-addAgencies" onClick={handleAddShow}>Add Agency</Button>
         </Col>
         <Modal show={AddShow} onHide={handleAddShow}>
           <Modal.Header closeButton>
@@ -93,12 +93,12 @@ const Agencies = () => {
             <NewAgencyButton address={address} agencyName={name} setAddShow={handleAddShow}/>
           </Modal.Footer>
         </Modal>
-        <Card className="card-records">
+        <Card className="card-agencies">
           <Card.Body>
             {AgencyNames.map((data: any, index: number) =>
             <>
               <ListGroup key={index}>
-                <ListGroup.Item className="list-group-item">
+                <ListGroup.Item className="list-group-agencies">
                   <Col>
                     {data}
                     <RemoveAgencyButton address={AgencyAddresses[index]}/>
@@ -109,7 +109,7 @@ const Agencies = () => {
             )}
           </Card.Body>
         </Card>
-      </Row>
+      </Container>
     </ThemeProvider>
   );
 };

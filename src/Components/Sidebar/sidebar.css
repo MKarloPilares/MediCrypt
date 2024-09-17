@@ -8,6 +8,10 @@
   z-index: 99;
 }
 
+.toggle-sidebar-button {
+  visibility: hidden;
+}
+
 .sidebar-image {
   position: absolute;
   width: 50%;
@@ -68,7 +72,7 @@
 }
 
 .view-only-mode {
-  position: fixed;
+  position: absolute;
   top: 90vh;
   left: 5vw;
   color: white;
@@ -76,13 +80,53 @@
 
 @media (max-width: 768px) {
   .sidebar-container {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 20vw;
+    position: absolute;
+    width: 60%;
     height: 100vh;
+    left: -100%;
     background-color: green;
-    z-index: 99;
-    visibility: hidden;
+    z-index: 50;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar-container.open {
+    left: 0%;
+  }
+
+  .toggle-sidebar-button{
+    position: absolute;
+    top: 11%;
+    left: 167%;
+    width: 20%;
+    background-color: transparent;
+    z-index: 200;
+    visibility: visible; 
+  }
+
+  .toggle-sidebar-button.open {
+    position: absolute;
+    top: 11%;
+    left: 0%;
+    width: 20%;
+    background-color: transparent;
+    z-index: 200;
+    visibility: visible; 
+  }
+
+  .x-icon {
+    color: white;
+    width: 100%;
+  }
+
+  .user-icon {
+    color: green;
+    width: 100%;
+  }
+
+  .view-only-mode {
+    position: absolute;
+    top: 90vh;
+    left: 25%;
+    color: white;
   }
 }

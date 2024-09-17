@@ -4,3 +4,12 @@
   top: 90vh;
   width: 10%;
 }
+
+@media (max-width: 768px) {
+  .commit-record-button {
+    position: absolute;
+    left: 25%;
+    top: 90vh;
+    width: 50%;
+  }
+}
