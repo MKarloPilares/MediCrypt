@@ -42,7 +42,9 @@ const Sidebar = ({combinedData, tokenID, isMedicalProvider, setPersonalInfo, per
           </Form.Group>
           {isMedicalProvider ? (
             <>
+            {tokenID === null &&
               <Form.Control placeholder='Input Owner Wallet Address' className="wallet-input" onChange={(e) => setOwnerWalletAddress(e.target.value)}></Form.Control>
+            }
               <MintButton account={ownerWalletAddress} combinedData={combinedData} tokenID={tokenID}></MintButton>
             </>
           ) : (

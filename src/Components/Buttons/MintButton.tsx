@@ -54,7 +54,7 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
       });
       const resData = await res.json();
       const fileUrl = `https://ipfs.io/ipfs/${resData.IpfsHash}`;
-      if (!provider || !account) {
+      if (!provider) {
         console.error('User is not connected to an Ethereum wallet.');
         return;
       }
@@ -69,10 +69,10 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
       
       try {
         if (tokenID === null) {
-          console.log(account)
-          console.log(fileUrl)
-          console.log(combinedData.personalInfo.patientName)
-          console.log(encryptionKey)
+          console.log (account)
+          console.log (fileUrl)
+          console.log (combinedData.personalInfo.patientName)
+          console.log (encryptionKey)
           await contract.mint(account, fileUrl, combinedData.personalInfo.patientName, encryptionKey);
         } else {
           const record =  await contract.getTokenMetadata(tokenID);

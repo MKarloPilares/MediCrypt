@@ -9,26 +9,28 @@
 }
 
 .ownedRecords-heading{
-  position: relative;
+  position: absolute;
+  top: 25%;
 }
 
 .card-ownedRecords {
-  position: relative;
+  position: absolute;
   width: 45%;
+  top: 42%;
   left: 1%;
 }
 
 .sharedRecords-heading {
-  position: relative;
-  bottom: 46%;
-  left: 54%
+  position: absolute;
+  left: 54%;
+  top: 25%;
 }
 
 .card-sharedRecords {
-  position: relative;
+  position: absolute;
   width: 45%;
   left: 55%;
-  bottom: 45%;
+  top: 42%
 }
 
 .button-share-access {
