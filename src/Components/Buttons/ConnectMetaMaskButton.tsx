@@ -12,53 +12,45 @@ interface ConnectMetaMaskButtonProps {
 }
 
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
-
-const connectMetamaskWallet = async () => {
-  if (typeof (window as any).ethereum === 'undefined') {
-    // Redirect to MetaMask Mobile app if MetaMask is not installed
-    window.open('https://metamask.app.link/', '_blank');
-    return;
-  }
-
-  try {
-    // Request account connection
-    const accounts: string[] = await (window as any).ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    setUserWalletAddress(accounts[0]);
-
-    const web3Provider = new ethers.providers.Web3Provider((window as any).ethereum);
-    const signer = web3Provider.getSigner();
-
-    // Only for mobile users, request an additional approval via signature
-    if (isMobileDevice()) {
-      await requestSignature(signer, accounts[0]);
+  
+  const connectMetamaskWallet = async () => {
+    if (typeof (window as any).ethereum === 'undefined') {
+      window.open('https://metamask.app.link/', '_blank');
+      return;
     }
-
-    // Proceed with your logic, checking contract owner, etc.
-    checkContractOwner(web3Provider, accounts[0]);
-    
-  } catch (error) {
-    alert(`Something went wrong: ${error}`);
-  }
-};
-
-// Utility to detect if the user is on a mobile device
-const isMobileDevice = () => {
-  return /Mobi|Android/i.test(navigator.userAgent);
-};
-
-// Request the user to sign a message to confirm wallet connection
-const requestSignature = async (signer: ethers.Signer, account: string) => {
-  const message = `Please sign this message to connect your wallet and verify your address: ${account}`;
-  try {
-    const signature = await signer.signMessage(message);
-    console.log('Signature:', signature);
-    // You can now verify the signature if needed on your server-side
-  } catch (err) {
-    console.error('Signature request failed:', err);
-  }
-};
+  
+    try {
+      // Request permission for accounts access
+      await (window as any).ethereum.request({ method: "wallet_requestPermissions", params: [{ eth_accounts: {} }] });
+  
+      // Ensure you're on the right network
+      await (window as any).ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x1' }] // Change to appropriate chainId (e.g. Arbitrum)
+      });
+  
+      const accounts: string[] = await (window as any).ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setUserWalletAddress(accounts[0]);
+  
+      const web3Provider = new ethers.providers.Web3Provider((window as any).ethereum);
+      const signer = web3Provider.getSigner();
+  
+      // Ask the user to sign a message for approval
+      const message = "Please sign this message to connect your wallet and approve its use on our site.";
+      const signature = await signer.signMessage(message);
+      console.log('Signature:', signature);
+  
+      // Reload the page to complete the connection process
+      window.location.reload();
+  
+      // Once approved, check if the user is the contract owner or a medical provider
+      checkContractOwner(web3Provider, accounts[0]);
+    } catch (error) {
+      alert(`Something went wrong: ${error}`);
+    }
+  };
 
   const checkContractOwner = async (web3Provider: ethers.providers.Web3Provider, account: string) => {
     if (!web3Provider) {
