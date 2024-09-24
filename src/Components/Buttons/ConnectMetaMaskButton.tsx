@@ -14,29 +14,20 @@ interface ConnectMetaMaskButtonProps {
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
 
   const connectMetamaskWallet = async () => {
-    const provider = (window as any).ethereum;
-
-    if (!provider) {
-      // Detect if running on a mobile device
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (isMobile) {
-        // Deep link to MetaMask mobile app and back to the dApp URL
-        window.location.href = 'https://metamask.app.link/dapp/medicrypt.netlify.app';
-      } else {
-        alert("MetaMask is not installed. Please install it to use this feature.");
-      }
+    // Check if MetaMask is installed, if not, redirect to the MetaMask mobile app link
+    if (typeof (window as any).ethereum === 'undefined') {
+      window.open('https://metamask.app.link/', '_blank'); // Redirects to MetaMask mobile app
       return;
     }
 
     try {
-      // Request the user's MetaMask accounts
-      const accounts: string[] = await provider.request({ method: "eth_requestAccounts" });
+      const accounts: string[] = await (window as any).ethereum.request({
+        method: "eth_requestAccounts",
+      });
       setUserWalletAddress(accounts[0]);
 
-      // Create a new Web3 provider with ethers.js
-      const web3Provider = new ethers.providers.Web3Provider(provider);
+      const web3Provider = new ethers.providers.Web3Provider((window as any).ethereum);
 
-      // Check if the connected account is the contract owner or a medical provider
       checkContractOwner(web3Provider, accounts[0]);
     } catch (error) {
       alert(`Something went wrong: ${error}`);
@@ -62,13 +53,11 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
     // Connect to the contract using the ABI and address
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
-    // Check if the account is the contract owner
-    if (account === (await contract.owner()).toLowerCase()) {
+    if (account === (await contract.owner()).toLowerCase()){
       setIsOwner(true);
     }
 
-    // Check if the account is a registered medical provider
-    if (await contract.isMedicalProvider(account)) {
+    if (await contract.isMedicalProvider(account)){
       setIsMedicalProvider(true);
     }
   };
