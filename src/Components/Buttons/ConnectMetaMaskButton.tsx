@@ -12,33 +12,53 @@ interface ConnectMetaMaskButtonProps {
 }
 
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
-  
-  const connectMetamaskWallet = async () => {
-    if (typeof (window as any).ethereum === 'undefined') {
-      // Redirect to MetaMask on mobile
-      window.open('https://metamask.app.link/', '_blank');
-      return;
+
+const connectMetamaskWallet = async () => {
+  if (typeof (window as any).ethereum === 'undefined') {
+    // Redirect to MetaMask Mobile app if MetaMask is not installed
+    window.open('https://metamask.app.link/', '_blank');
+    return;
+  }
+
+  try {
+    // Request account connection
+    const accounts: string[] = await (window as any).ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    setUserWalletAddress(accounts[0]);
+
+    const web3Provider = new ethers.providers.Web3Provider((window as any).ethereum);
+    const signer = web3Provider.getSigner();
+
+    // Only for mobile users, request an additional approval via signature
+    if (isMobileDevice()) {
+      await requestSignature(signer, accounts[0]);
     }
-  
-    try {
-      const accounts: string[] = await (window as any).ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      setUserWalletAddress(accounts[0]);
-  
-      const web3Provider = new ethers.providers.Web3Provider((window as any).ethereum);
-  
-      // Ask user to approve Ethereum address usage by signing a message
-      const signer = web3Provider.getSigner();
-      const message = "Please approve to connect your wallet to our site.";
-      await signer.signMessage(message);
-  
-      // Once approved, check if the user is the contract owner or a medical provider
-      checkContractOwner(web3Provider, accounts[0]);
-    } catch (error) {
-      alert(`Something went wrong: ${error}`);
-    }
-  };
+
+    // Proceed with your logic, checking contract owner, etc.
+    checkContractOwner(web3Provider, accounts[0]);
+    
+  } catch (error) {
+    alert(`Something went wrong: ${error.message}`);
+  }
+};
+
+// Utility to detect if the user is on a mobile device
+const isMobileDevice = () => {
+  return /Mobi|Android/i.test(navigator.userAgent);
+};
+
+// Request the user to sign a message to confirm wallet connection
+const requestSignature = async (signer: ethers.Signer, account: string) => {
+  const message = `Please sign this message to connect your wallet and verify your address: ${account}`;
+  try {
+    const signature = await signer.signMessage(message);
+    console.log('Signature:', signature);
+    // You can now verify the signature if needed on your server-side
+  } catch (err) {
+    console.error('Signature request failed:', err);
+  }
+};
 
   const checkContractOwner = async (web3Provider: ethers.providers.Web3Provider, account: string) => {
     if (!web3Provider) {
