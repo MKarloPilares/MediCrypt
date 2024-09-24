@@ -11,9 +11,9 @@ interface GetRecordFromContractButtonProps {
   className: string;
   updateCombinedData: (a) => void;
   setTokenID: (a) => void;
-}
+ }
 
-const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = ({ tokenID, className, updateCombinedData, setTokenID }) => {
+const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = ({ tokenID, className, updateCombinedData, setTokenID}) => {
   const navigate = useNavigate();
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
@@ -24,6 +24,7 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
       setProvider(web3Provider);
     }
   }, []);
+
 
   const getRecordFromContract = async () => {
     if (!provider) {
@@ -40,25 +41,25 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
     }
 
     try {
-    const contract = new ethers.Contract(contractAddress, MyAbi, signer);
+      const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
-    const record = await contract.getTokenMetadata(tokenID);
-    const fileUrl = record[0];
-    const fileRes = await fetch(fileUrl);
-    const fileContent = await fileRes.text();
+      const record = await contract.getTokenMetadata(tokenID);
+      const fileUrl = record[0];
+      const fileRes = await fetch(fileUrl);
+      const fileContent = await fileRes.text();
 
-    const bytes = CryptoJS.AES.decrypt(fileContent, record[2]);
+      const bytes = CryptoJS.AES.decrypt(fileContent, record[2]);
 
-    // Convert the decrypted bytes back to a JSON string
-    const decryptedJsonString = bytes.toString(CryptoJS.enc.Utf8);
-  
-    // Parse the JSON string back into an object
-    const decryptedData = JSON.parse(decryptedJsonString);
-  
-    setTokenID(tokenID)
-    updateCombinedData(decryptedData)
+      // Convert the decrypted bytes back to a JSON string
+      const decryptedJsonString = bytes.toString(CryptoJS.enc.Utf8);
+    
+      // Parse the JSON string back into an object
+      const decryptedData = JSON.parse(decryptedJsonString);
+    
+      setTokenID(tokenID)
+      updateCombinedData(decryptedData)
 
-    navigate("/Profile");
+      navigate("/Profile");
 
 
     } catch (error) {

@@ -71,9 +71,10 @@ type PatientImages = {
 interface NewRecordButtonProps {
   updateCombinedData: (a) => void; // User's Ethereum account
   className: string;
+  setTokenID: (a) => void;
 }
 
-const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, className }) => {
+const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, className, setTokenID}) => {
   const navigate = useNavigate();
   const [personalInfo] = useState<PersonalInfo>({
     patientName: 'Name',
@@ -152,6 +153,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
 
   const handleNewRecord = () => {
     updateCombinedData(combinedData);
+    setTokenID(null)
     navigate("/Profile");
   }
 

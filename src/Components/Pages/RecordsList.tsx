@@ -12,7 +12,7 @@ import NewRecordButton from '../Buttons/NewRecordButton';
 import './RecordsList.css';
 import GetRecordFromContractButton from '../Buttons/GetRecordFromContractButton';
 
-const RecList = ({ userWalletAddress,updateCombinedData, setTokenID }) => {
+const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
   const [AddShow, setAddShow] = useState(false);
   const [whiteListModalShow, setWhiteListModalShow] = useState(false);
   const [ownedNames, setOwnedNames] = useState<string[]>([]);
@@ -107,7 +107,7 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID }) => {
           <h3 className="records-heading">Records</h3>
         </Col>
         <Col>
-          <NewRecordButton updateCombinedData={updateCombinedData} className={"recList-button-newRecord"}/>
+          <NewRecordButton updateCombinedData={updateCombinedData} setTokenID={setTokenID} className={"recList-button-newRecord"}/>
         </Col>
         <Modal show={AddShow} onHide={() => setAddShow(!AddShow)} dialogClassName="custom-modal" backdropClassName="custom-modal-backdrop"> 
           <Modal.Header closeButton>

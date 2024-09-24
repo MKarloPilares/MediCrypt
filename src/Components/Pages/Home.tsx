@@ -8,7 +8,7 @@ import ConnectMetaMaskButton from '../Buttons/ConnectMetaMaskButton';
 import NewRecordButton from '../Buttons/NewRecordButton';
 import './Home.css'
 
-const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCombinedData, isOwner, setIsMedicalProvider }) => {
+const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCombinedData, isOwner, setIsMedicalProvider, setTokenID }) => {
   const navigate = useNavigate();
 
   return (
@@ -21,11 +21,11 @@ const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCo
           <Image src={logo} className="logo-image" />
         </Row>
         <Row>
-          {userWalletAddress === null ? (
+          {userWalletAddress === "" ? (
             <ConnectMetaMaskButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"home-button-connectToMetamask"}/>
           ) : (
             <>
-              <NewRecordButton updateCombinedData={updateCombinedData} className={"home-button-newRecord"}/>
+              <NewRecordButton updateCombinedData={updateCombinedData} setTokenID={setTokenID} className={"home-button-newRecord"}/>
               <Button variant='success' className="button-recordList" onClick={() => navigate("/RecList")}>Records List</Button>
               {isOwner === true && <Button variant='success' className='button-providerList' onClick={() => navigate("/Providers")}>Provider List</Button>}
               {isOwner === true && <Button variant='success' className='button-agencyList' onClick={() => navigate("/Agencies")}>Agency List</Button>}

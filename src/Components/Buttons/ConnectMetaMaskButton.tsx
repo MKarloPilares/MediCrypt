@@ -14,6 +14,12 @@ interface ConnectMetaMaskButtonProps {
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
 
   const connectMetamaskWallet = async () => {
+    // Check if MetaMask is installed, if not, redirect to the MetaMask mobile app link
+    if (typeof (window as any).ethereum === 'undefined') {
+      window.open('https://metamask.app.link/', '_blank'); // Redirects to MetaMask mobile app
+      return;
+    }
+
     try {
       const accounts: string[] = await (window as any).ethereum.request({
         method: "eth_requestAccounts",
@@ -28,7 +34,7 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
     }
   };
 
-  const checkContractOwner = async (web3Provider: ethers.providers.Web3Provider, account) => {
+  const checkContractOwner = async (web3Provider: ethers.providers.Web3Provider, account: string) => {
     if (!web3Provider) {
       console.error('User is not connected to an Ethereum wallet.');
       return;

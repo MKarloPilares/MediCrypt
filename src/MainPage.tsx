@@ -21,6 +21,8 @@ import Providers from './Components/Pages/Providers';
 import Agencies from './Components/Pages/Agencies';
 import './main.css';
 
+
+//Type setting for global variables
 type PersonalInfo = {
   patientName: string;
   gender: string;
@@ -86,11 +88,11 @@ type PatientImages = {
   imageDate: string[];
 };
 
-
 const MainPage = () => {
+  //Global variable and state declarations
   let navigate = useNavigate();
   let location = useLocation();
-  const [userWalletAddress, setUserWalletAddress] = useState<string | null>(null);
+  const [userWalletAddress, setUserWalletAddress] = useState<string>("");
   const [tokenID, setTokenID] = useState<number | null>(null);
   const [isOwner, setIsOwner] = useState<Boolean>(false);
   const [isMedicalProvider, setIsMedicalProvider] = useState<Boolean>(false);
@@ -154,12 +156,13 @@ const MainPage = () => {
     medDoctor: []
   });
 
-  const [PatientImages, setPatientImages] = useState<PatientImages>({
+  const [patientImages, setPatientImages] = useState<PatientImages>({
     imageUri: [],
     description: [],
     imageDate: [],
   });
 
+  //Combination of medical record data
   const combinedData = {
     personalInfo,
     emergencyInfo,
@@ -167,9 +170,10 @@ const MainPage = () => {
     vitals,
     diagDetails,
     medicationDetails,
-    PatientImages
+    patientImages
   };
 
+  //Function to update combinedData
   const updateCombinedData = (newData) => {
     setPersonalInfo(newData.personalInfo);
     setEmergencyInfo(newData.emergencyInfo);
@@ -177,18 +181,22 @@ const MainPage = () => {
     setVitals(newData.vitals);
     setDiagDetails(newData.diagDetails);
     setMedicationDetails(newData.medicationDetails);
+    setPatientImages(newData.patientImages)
   };
 
+  //Changes tab name to MediCrypt
   useEffect(() => {
     document.title = 'MediCrypt';
   }, []);
 
+  //Varaible for radios in button group and their respective pages
   const radios = [
     { name: 'Profile', value: '/Profile' },
     { name: 'Diagnosis and Medications', value: '/Diagnosis' },
     { name: 'Images', value: '/Images' },
   ];
 
+  //Sidebar only renders in profile, diagnosis, and images page
   const shouldRenderSidebar = ['/Profile', '/Diagnosis', '/Images'].includes(location.pathname);
 
   return (
@@ -231,7 +239,7 @@ const MainPage = () => {
           </Container>
           <Routes>
             <Route path="/" element={<HomePage userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} updateCombinedData={updateCombinedData} 
-              isOwner={isOwner} setIsMedicalProvider={setIsMedicalProvider}></HomePage>} />
+              isOwner={isOwner} setIsMedicalProvider={setIsMedicalProvider} setTokenID={setTokenID}></HomePage>} />
             <Route path="/Profile" element={
               <>
                 <h2 className="profile-heading">Patient Information</h2>
@@ -278,7 +286,7 @@ const MainPage = () => {
                   <AddImagePage setPatientImages={setPatientImages}/>
                 </Container>
                 <Container className="display-image-container">
-                  <DisplayImagePage patientImages={PatientImages} />
+                  <DisplayImagePage patientImages={patientImages} />
                 </Container>
               </>
             } />

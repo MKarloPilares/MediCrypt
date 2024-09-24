@@ -28,7 +28,7 @@ const NavbarComponent = ({userWalletAddress, setUserWalletAddress, setIsOwner, s
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        {userWalletAddress === null ? (
+        {userWalletAddress === "" ? (
           <ConnectMetaMaskButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"navbar-button-connectToMetamask"} />
         ) : (
           <h6>Logged in as: {userWalletAddress}</h6>
