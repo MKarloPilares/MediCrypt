@@ -2,7 +2,6 @@ import React from 'react';
 import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
-import WalletConnectProvider from "@walletconnect/web3-provider"; // Import WalletConnect provider
 import './ConnectMetaMaskButton.css'; // Import the CSS file
 
 interface ConnectMetaMaskButtonProps {
@@ -12,50 +11,15 @@ interface ConnectMetaMaskButtonProps {
   className: string;
 }
 
-// Helper function to check if the device is mobile
-const isMobileDevice = () => {
-  return /android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-};
+const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
 
-const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({
-  setUserWalletAddress,
-  setIsOwner,
-  setIsMedicalProvider,
-  className
-}) => {
-
-  const connectWallet = async () => {
-    // Detect if MetaMask is installed
-    const isMetaMaskInstalled = typeof (window as any).ethereum !== 'undefined';
-
-    if (!isMetaMaskInstalled) {
-      if (isMobileDevice()) {
-        // If on mobile, open WalletConnect
-        const provider = new WalletConnectProvider({
-          rpc: {
-            1: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID", // Add your own RPC provider here
-          },
-          qrcodeModalOptions: {
-            mobileLinks: ["metamask", "trust", "rainbow", "argent"],
-          },
-        });
-
-        await provider.enable();
-        const web3Provider = new ethers.providers.Web3Provider(provider);
-        const accounts = await web3Provider.listAccounts();
-        if (accounts.length > 0) {
-          setUserWalletAddress(accounts[0]);
-          checkContractOwner(web3Provider, accounts[0]);
-        }
-
-      } else {
-        // If on desktop, redirect to MetaMask's mobile app link
-        window.open('https://metamask.app.link/', '_blank');
-      }
+  const connectMetamaskWallet = async () => {
+    // Check if MetaMask is installed, if not, redirect to the MetaMask mobile app link
+    if (typeof (window as any).ethereum === 'undefined') {
+      window.open('https://metamask.app.link/', '_blank'); // Redirects to MetaMask mobile app
       return;
     }
 
-    // Handle MetaMask connection on desktop
     try {
       const accounts: string[] = await (window as any).ethereum.request({
         method: "eth_requestAccounts",
@@ -76,7 +40,9 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({
       return;
     }
 
+    // Create a signer from the user's Ethereum account
     const signer: Signer = web3Provider.getSigner();
+
     const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
 
     if (!contractAddress) {
@@ -84,24 +50,25 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({
       return;
     }
 
+    // Connect to the contract using the ABI and address
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
-    if (account === (await contract.owner()).toLowerCase()) {
+    if (account === (await contract.owner()).toLowerCase()){
       setIsOwner(true);
     }
 
-    if (await contract.isMedicalProvider(account)) {
+    if (await contract.isMedicalProvider(account)){
       setIsMedicalProvider(true);
     }
   };
 
   return (
     <Button
-      onClick={connectWallet}
+      onClick={connectMetamaskWallet}
       variant="success"
       className={className}
     >
-      Connect Wallet
+      Connect Metamask
     </Button>
   );
 };
