@@ -7,13 +7,13 @@ export default defineConfig({
   plugins: [
     react(),
     inject({
-      process: 'process/browser', // Inject the process polyfill for the browser
+      process: 'process/browser', // Correctly polyfill process for browser
       Buffer: ['buffer', 'Buffer'], // Polyfill Buffer
     }),
-    commonjs(), // Add CommonJS plugin to handle CommonJS modules like invariant
+    commonjs(), // CommonJS plugin to handle legacy module formats
   ],
   define: {
-    global: 'window', // Polyfill for global in browsers
-    'process.env': {}, // Define process.env to avoid undefined errors
+    global: 'window', // Polyfill global for browser compatibility
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), // Define process.env.NODE_ENV to prevent errors
   },
 });
