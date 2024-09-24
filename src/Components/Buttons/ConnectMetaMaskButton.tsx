@@ -39,7 +39,7 @@ const connectMetamaskWallet = async () => {
     checkContractOwner(web3Provider, accounts[0]);
     
   } catch (error) {
-    alert(`Something went wrong: ${error.message}`);
+    alert(`Something went wrong: ${error}`);
   }
 };
 
