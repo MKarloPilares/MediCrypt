@@ -12,22 +12,28 @@ interface ConnectMetaMaskButtonProps {
 }
 
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
-
+  
   const connectMetamaskWallet = async () => {
-    // Check if MetaMask is installed, if not, redirect to the MetaMask mobile app link
     if (typeof (window as any).ethereum === 'undefined') {
-      window.open('https://metamask.app.link/', '_blank'); // Redirects to MetaMask mobile app
+      // Redirect to MetaMask on mobile
+      window.open('https://metamask.app.link/', '_blank');
       return;
     }
-
+  
     try {
       const accounts: string[] = await (window as any).ethereum.request({
         method: "eth_requestAccounts",
       });
       setUserWalletAddress(accounts[0]);
-
+  
       const web3Provider = new ethers.providers.Web3Provider((window as any).ethereum);
-
+  
+      // Ask user to approve Ethereum address usage by signing a message
+      const signer = web3Provider.getSigner();
+      const message = "Please approve to connect your wallet to our site.";
+      await signer.signMessage(message);
+  
+      // Once approved, check if the user is the contract owner or a medical provider
       checkContractOwner(web3Provider, accounts[0]);
     } catch (error) {
       alert(`Something went wrong: ${error}`);
