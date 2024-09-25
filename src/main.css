@@ -28,6 +28,10 @@
   flex: 1;
 }
 
+.open-sidebar-button {
+  visibility: hidden;
+}
+
 .button-group-container {
   position: fixed;
   top: 10vh;
@@ -218,10 +222,31 @@
 
 @media (max-width: 768px) {
 
+  .open-sidebar-button{
+    position: sticky;
+    top: 12vh;
+    width: 20vw;
+    background-color: transparent;
+    z-index: 1;
+    visibility: visible; 
+  }
+
+  .user-icon {
+    color: green;
+    width: 100%;
+  }
+
+
   .button-group-container {
-    position: absolute;
-    top: 18%;
-    left: -2vw;
+    position: relative;
+    top: 50vh;
+    left: -2.7vw;
+  }
+
+  .images{
+    position: relative;
+    top: 10vh;
+    left: -2.7vw;
   }
 
   .toggle-button {

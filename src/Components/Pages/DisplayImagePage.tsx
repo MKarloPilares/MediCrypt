@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './DisplayImagePage.css';
 import { Row, Col, ThemeProvider, Image, Form } from 'react-bootstrap';
 
+//Page to display the images in the record by fetching them from IPFS
 const ImagePage = ({ patientImages }) => {
-  const entries = patientImages.imageUri.map((_, index) => ({
+  const entries = patientImages.imageUri.map((_, index) => ({ //Maps patientImages to be iterable
     imageUri: patientImages.imageUri[index],
     description: patientImages.description[index],
     imageDate: patientImages.imageDate[index],

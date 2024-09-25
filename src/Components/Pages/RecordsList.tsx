@@ -12,22 +12,24 @@ import NewRecordButton from '../Buttons/NewRecordButton';
 import './RecordsList.css';
 import GetRecordFromContractButton from '../Buttons/GetRecordFromContractButton';
 
+//Page to list owned and shared records, and to control access to owned one
 const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
-  const [AddShow, setAddShow] = useState(false);
-  const [whiteListModalShow, setWhiteListModalShow] = useState(false);
-  const [ownedNames, setOwnedNames] = useState<string[]>([]);
-  const [ownedIds, setOwnedIds] = useState<number[]>([]);
-  const [sharedNames, setSharedNames] = useState<string[]>([]);
-  const [sharedIds, setSharedIds] = useState<number[]>([]);
-  const [chosenTokenId, setChosenTokenId] = useState<number>(0);
-  const [chosenTokenName, setChosenTokenName] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
-  const [whiteListName, setWhiteListName] = useState<string>("");
-  const [whiteListNames, setWhiteListNames] = useState<string[]>([]);
-  const [whiteListAddresses, setWhiteListAddresses] = useState<string[]>([]);
-  const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
-  const [isProviderReady, setIsProviderReady] = useState(false); // Track provider readiness
+  const [AddShow, setAddShow] = useState<boolean>(false); //Controls the visibility of the adding modal
+  const [whiteListModalShow, setWhiteListModalShow] = useState<boolean>(false); //Controls the visibility of the whitelist modal
+  const [ownedNames, setOwnedNames] = useState<string[]>([]); //Stores the names of the NFTs owned by the user
+  const [ownedIds, setOwnedIds] = useState<number[]>([]); //Stores the IDs of the NFTs owned by the user
+  const [sharedNames, setSharedNames] = useState<string[]>([]); //Stores the names of the NFTs shared to the user
+  const [sharedIds, setSharedIds] = useState<number[]>([]); //Stores the IDs of the NFTs shared to the user
+  const [chosenTokenId, setChosenTokenId] = useState<number>(0); //Stores the ID of the NFT chosen to be shared or unshared
+  const [chosenTokenName, setChosenTokenName] = useState<string>(""); //Stores the name of the NFT chosen to be shared or unshared
+  const [address, setAddress] = useState<string>(""); //Stores the wallet address which will be added to an NFT's whitelist
+  const [whiteListName, setWhiteListName] = useState<string>(""); //Stores the name which will be added to an NFT's whitelist
+  const [whiteListNames, setWhiteListNames] = useState<string[]>([]); //Stores the names whitelisted for an NFT taken from the smart contract
+  const [whiteListAddresses, setWhiteListAddresses] = useState<string[]>([]); //Stores the addresses whitelisted for an NFT taken from the smart contract
+  const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null); //Variable to store the instace of metamask's web3Provider
+  const [isProviderReady, setIsProviderReady] = useState<boolean>(false); // Track provider readiness
 
+  //Initializes the connection to metamask
   useEffect(() => {
     const initializeProvider = async () => {
       if (window.ethereum) {
@@ -39,6 +41,7 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
     initializeProvider();
   }, []);
 
+  //Gets the names and Ids from of the owned and shared records from the smart contract
   useEffect(() => {
     const getNamesFromContract = async () => {
       if (!provider) {
@@ -46,8 +49,8 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
         return;
       }
 
-      const signer: Signer = provider.getSigner();
-      const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
+      const signer: Signer = provider.getSigner(); //Gets and stores the user's signature(private key) from metamask
+      const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS; //Imports the smart contract's address from env variables
 
       if (!contractAddress) {
         console.error('Contract address is not defined.');
@@ -67,7 +70,6 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
           setSharedNames(await contract.getAllWhitelistedTokenNames(userWalletAddress))
           const ids = await contract.getAllWhitelistedTokenIds(userWalletAddress);
           setSharedIds(ids.map((id: ethers.BigNumber) => id.toNumber()));
-          console.log(sharedNames[0])
         }
 
         setOwnedNames(await contract.getAllOwnedTokenNames(userWalletAddress));
@@ -85,12 +87,14 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
     }
   }, [provider, isProviderReady]);
 
+  //Controls adding modal for sharing
   const openAddModal = (tokenID, tokenName) => {
     setChosenTokenId(tokenID);
     setChosenTokenName(tokenName)
     setAddShow(!AddShow)
   }
 
+  //Controls whitelist modal for unsharing
   const openWhiteListModal = (tokenID, tokenName) => {
     setChosenTokenId(tokenID);
     setChosenTokenName(tokenName)

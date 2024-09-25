@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Container, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import CIcon from '@coreui/icons-react';
+import { cilUser } from '@coreui/icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'react-bootstrap';
 import PersInfo from './Components/Pages/PersonalInformation';
@@ -92,11 +94,17 @@ const MainPage = () => {
   //Global variable and state declarations
   let navigate = useNavigate();
   let location = useLocation();
-  const [userWalletAddress, setUserWalletAddress] = useState<string>("");
-  const [tokenID, setTokenID] = useState<number | null>(null);
-  const [isOwner, setIsOwner] = useState<Boolean>(false);
-  const [isMedicalProvider, setIsMedicalProvider] = useState<Boolean>(false);
+  const [userWalletAddress, setUserWalletAddress] = useState<string>(""); //Wallet address of the user, acting as their user identifier
+  const [tokenID, setTokenID] = useState<number | null>(null); //NFT ID variable to be passed around the pages
+  const [isOwner, setIsOwner] = useState<Boolean>(false); //Variable to check if the user is the owner of the smart contract
+  const [isMedicalProvider, setIsMedicalProvider] = useState<Boolean>(false); //Variable to check if the user is a medical provider
+  const [isOpen, setIsOpen] = useState<Boolean>(false); //Variable to control if the sidebar is open
 
+  //Import of environment variables
+  const pinataGatewayToken = import.meta.env.VITE_REACT_APP_GATEWAY_TOKEN;
+  const pinataGateway = import.meta.env.VITE_REACT_APP_GATEWAY;
+
+  //Declarion of patient's personal information variables
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
     patientName: 'Name',
     gender: 'Gender',
@@ -105,15 +113,17 @@ const MainPage = () => {
     address: 'Address',
     email: 'Email',
     phonenum: 'Phone Number',
-    profilePictureUri: 'https://ipfs.io/ipfs/QmNXVoaLNFGbTnuM5UpUbPy9rqEFXYWoT39kmrpVmwuuSn',
+    profilePictureUri: `${pinataGateway}/ipfs/QmNXVoaLNFGbTnuM5UpUbPy9rqEFXYWoT39kmrpVmwuuSn?pinataGatewayToken=${pinataGatewayToken}`,
   });
 
+  //Declarion of patient's emergency information variables
   const [emergencyInfo, setEmergencyInfo] = useState<EmergencyInfo>({
     emName: 'Name',
     emNum: 'Contact Number',
     relationship: 'Relationship',
   });
 
+  //Declarration of patients medical information variables
   const [medicalInfo, setMedicalInfo] = useState<MedicalInfo>({
     heart: "heart",
     lung: "lung",
@@ -129,6 +139,7 @@ const MainPage = () => {
     smoke: "smk"
   });
 
+  //Declaration of patient's vitals variables
   const [vitals, setVitals] = useState<Vitals>({
     weight: "kg",
     height: "ft",
@@ -138,6 +149,7 @@ const MainPage = () => {
     rr: "rpM"
   });
 
+  //Declaration of patient's diagnosis information variables
   const [diagDetails, setDiagDetails] = useState<DiagDetails>({
     diagDiagnosis: [],
     prognosis: [],
@@ -147,6 +159,7 @@ const MainPage = () => {
     facility: []
   });
 
+  //Declaration of patient's medication information variables
   const [medicationDetails, setMedicationDetails] = useState<MedicationDetails>({
     generic: [],
     brand: [],
@@ -156,6 +169,7 @@ const MainPage = () => {
     medDoctor: []
   });
 
+  //Declaration of patient's images variables
   const [patientImages, setPatientImages] = useState<PatientImages>({
     imageUri: [],
     description: [],
@@ -206,35 +220,42 @@ const MainPage = () => {
     >
       <NavbarComponent userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider}/>
       {shouldRenderSidebar && (
-        <Sidebar
-          combinedData={combinedData}
-          tokenID={tokenID}
-          isMedicalProvider={isMedicalProvider}
-          setPersonalInfo={setPersonalInfo}
-          personalInfo={personalInfo}
-        />
+          <Sidebar
+            combinedData={combinedData}
+            tokenID={tokenID}
+            isMedicalProvider={isMedicalProvider}
+            setPersonalInfo={setPersonalInfo}
+            personalInfo={personalInfo}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
       )}
       <body className="main-body">
         <Container className="main-container">
-          <Container className="button-group-container">
+          <Container className={`button-group-container ${location.pathname === "/Images" ? 'images' : ''}`}>
             {shouldRenderSidebar && (
-              <ButtonGroup>
-                {radios.map((radio, idx) => (
-                  <ToggleButton
-                    key={idx}
-                    id={`radio-${idx}`}
-                    type="radio"
-                    variant={idx % 2 ? 'outline-success' : 'outline-success'}
-                    className="toggle-button"
-                    name="radio"
-                    value={radio.value}
-                    checked={location.pathname === radio.value}
-                    onChange={(e) => navigate(e.currentTarget.value)}
-                  >
-                    {radio.name}
-                  </ToggleButton>
-                ))}
-              </ButtonGroup>
+              <>
+                <button className='open-sidebar-button' onClick={() => {setIsOpen(!isOpen)}}>
+                  <CIcon icon={cilUser} className='user-icon'/>
+                </button>
+                <ButtonGroup>
+                  {radios.map((radio, idx) => (
+                    <ToggleButton
+                      key={idx}
+                      id={`radio-${idx}`}
+                      type="radio"
+                      variant={idx % 2 ? 'outline-success' : 'outline-success'}
+                      className="toggle-button"
+                      name="radio"
+                      value={radio.value}
+                      checked={location.pathname === radio.value}
+                      onChange={(e) => navigate(e.currentTarget.value)}
+                    >
+                      {radio.name}
+                    </ToggleButton>
+                  ))}
+                </ButtonGroup>
+              </>
             )}
           </Container>
           <Routes>

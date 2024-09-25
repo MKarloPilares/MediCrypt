@@ -7,15 +7,17 @@ import { Col } from 'react-bootstrap';
 import { ThemeProvider } from 'react-bootstrap';
 import './Medication.css';
 
+//Page to add medications to the medicationDetails
 const Medication = ({ setMedicationDetails }) => {
-  const [generic, setGeneric] = useState('');
-  const [brand, setBrand] = useState('');
-  const [dose, setDose] = useState('');
-  const [medDiag, setMedDiag] = useState('');
-  const [medDate, setMedDate] = useState('');
-  const [medDoctor, setMedDoctor] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [generic, setGeneric] = useState<string>(''); //Generic name of the drug
+  const [brand, setBrand] = useState<string>(''); //Brand name of the drug
+  const [dose, setDose] = useState<string>(''); //Dosage indicated
+  const [medDiag, setMedDiag] = useState<string>(''); //What illness the drug is needed for
+  const [medDate, setMedDate] = useState<string>(''); //Date the drug was prescribed
+  const [medDoctor, setMedDoctor] = useState<string>(''); //Name of the prescribing doctor
+  const [isFormValid, setIsFormValid] = useState(false); //Checks the validity of inputs and controls activation of the add button
 
+  //Checks if inputs are valid
   useEffect(() => {
     checkFormValidity();
   }, [generic, brand, dose, medDiag, medDate, medDoctor]);
@@ -31,6 +33,7 @@ const Medication = ({ setMedicationDetails }) => {
     );
   };
 
+  //Empties input controls when the add button is pressed
   const resetForm = () => {
     setGeneric('');
     setBrand('');
@@ -40,6 +43,7 @@ const Medication = ({ setMedicationDetails }) => {
     setMedDiag('');
   };
 
+  //Appends inputs to medicationDetails
   const appendMedication = (newGeneric, newBrand, newDose, newDiag, newDate, newDoctor) => {
     setMedicationDetails(prevDetails => ({
       ...prevDetails,

@@ -3,17 +3,20 @@ import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import CryptoJS from 'crypto-js';
 import MyAbi from './MyAbi.json';
-import './MintButton.css'; // Import the CSS file
+import './MintButton.css';
 
+//Type setting of inherited variables and functions
 interface MintButtonProps {
-  account: string | null; // User's Ethereum account
+  account: string | null;
   combinedData: any;
   tokenID: Number | null;
 }
 
+//Button to encrypt and upload a record then mint an NFT from it, or if the NFT already exists this button functions to reencrypt a record and edit the NFT's metadata
 const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
+  //Imports environment variables
   const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
   const pinataGatewayToken = import.meta.env.VITE_REACT_APP_GATEWAY_TOKEN;
   const JWT = import.meta.env.VITE_REACT_APP_JWT;
@@ -70,9 +73,11 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
       const paymentAmount = ethers.utils.parseEther("0.000038");
       
       try {
+        //Mints a new NFT if it's a new record
         if (tokenID === null) {
           await contract.mint(account, fileUrl, combinedData.personalInfo.patientName, encryptionKey,{ value: paymentAmount } );
         } else {
+          //If a record already exists the old content hash is unpinned and deleted from the IPFS
           const record =  await contract.getTokenMetadata(tokenID);
           const hash = extractHash(record[0])
           try {
@@ -88,6 +93,7 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
           } catch (error) {
             console.log('Error deleting from IPFS: error');
           }
+          //The NFT's metadata is editted with the new content hash and encryption key
           await contract.editTokenMetadata(tokenID, fileUrl, combinedData.personalInfo.patientName, encryptionKey, { value: paymentAmount } );
           }
         }

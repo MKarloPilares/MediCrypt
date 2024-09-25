@@ -3,8 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './Vitals.css';
 
+//Accepts input and lists the vitals of the patient
 const Vitals = ({ vitals, setVitals }) => {
 
+  //Changes in this page are reflected on the vitals data in the record
   const handleVitalsChange = (field, value) => {
     setVitals({ ...vitals, [field]: value });
   };
@@ -37,7 +39,7 @@ const Vitals = ({ vitals, setVitals }) => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group className="mb-3">
+            <Form.Group className="temp-form">
               <Form.Label>Temperature</Form.Label>
               <Form.Control defaultValue={vitals.temp} className="form-group-width-50" onChange={(e) => handleVitalsChange("temp", e.target.value)} />
             </Form.Group>
@@ -45,13 +47,13 @@ const Vitals = ({ vitals, setVitals }) => {
         </Row>
         <Row>
           <Col md="5">
-            <Form.Group className="mb-3">
+            <Form.Group className="pr-form">
               <Form.Label>Pulse Rate</Form.Label>
               <Form.Control defaultValue={vitals.pr} className="form-group-width-60" onChange={(e) => handleVitalsChange("pr", e.target.value)} />
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group className="mb-3">
+            <Form.Group className="rr-form">
               <Form.Label>Respiration Rate</Form.Label>
               <Form.Control defaultValue={vitals.rr} className="form-group-width-60" onChange={(e) => handleVitalsChange("rr", e.target.value)} />
             </Form.Group>

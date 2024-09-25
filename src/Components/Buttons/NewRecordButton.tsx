@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './NewRecordButton.css'; // Import the CSS file
 
+//Type setting of the list of data declared
+
 type PersonalInfo = {
   patientName: string;
   gender: string;
@@ -68,12 +70,14 @@ type PatientImages = {
   imageDate: string[];
 };
 
+//Type setting of inherited variables and functions
 interface NewRecordButtonProps {
-  updateCombinedData: (a) => void; // User's Ethereum account
+  updateCombinedData: (a) => void;
   className: string;
   setTokenID: (a) => void;
 }
 
+//Button to reset the contents of the global variables from the main page
 const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, className, setTokenID}) => {
   const navigate = useNavigate();
   const [personalInfo] = useState<PersonalInfo>({
@@ -151,6 +155,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
     patientImages,
   };
 
+  //Function to to set the combinedData to the default values as well as the tokenID, then navigates to the record page
   const handleNewRecord = () => {
     updateCombinedData(combinedData);
     setTokenID(null)

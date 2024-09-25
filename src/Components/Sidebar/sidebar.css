@@ -8,10 +8,6 @@
   z-index: 99;
 }
 
-.toggle-sidebar-button {
-  visibility: hidden;
-}
-
 .sidebar-image {
   position: absolute;
   width: 50%;
@@ -93,21 +89,11 @@
     left: 0%;
   }
 
-  .toggle-sidebar-button{
+  .close-sidebar-button{
     position: absolute;
-    top: 11%;
-    left: 167%;
-    width: 20%;
-    background-color: transparent;
-    z-index: 200;
-    visibility: visible; 
-  }
-
-  .toggle-sidebar-button.open {
-    position: absolute;
-    top: 11%;
+    top: 12%;
     left: 0%;
-    width: 20%;
+    width: 30%;
     background-color: transparent;
     z-index: 200;
     visibility: visible; 
@@ -115,11 +101,6 @@
 
   .x-icon {
     color: white;
-    width: 100%;
-  }
-
-  .user-icon {
-    color: green;
     width: 100%;
   }
 

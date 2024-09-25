@@ -10,3 +10,9 @@
 .add-button {
   margin-left: 21vw;
 }
+
+@media (max-width: 768px){
+  .add-button {
+    margin-left: 32vw;
+  }
+}

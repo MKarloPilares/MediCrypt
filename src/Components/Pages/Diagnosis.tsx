@@ -5,15 +5,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './Diagnosis.css';
 
+//Page to input and append a new diagnosis to the diagDetails variable.
 const Diagnosis = ({ setDiagDetails }) => {
-  const [diagDiagnosis, setDiagDiagnosis] = useState('');
-  const [prognosis, setPrognosis] = useState('');
-  const [treatment, setTreatment] = useState('');
-  const [diagDate, setDiagDate] = useState('');
-  const [diagDoctor, setDiagDoctor] = useState('');
-  const [facility, setFacility] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [diagDiagnosis, setDiagDiagnosis] = useState<string>(''); //Stores the diagnosis
+  const [prognosis, setPrognosis] = useState<string>(''); //Stores the expected result
+  const [treatment, setTreatment] = useState<string>(''); //Stores the treatment done
+  const [diagDate, setDiagDate] = useState<string>(''); //Stores the date when the diagnosis visit/procedure was done
+  const [diagDoctor, setDiagDoctor] = useState<string>(''); //Stores the name of the doctor
+  const [facility, setFacility] = useState<string>(''); //Stores the name fo the facility
+  const [isFormValid, setIsFormValid] = useState<boolean>(false); //Checks if the inputs are valid to control the activation of the add button
 
+  //Checks if the inputs are valid and not empty
   useEffect(() => {
     checkFormValidity();
   }, [diagDiagnosis, prognosis, treatment, diagDate, diagDoctor, facility]);
@@ -29,6 +31,7 @@ const Diagnosis = ({ setDiagDetails }) => {
     );
   };
 
+  //Appends the added data to diagDetails
   const appendDiagnosis = (newDiagnosis, newPrognosis, newTreatment, newDate, newDoctor, newFacility) => {
     setDiagDetails(prevDetails => ({
       ...prevDetails,
@@ -41,6 +44,7 @@ const Diagnosis = ({ setDiagDetails }) => {
     }));
   };
 
+  //Empties the input controls
   const resetForm = () => {
     setDiagDiagnosis('');
     setPrognosis('');

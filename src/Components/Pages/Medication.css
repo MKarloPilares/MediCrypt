@@ -10,3 +10,10 @@
 .submit-button {
   margin-left: 21vw;
 }
+
+@media (max-width: 768px){
+  .submit-button {
+    margin-left: 35vw;
+  }
+}
+

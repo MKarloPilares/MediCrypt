@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import './RemoveFromWhiteListButton.css'
 import MyAbi from './MyAbi.json';
 
+//Type setting of inherited variables and functions
 interface RemoveFromWhiteListButtonProps {
   tokenID: number;
   address: string;
@@ -11,6 +12,7 @@ interface RemoveFromWhiteListButtonProps {
   setWhiteListModalShow: () => void;
 }
 
+//Button to remove an address from an NFT's whitelist
 const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ tokenID, address, tokenName, setWhiteListModalShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 

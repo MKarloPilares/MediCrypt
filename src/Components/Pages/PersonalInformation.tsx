@@ -3,8 +3,10 @@ import { ThemeProvider, Row, Col, Form } from 'react-bootstrap';
 import moment from 'moment';
 import './PersonalInformation.css';
 
+//Page that shows and accepts input of the patient's personal information.
 const PersInfo = ({ personalInfo, setPersonalInfo }) => {
 
+  //Calculates the users age through their birthday
   const calcAge = (e) => {
     const inputDate = e.target.value;
     const dateObj = new Date(inputDate);
@@ -16,6 +18,7 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
     handlePersonalInfoChange('age', age.toString());
   }
 
+  //Changes data stored in personalInfo when a change is done here
   const handlePersonalInfoChange = (field, value) => {
     setPersonalInfo({ ...personalInfo, [field]: value });
   };

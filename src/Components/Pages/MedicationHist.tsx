@@ -3,8 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './MedicationHist.css';
 
+//Page to list the medications in medicationDetails
 const MedicationHist = ({ medicationDetails }) => {
-  const entries = medicationDetails.generic.map((_, index) => ({
+  const entries = medicationDetails.generic.map((_, index) => ({ //Maps medicationDetails to be iterable.
     generic: medicationDetails.generic[index],
     brand: medicationDetails.brand[index],
     dose: medicationDetails.dose[index],
@@ -22,34 +23,34 @@ const MedicationHist = ({ medicationDetails }) => {
         {entries.map((item, index) => (
           <Row key={index} className="row-border">
             <Col>
-              <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+              <Form.Group className='mb-3'>
                 <Form.Label>Generic Name</Form.Label>
                 <br />
                 <Form.Text>{item.generic}</Form.Text>
               </Form.Group>
-              <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+              <Form.Group className='mb-3'>
                 <Form.Label>Brand Name</Form.Label>
                 <br />
                 <Form.Text>{item.brand}</Form.Text>
               </Form.Group>
-              <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+              <Form.Group className='mb-3'>
                 <Form.Label>Dosage</Form.Label>
                 <br />
                 <Form.Text>{item.dose}</Form.Text>
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+              <Form.Group className='mb-3'>
                 <Form.Label>Diagnosis</Form.Label>
                 <br />
                 <Form.Text>{item.medDiag}</Form.Text>
               </Form.Group>
-              <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+              <Form.Group className='mb-3'>
                 <Form.Label>Date of Prescription</Form.Label>
                 <br />
                 <Form.Text>{item.medDate}</Form.Text>
               </Form.Group>
-              <Form.Group className='mb-3' controlId='nameForm.ControlInput'>
+              <Form.Group className='mb-3'>
                 <Form.Label>Prescribing Doctor</Form.Label>
                 <br />
                 <Form.Text>{item.medDoctor}</Form.Text>

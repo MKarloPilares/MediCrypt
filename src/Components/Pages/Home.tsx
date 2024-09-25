@@ -8,6 +8,7 @@ import ConnectMetaMaskButton from '../Buttons/ConnectMetaMaskButton';
 import NewRecordButton from '../Buttons/NewRecordButton';
 import './Home.css'
 
+//Medicrypt's homepage
 const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCombinedData, isOwner, setIsMedicalProvider, setTokenID }) => {
   const navigate = useNavigate();
 

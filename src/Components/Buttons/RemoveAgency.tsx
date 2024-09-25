@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
-import './RemoveProvider.css'; // Import the CSS file
+import './RemoveProvider.css';
 
+//Type setting of inherited variables and functions
 interface RemoveAgencyButtonProps {
   address: string;
 }
 
+//Button to remove an agency from the smart contract
 const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ address }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
@@ -36,7 +38,7 @@ const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ address }) => {
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
     try {
-      // Call the whitelistAddress function of the smart contract
+      // Call the removeAgency function of the smart contract
       await contract.removeAgency(address);
 
     } catch (error) {

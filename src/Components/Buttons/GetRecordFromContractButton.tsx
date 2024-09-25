@@ -6,6 +6,7 @@ import MyAbi from './MyAbi.json';
 import { useNavigate } from 'react-router-dom';
 import './GetRecordFromContractButton.css'
 
+//Type setting of inherited variables and functions
 interface GetRecordFromContractButtonProps {
   tokenID: number;
   className: string;
@@ -13,6 +14,7 @@ interface GetRecordFromContractButtonProps {
   setTokenID: (a) => void;
  }
 
+//Button to get an NFT's metadata from the contract and fetch the corresponding record from the IPFS
 const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = ({ tokenID, className, updateCombinedData, setTokenID}) => {
   const navigate = useNavigate();
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
@@ -32,8 +34,9 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
       return;
     }
 
-    const signer: Signer = provider.getSigner();
-    const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
+    const signer: Signer = provider.getSigner(); //Gets and stores the user's signature(private key) from metamask
+    const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS; //Imports the smart contract's address from env variables
+
 
     if (!contractAddress) {
       console.error('Contract address is not defined.');
@@ -43,12 +46,12 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
     try {
       const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
-      const record = await contract.getTokenMetadata(tokenID);
-      const fileUrl = record[0];
-      const fileRes = await fetch(fileUrl);
-      const fileContent = await fileRes.text();
+      const record = await contract.getTokenMetadata(tokenID); //Calls the getTokenMetadata function of the contract
+      const fileUrl = record[0]; //Gets the url from the metadata
+      const fileRes = await fetch(fileUrl); //Fetches encrypted file from the IPFS
+      const fileContent = await fileRes.text(); //Encodes the contents to text
 
-      const bytes = CryptoJS.AES.decrypt(fileContent, record[2]);
+      const bytes = CryptoJS.AES.decrypt(fileContent, record[2]); //Decrypts the content using the key from the metadata
 
       // Convert the decrypted bytes back to a JSON string
       const decryptedJsonString = bytes.toString(CryptoJS.enc.Utf8);
@@ -56,7 +59,7 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
       // Parse the JSON string back into an object
       const decryptedData = JSON.parse(decryptedJsonString);
     
-      setTokenID(tokenID)
+      setTokenID(tokenID) 
       updateCombinedData(decryptedData)
 
       navigate("/Profile");

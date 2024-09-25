@@ -5,12 +5,14 @@ import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import UploadToIPFSButton from '../Buttons/UploadToIPFSButton';
 import './AddImagePage.css';
 
+//Page that accepts file input for images related to the medical record
 const AddImagePage = ({setPatientImages}) => {
-  const [file, setFile] = useState<any>(null);
-  const [description, setDescription] = useState<string>('');
-  const [imageDate, setImageDate] = useState<string>('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [file, setFile] = useState<any>(null); //Variable that stores the file uploaded
+  const [description, setDescription] = useState<string>(''); //A description for the file
+  const [imageDate, setImageDate] = useState<string>(''); //Date of the file
+  const [isFormValid, setIsFormValid] = useState(false); //Checks if the input is valid and controls if the upload button is visible
 
+  //Function to check if the varaibles are not empty
   useEffect(() => {
     checkFormValidity();
   }, [file, description, imageDate]);
@@ -23,12 +25,14 @@ const AddImagePage = ({setPatientImages}) => {
     );
   };
 
+  //Function to reset variables when the upload button is clicked
   const resetForm = () => {
     setFile(null);
     setDescription('');
     setImageDate('');
   };
 
+  //Function to append the content hash from the IPFS to the record data.
   const appendImageUri = (link) => {
     setPatientImages(prevDetails => ({
       ...prevDetails,
@@ -36,11 +40,13 @@ const AddImagePage = ({setPatientImages}) => {
     }))
   }
 
+  //Funtion to clear the input controls after appending the details of the file.
   const appendDetailsAndClear = async () => {
     appendDetails(description, imageDate);
     resetForm();
 };
 
+  //Function to append the description and date of the file to the record data.
   const appendDetails = (newDesc, newDate) => {
     setPatientImages(prevDetails => ({
       ...prevDetails,

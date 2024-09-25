@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
 import './ConnectMetaMaskButton.css'; // Import the CSS file
 
+//Type setting of inherited variables and functions
 interface ConnectMetaMaskButtonProps {
   setUserWalletAddress: (a: string) => void;
   setIsOwner: (a: boolean) => void;
@@ -11,6 +12,7 @@ interface ConnectMetaMaskButtonProps {
   className: string;
 }
 
+//Button to connect to Metamask
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
 
   const connectMetamaskWallet = async () => {
@@ -43,16 +45,16 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
     }
   };
 
+  //Checks if the user that logged in is the owner of the contract
   const checkContractOwner = async (web3Provider: ethers.providers.Web3Provider, account: string) => {
     if (!web3Provider) {
       console.error('User is not connected to an Ethereum wallet.');
       return;
     }
 
-    // Create a signer from the user's Ethereum account
-    const signer: Signer = web3Provider.getSigner();
+    const signer: Signer = web3Provider.getSigner(); //Gets and stores the user's signature(private key) from metamask
 
-    const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
+    const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS; //Imports the smart contract's address from env variables
 
     if (!contractAddress) {
       console.error('Contract address is not defined.');

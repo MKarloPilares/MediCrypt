@@ -14,3 +14,23 @@
 .form-container .form-group-width-60 {
   width: 60px;
 }
+
+@media (max-width: 768px) {
+  .temp-form {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+  }
+
+  .pr-form {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+  }
+
+  .rr-form {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+  }
+}

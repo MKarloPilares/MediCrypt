@@ -9,20 +9,22 @@ import NewProviderButton from '../Buttons/NewProviderButton';
 import './Providers.css';
 import RemoveProviderButton from '../Buttons/RemoveProvider';
 
+//Page for the owner to list, add, and remove medical providers.
 const Providers = () => {
-  const [AddShow, setAddShow] = useState(false);
-  const [name, setName] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
-  const [ProviderNames, setProviderNames] = useState<string[]>([]);
-  const [ProviderAddresses, setProviderAddresses] = useState<string[]>([]);
-  const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
+  const [AddShow, setAddShow] = useState<boolean>(false); //Controls the adding modal's visibility
+  const [name, setName] = useState<string>(""); //Stores the name of the provider to be added
+  const [address, setAddress] = useState<string>(""); //Stores the wallet address of the provider to be added
+  const [ProviderNames, setProviderNames] = useState<string[]>([]); //Stores the list of names of providers taken from the smart contract
+  const [ProviderAddresses, setProviderAddresses] = useState<string[]>([]); //Stores the list of wallet addresses of providers taken from the smart contract
+  const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null); //Stores the instance of Metamask
   const [isProviderReady, setIsProviderReady] = useState(false); // Track provider readiness
 
+  //Controls
   const handleAddShow = () => {
     setAddShow(!AddShow);
-    console.log(AddShow);
   }
 
+  //Initializes the connection to metamask
   useEffect(() => {
     const initializeProvider = async () => {
       if (window.ethereum) {
@@ -34,6 +36,7 @@ const Providers = () => {
     initializeProvider();
   }, []);
 
+  //Gets the provider list from the smart contract when metamask is ready
   useEffect(() => {
     const getProviders = async () => {
       if (!provider) {
@@ -41,8 +44,8 @@ const Providers = () => {
         return;
       }
 
-      const signer: Signer = provider.getSigner();
-      const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
+      const signer: Signer = provider.getSigner(); //Gets and stores the user's signature(private key) from metamask
+      const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS; //Imports the smart contract's address from env variables
 
       if (!contractAddress) {
         console.error('Contract address is not defined.');

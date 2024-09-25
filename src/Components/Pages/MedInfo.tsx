@@ -2,8 +2,10 @@ import { Form, Row, Col, ThemeProvider } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MedInfo.css';
 
+//Page that contains checkboxes for patient's general medical information
 const MedInfo = ({ medicalInfo, setMedicalInfo }) => {
 
+  //Changes the data stored in medicalInfo when a change is done in this page.
   const handleMedicalInfoChange = (field, value) => {
     setMedicalInfo({ ...medicalInfo, [field]: value });
   };

@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import CIcon from '@coreui/icons-react';
-import { cilX , cilUser } from '@coreui/icons';
+import { cilX } from '@coreui/icons';
 import { Col, ThemeProvider, Container, Image, Form } from 'react-bootstrap';
 import MintButton from '../Buttons/MintButton';
 import UploadToIPFSButton from '../Buttons/UploadToIPFSButton';
 import './sidebar.css';
 
-const Sidebar = ({combinedData, tokenID, isMedicalProvider, setPersonalInfo, personalInfo}) => {
+//The sidebar contains the mint button, the patient's profile picture and the button to change it
+const Sidebar = ({combinedData, tokenID, isMedicalProvider, setPersonalInfo, personalInfo, isOpen, setIsOpen}) => {
   const [newImage, setnewImage] = useState<Boolean>(false);
   const [file, setFile] = useState<any>([]);
   const [ownerWalletAddress, setOwnerWalletAddress] = useState<string>("")
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
 
+  //Changes the url in personalInfo to the content hash of the new uploaded image
   const handleUploadProfilePicture = (link) => {
     setPersonalInfo({ ...personalInfo, profilePictureUri: link})
   }
 
+  //Resets the form after uploading an image
   const clearForm = () => {
     setnewImage(false)
     setFile(null)
@@ -27,12 +29,8 @@ const Sidebar = ({combinedData, tokenID, isMedicalProvider, setPersonalInfo, per
       minBreakpoint="xxs"
     >
       <Container className={`sidebar-container ${isOpen ? 'open' : ''}`}>
-        <button className={`toggle-sidebar-button ${isOpen ? 'open' : ''}`} onClick={() => {setIsOpen(!isOpen)}}>
-          {isOpen ? (
+        <button className='close-sidebar-button' onClick={() => {setIsOpen(!isOpen)}}>
             <CIcon icon={cilX} className='x-icon'/>
-          ) : (
-            <CIcon icon={cilUser} className='user-icon'/>
-          )}
         </button>
         <Col>
           <Image src={personalInfo.profilePictureUri} alt="No Image" className="sidebar-image"  onClick={() => setnewImage(!newImage)}/>

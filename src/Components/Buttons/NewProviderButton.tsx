@@ -3,12 +3,14 @@ import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
 
+//Type setting of inherited variables and functions
 interface NewProviderButtonProps {
   address: string;
   providerName: string;
   setAddShow: () => void;
 }
 
+//Button to commit the addition of a new provider to the contract
 const NewProviderButton: React.FC<NewProviderButtonProps> = ({ address, providerName, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 

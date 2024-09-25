@@ -3,8 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './DiagHist.css';
 
+//Page the lists the diagnosis history that is in the record.
 const DiagHist = ({ diagDetails }) => {
-  const entries = diagDetails.diagDiagnosis.map((_, index) => ({
+  const entries = diagDetails.diagDiagnosis.map((_, index) => ({ //Maps the diagDetails variable to be iterable.
     diagDiagnosis: diagDetails.diagDiagnosis[index],
     prognosis: diagDetails.prognosis[index],
     treatment: diagDetails.treatment[index],

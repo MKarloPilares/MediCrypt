@@ -3,6 +3,7 @@ import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
 
+//Type setting of inherited variables and functions
 interface WhiteListButtonProps {
   address: string;
   tokenID: number | null;
@@ -11,6 +12,7 @@ interface WhiteListButtonProps {
   setAddShow: () => void;
 }
 
+//Button to whitelist an address for an NFT
 const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whiteListName, tokenName, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 

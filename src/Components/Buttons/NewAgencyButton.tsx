@@ -3,12 +3,14 @@ import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
 
+//Type setting of inherited variables and functions
 interface NewAgencyButtonProps {
   address: string;
   agencyName: string;
   setAddShow: () => void;
 }
 
+//Button to commit the addition of a new agency to the contract
 const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ address, agencyName, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
@@ -47,7 +49,7 @@ const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ address, agencyName, 
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
     try {
-      // Call the whitelistAddress function of the smart contract
+      // Call the addAgency function of the smart contract
       await contract.addAgency(address, agencyName);
       setAddShow();
     } catch (error) {

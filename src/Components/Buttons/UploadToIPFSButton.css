@@ -6,8 +6,15 @@
 }
 
 .addImagePage-button-upload {
-  position: fixed;
-  top: 25.5vh;
+  position: absolute;
+  top: 37%;
   width: 10vw;
+}
+
+@media (max-width: 768px){
+  .addImagePage-button-upload {
+    position: sticky;
+    width: 40%;
+  }
 }
 

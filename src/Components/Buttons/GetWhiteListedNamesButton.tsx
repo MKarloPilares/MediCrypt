@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
 import MyAbi from './MyAbi.json';
-import './GetWhiteListedNamesButton.css'; // Import the CSS file
+import './GetWhiteListedNamesButton.css';
 
+//Type setting of inherited variables and functions
 interface WhiteListButtonProps {
   tokenID: number | null;
   setWhiteListNames: any;
@@ -11,6 +12,7 @@ interface WhiteListButtonProps {
   openWhiteListModal: () => void;
 }
 
+//Button to get the whitelisted names and addresses of an NFT
 const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, setWhiteListNames, setWhiteListAddresses, openWhiteListModal }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
