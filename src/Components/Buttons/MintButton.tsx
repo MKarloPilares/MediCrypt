@@ -30,6 +30,12 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
     }
   }, []);
 
+  useEffect(() => {
+    if (combinedData) {
+      console.log("combinedData is ready:", combinedData);
+    }
+  }, [combinedData]);  
+
     const extractHash = (url) => {
       const parts = url.split('/');
       return parts[parts.length - 1];

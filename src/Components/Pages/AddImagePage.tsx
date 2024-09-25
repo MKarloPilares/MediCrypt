@@ -10,7 +10,7 @@ const AddImagePage = ({setPatientImages}) => {
   const [file, setFile] = useState<any>(null); //Variable that stores the file uploaded
   const [description, setDescription] = useState<string>(''); //A description for the file
   const [imageDate, setImageDate] = useState<string>(''); //Date of the file
-  const [isFormValid, setIsFormValid] = useState(false); //Checks if the input is valid and controls if the upload button is visible
+  const [isFormValid, setIsFormValid] = useState<boolean>(false); //Checks if the input is valid and controls if the upload button is visible
 
   //Function to check if the varaibles are not empty
   useEffect(() => {
