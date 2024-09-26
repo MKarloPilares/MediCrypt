@@ -1,10 +1,22 @@
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './DisplayImagePage.css';
-import { Row, Col, ThemeProvider, Image, Form } from 'react-bootstrap';
+import { Row, Col, ThemeProvider, Image, Form, Modal } from 'react-bootstrap';
 
-//Page to display the images in the record by fetching them from IPFS
 const ImagePage = ({ patientImages }) => {
-  const entries = patientImages.imageUri.map((_, index) => ({ //Maps patientImages to be iterable
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState({ imageUri: '', description: '', imageDate: '' });
+
+  const handleShowModal = (image) => {
+    setSelectedImage(image);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const entries = patientImages.imageUri.map((_, index) => ({
     imageUri: patientImages.imageUri[index],
     description: patientImages.description[index],
     imageDate: patientImages.imageDate[index],
@@ -28,12 +40,27 @@ const ImagePage = ({ patientImages }) => {
                     <Form.Label>{item.imageDate}</Form.Label>
                   </Col>
                 </Row>
-                <Image src={item.imageUri} className="image-page-image"></Image>
+                <Image
+                  src={item.imageUri}
+                  className="image-page-image"
+                  onClick={() => handleShowModal(item)}
+                  style={{ cursor: 'pointer' }}
+                />
               </Form>
             </Col>
           ))}
         </Row>
       </Form>
+
+      <Modal show={showModal} onHide={handleCloseModal} centered size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedImage.description}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Image src={selectedImage.imageUri} fluid />
+          <p>Date: {selectedImage.imageDate}</p>
+        </Modal.Body>
+      </Modal>
     </ThemeProvider>
   );
 };

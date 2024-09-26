@@ -109,7 +109,7 @@ const MainPage = () => {
     patientName: 'Name',
     gender: 'Gender',
     age: 'Age',
-    birthday: 'Date of Birth',
+    birthday: '01/01/2024',
     address: 'Address',
     email: 'Email',
     phonenum: 'Phone Number',

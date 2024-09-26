@@ -84,7 +84,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
     patientName: 'Name',
     gender: 'Gender',
     age: 'Age',
-    birthday: 'Date of Birth',
+    birthday: '2024-01-01',
     address: 'Address',
     email: 'Email',
     phonenum: 'Phone Number',

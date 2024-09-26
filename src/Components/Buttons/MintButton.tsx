@@ -28,13 +28,7 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
       const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
       setProvider(web3Provider);
     }
-  }, []);
-
-  useEffect(() => {
-    if (combinedData) {
-      console.log("combinedData is ready:", combinedData);
-    }
-  }, [combinedData]);  
+  }, []);  
 
     const extractHash = (url) => {
       const parts = url.split('/');
@@ -81,7 +75,8 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
       try {
         //Mints a new NFT if it's a new record
         if (tokenID === null) {
-          await contract.mint(account, fileUrl, combinedData.personalInfo.patientName, encryptionKey,{ value: paymentAmount } );
+          const estimatedGas = await contract.estimateGas.mint(account, fileUrl, combinedData.personalInfo.patientName, encryptionKey, { value: paymentAmount });
+          await contract.mint(account, fileUrl, combinedData.personalInfo.patientName, encryptionKey,{ value: paymentAmount,  gasLimit: estimatedGas.mul(ethers.BigNumber.from(2)), } );
         } else {
           //If a record already exists the old content hash is unpinned and deleted from the IPFS
           const record =  await contract.getTokenMetadata(tokenID);
@@ -99,8 +94,9 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
           } catch (error) {
             console.log('Error deleting from IPFS: error');
           }
+          const estimatedGas = await contract.estimateGas.editTokenMetadata(tokenID, fileUrl, combinedData.personalInfo.patientName, encryptionKey, { value: paymentAmount });
           //The NFT's metadata is editted with the new content hash and encryption key
-          await contract.editTokenMetadata(tokenID, fileUrl, combinedData.personalInfo.patientName, encryptionKey, { value: paymentAmount } );
+          await contract.editTokenMetadata(tokenID, fileUrl, combinedData.personalInfo.patientName, encryptionKey, { value: paymentAmount, gasLimit: estimatedGas.mul(ethers.BigNumber.from(2)), } );
           }
         }
        catch (error) {

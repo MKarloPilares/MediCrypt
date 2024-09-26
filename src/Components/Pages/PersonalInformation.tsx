@@ -14,8 +14,12 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
     const today = moment();
     const birthMoment = moment(formattedDate);
     const age = today.diff(birthMoment, 'years');
-    handlePersonalInfoChange('birthday', formattedDate)
-    handlePersonalInfoChange('age', age.toString());
+    
+    setPersonalInfo({
+      ...personalInfo,
+      birthday: inputDate, // The original date input
+      age: age.toString()  // Calculated age as a string
+    });
   }
 
   //Changes data stored in personalInfo when a change is done here
@@ -76,7 +80,7 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
               <Form.Label>Date of Birth</Form.Label>
               <Form.Control
                 type="date"
-                defaultValue={personalInfo.birthday}
+                defaultValue={personalInfo.birthday ? moment(personalInfo.birthday).format('YYYY-MM-DD') : ''}
                 className="birthday-input"
                 onChange={calcAge}
               />
