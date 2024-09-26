@@ -1,7 +1,8 @@
 .whitelist-button {
-  position: sticky;
-  left: 40%;
-  width: 20%;
+  position: absolute;
+  left: 78%;
+  width: 6vw;
+  top: 13%;
   border-style: solid;
   border-color: white;
 }

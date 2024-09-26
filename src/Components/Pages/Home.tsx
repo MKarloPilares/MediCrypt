@@ -18,9 +18,7 @@ const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCo
       minBreakpoint="xxs"
     >
       <Container className="container-home">
-        <Row>
           <Image src={logo} className="logo-image" />
-        </Row>
         <Row>
           {userWalletAddress === "" ? (
             <ConnectMetaMaskButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"home-button-connectToMetamask"}/>

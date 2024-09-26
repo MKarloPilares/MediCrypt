@@ -34,9 +34,10 @@
 }
 
 .button-share-access {
-  position: sticky;
-  left: 33%;
-  width: 25.5%;
+  position: absolute;
+  left: 56%;
+  width: 6vw;
+  top: 13%;
   border-style: solid;
   border-color: white;
 }
@@ -90,6 +91,7 @@
   }
   
   .button-share-access {
+    position: sticky;
     top: 100%;
     width: 30%;
     left: 80%

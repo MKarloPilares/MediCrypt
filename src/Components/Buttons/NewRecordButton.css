@@ -1,7 +1,7 @@
 .home-button-newRecord {
-  position: fixed;
-  left: 36vw;
-  top: 85.2vh;
+  position: absolute;
+  left: 20vw;
+  top: 30vh;
   width: 10vw
 }
 
@@ -14,8 +14,8 @@
 @media (max-width: 768px) {
   .home-button-newRecord {
     width: 70vw;
-    top: 54vh;
-    left: 15.5vw;
+    top: -32vh;
+    left: 45vw;
   }
 
   .recList-button-newRecord {

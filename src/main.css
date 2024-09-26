@@ -43,14 +43,14 @@
 }
 
 .profile-heading {
-  position: fixed;
+  position: absolute;
   top: 16vh;
   left: 26vw;
 }
 
 .profile-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 25vw;
   height: 32vh;
@@ -62,14 +62,14 @@
 }
 
 .emergency-heading {
-  position: fixed;
+  position: absolute;
   top: 16vh;
   left: 78vw;
 }
 
 .emergency-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 77vw;
   height: 32vh;
@@ -81,14 +81,14 @@
 }
 
 .medical-heading {
-  position: fixed;
+  position: absolute;
   top: 56vh;
   left: 26vw;
 }
 
 .medical-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 60vh;
   left: 25vw;
   height: 32vh;
@@ -100,14 +100,14 @@
 }
 
 .vitals-heading {
-  position: fixed;
+  position: absolute;
   top: 56vh;
   left: 78vw;
 }
 
 .vitals-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 60vh;
   left: 77vw;
   height: 32vh;
@@ -119,14 +119,14 @@
 }
 
 .diagnosis-heading {
-  position: fixed;
+  position: absolute;
   top: 16vh;
   left: 26vw;
 }
 
 .diagnosis-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 25vw;
   height: 35vh;
@@ -138,14 +138,14 @@
 }
 
 .diagnosis-history-heading {
-  position: fixed;
+  position: absolute;
   top: 16vh;
   left: 78vw;
 }
 
 .diagnosis-history-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 77vw;
   height: 35vh;
@@ -157,14 +157,14 @@
 }
 
 .medications-heading {
-  position: fixed;
+  position: absolute;
   top: 58vh;
   left: 26vw;
 }
 
 .medications-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 62vh;
   left: 25vw;
   height: 35vh;
@@ -176,14 +176,14 @@
 }
 
 .medication-history-heading {
-  position: fixed;
+  position: absolute;
   top: 58vh;
   left: 78vw;
 }
 
 .medication-history-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 62vh;
   left: 77vw;
   height: 35vh;
@@ -196,7 +196,7 @@
 
 .add-image-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 25vw;
   height: 13vh;
@@ -209,7 +209,7 @@
 
 .display-image-container {
   border: 1px solid green;
-  position: fixed;
+  position: absolute;
   top: 40vh;
   left: 25vw;
   height: 55vh;

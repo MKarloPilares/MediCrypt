@@ -1,38 +1,39 @@
 .container-home{
-  position: relative;
-  top: 50px;
+  position: absolute;
   width: 100vw;
+  top: 55vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .logo-image {
-  width: 85%;
-  position: relative;
-  left: 5vw;
-  bottom: 130px;
+  width: 60vw;
+  height: 90vh;
+  position: absolute;
+  left: 4vw;
+  top: -60vh;
 }
 
 .button-providerList {
-  position: fixed;
+  position: absolute;
   width: 10vw;
-  top: 92vh;
-  left: 36vw;
+  top: 36.8vh;
+  left: 20vw;
 }
 
 .button-agencyList {
-  position: fixed;
+  position: absolute;
   width: 10vw;
-  top: 92vh;
-  left: 53.5vw;
+  top: 36.8vh;
+  left: 38vw;
 }
 
 .button-recordList {
-  position: fixed;
-  left: 53.5vw;
-  top: 85.2vh;
-  width: 10vw
+  position: absolute;
+  width: 10vw;
+  top: 30vh;
+  left: 38vw;
 }
 
 @media (max-width: 768px){
@@ -49,28 +50,31 @@
 
   .logo-image {
     width: 100vw;
-    position: relative;
+    height: 60vh;
+    position: absolute;
     left: 30vw;
-    bottom: 25vh;
-    display: flex;
+    top: -95vh;
   }
 
   .button-recordList {
+    position: absolute;
     width: 70vw;
-    top: 62vh;
-    left: 15.5vw;
+    top: -25vh;
+    left: 45vw;
   }
 
   .button-providerList {
+    position: absolute;
     width: 70vw;
-    top: 70vh;
-    left: 15.5vw;
+    top: -18vh;
+    left: 45vw;
   }
   
   .button-agencyList {
+    position: absolute;
     width: 70vw;
-    top: 78vh;
-    left: 15.5vw;
+    top: -11vh;
+    left: 45vw;
   }
 }
 
