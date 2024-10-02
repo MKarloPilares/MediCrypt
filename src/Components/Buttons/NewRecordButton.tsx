@@ -5,10 +5,10 @@ import './NewRecordButton.css'; // Import the CSS file
 
 //Type setting of the list of data declared
 
-type PersonalInfo = {
+type personalInfo = {
   patientName: string;
   gender: string;
-  age: string;
+  age: number;
   birthday: string;
   address: string;
   email: string;
@@ -16,13 +16,13 @@ type PersonalInfo = {
   profilePictureUri: string;
 };
 
-type EmergencyInfo = {
+type emergencyInfo = {
   emName: string;
   emNum: string;
   relationship: string;
 };
 
-type MedicalInfo = {
+type medicalInfo = {
   heart: string;
   lung: string;
   kidney: string;
@@ -37,7 +37,7 @@ type MedicalInfo = {
   smoke: string;
 };
 
-type Vitals = {
+type vitals = {
   weight: string;
   height: string;
   bp: string;
@@ -46,7 +46,7 @@ type Vitals = {
   rr: string;
 };
 
-type DiagDetails = {
+type diagDetails = {
   diagDiagnosis: string[];
   prognosis: string[];
   treatment: string[];
@@ -55,7 +55,7 @@ type DiagDetails = {
   facility: string[];
 };
 
-type MedicationDetails = {
+type medicationDetails = {
   generic: string[];
   brand: string[];
   dose: string[];
@@ -64,7 +64,7 @@ type MedicationDetails = {
   medDoctor: string[];
 };
 
-type PatientImages = {
+type patientImages = {
   imageUri: string[];
   description: string[];
   imageDate: string[];
@@ -72,18 +72,18 @@ type PatientImages = {
 
 //Type setting of inherited variables and functions
 interface NewRecordButtonProps {
-  updateCombinedData: (a) => void;
+  updateMedicalRecord: (a) => void;
   className: string;
   setTokenID: (a) => void;
 }
 
 //Button to reset the contents of the global variables from the main page
-const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, className, setTokenID}) => {
+const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateMedicalRecord, className, setTokenID}) => {
   const navigate = useNavigate();
-  const [personalInfo] = useState<PersonalInfo>({
+  const [personalInfo] = useState<personalInfo>({
     patientName: 'Name',
     gender: 'Gender',
-    age: 'Age',
+    age: 0,
     birthday: '2024-01-01',
     address: 'Address',
     email: 'Email',
@@ -91,13 +91,13 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
     profilePictureUri: 'https://ipfs.io/ipfs/QmNXVoaLNFGbTnuM5UpUbPy9rqEFXYWoT39kmrpVmwuuSn',
   });
 
-  const [emergencyInfo] = useState<EmergencyInfo>({
+  const [emergencyInfo] = useState<emergencyInfo>({
     emName: 'Name',
     emNum: 'Contact Number',
     relationship: 'Relationship',
   });
 
-  const [medicalInfo] = useState<MedicalInfo>({
+  const [medicalInfo] = useState<medicalInfo>({
     heart: 'heart',
     lung: 'lung',
     kidney: 'kid',
@@ -112,7 +112,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
     smoke: 'smk',
   });
 
-  const [vitals] = useState<Vitals>({
+  const [vitals] = useState<vitals>({
     weight: 'kg',
     height: 'ft',
     bp: 'mmHG',
@@ -121,7 +121,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
     rr: 'rpM',
   });
 
-  const [diagDetails] = useState<DiagDetails>({
+  const [diagDetails] = useState<diagDetails>({
     diagDiagnosis: [],
     prognosis: [],
     treatment: [],
@@ -130,7 +130,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
     facility: []
   });
 
-  const [medicationDetails] = useState<MedicationDetails>({
+  const [medicationDetails] = useState<medicationDetails>({
     generic: [],
     brand: [],
     dose: [],
@@ -139,7 +139,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
     medDoctor: []
   });
 
-  const [patientImages] = useState<PatientImages>({
+  const [patientImages] = useState<patientImages>({
     imageUri: [],
     description: [],
     imageDate: [],
@@ -157,7 +157,7 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateCombinedData, c
 
   //Function to to set the combinedData to the default values as well as the tokenID, then navigates to the record page
   const handleNewRecord = () => {
-    updateCombinedData(combinedData);
+    updateMedicalRecord(combinedData);
     setTokenID(null)
     navigate("/Profile");
   }

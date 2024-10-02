@@ -25,10 +25,10 @@ import './main.css';
 
 
 //Type setting for global variables
-type PersonalInfo = {
+type personalInfo = {
   patientName: string;
   gender: string;
-  age: string;
+  age: number;
   birthday: string;
   address: string;
   email: string;
@@ -36,13 +36,13 @@ type PersonalInfo = {
   profilePictureUri: string;
 };
 
-type EmergencyInfo = {
+type emergencyInfo = {
   emName: string;
   emNum: string;
   relationship: string;
 };
 
-type MedicalInfo = {
+type medicalInfo = {
   heart: string;
   lung: string;
   kidney: string;
@@ -57,7 +57,7 @@ type MedicalInfo = {
   smoke: string;
 };
 
-type Vitals = {
+type vitals = {
   weight: string;
   height: string;
   bp: string;
@@ -66,7 +66,7 @@ type Vitals = {
   rr: string;
 };
 
-type DiagDetails = {
+type diagDetails = {
   diagDiagnosis: string[];
   prognosis: string[];
   treatment: string[];
@@ -75,7 +75,7 @@ type DiagDetails = {
   facility: string[];
 };
 
-type MedicationDetails = {
+type medicationDetails = {
   generic: string[];
   brand: string[];
   dose: string[];
@@ -84,7 +84,7 @@ type MedicationDetails = {
   medDoctor: string[];
 };
 
-type PatientImages = {
+type patientImages = {
   imageUri: string[];
   description: string[];
   imageDate: string[];
@@ -105,10 +105,10 @@ const MainPage = () => {
   const pinataGateway = import.meta.env.VITE_REACT_APP_GATEWAY;
 
   //Declarion of patient's personal information variables
-  const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
+  const [personalInfo, setPersonalInfo] = useState<personalInfo>({
     patientName: 'Name',
     gender: 'Gender',
-    age: 'Age',
+    age: 0,
     birthday: '01/01/2024',
     address: 'Address',
     email: 'Email',
@@ -117,14 +117,14 @@ const MainPage = () => {
   });
 
   //Declarion of patient's emergency information variables
-  const [emergencyInfo, setEmergencyInfo] = useState<EmergencyInfo>({
+  const [emergencyInfo, setEmergencyInfo] = useState<emergencyInfo>({
     emName: 'Name',
     emNum: 'Contact Number',
     relationship: 'Relationship',
   });
 
   //Declarration of patients medical information variables
-  const [medicalInfo, setMedicalInfo] = useState<MedicalInfo>({
+  const [medicalInfo, setMedicalInfo] = useState<medicalInfo>({
     heart: "heart",
     lung: "lung",
     kidney: "kid",
@@ -140,7 +140,7 @@ const MainPage = () => {
   });
 
   //Declaration of patient's vitals variables
-  const [vitals, setVitals] = useState<Vitals>({
+  const [vitals, setVitals] = useState<vitals>({
     weight: "kg",
     height: "ft",
     bp: "mmHG",
@@ -150,7 +150,7 @@ const MainPage = () => {
   });
 
   //Declaration of patient's diagnosis information variables
-  const [diagDetails, setDiagDetails] = useState<DiagDetails>({
+  const [diagDetails, setDiagDetails] = useState<diagDetails>({
     diagDiagnosis: [],
     prognosis: [],
     treatment: [],
@@ -160,7 +160,7 @@ const MainPage = () => {
   });
 
   //Declaration of patient's medication information variables
-  const [medicationDetails, setMedicationDetails] = useState<MedicationDetails>({
+  const [medicationDetails, setMedicationDetails] = useState<medicationDetails>({
     generic: [],
     brand: [],
     dose: [],
@@ -170,14 +170,14 @@ const MainPage = () => {
   });
 
   //Declaration of patient's images variables
-  const [patientImages, setPatientImages] = useState<PatientImages>({
+  const [patientImages, setPatientImages] = useState<patientImages>({
     imageUri: [],
     description: [],
     imageDate: [],
   });
 
   //Combination of medical record data
-  const combinedData = {
+  const medicalRecord = {
     personalInfo,
     emergencyInfo,
     medicalInfo,
@@ -188,7 +188,7 @@ const MainPage = () => {
   };
 
   //Function to update combinedData
-  const updateCombinedData = (newData) => {
+  const updateMedicalRecord = (newData) => {
     setPersonalInfo(newData.personalInfo);
     setEmergencyInfo(newData.emergencyInfo);
     setMedicalInfo(newData.medicalInfo);
@@ -221,7 +221,7 @@ const MainPage = () => {
       <NavbarComponent userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider}/>
       {shouldRenderSidebar && (
           <Sidebar
-            combinedData={combinedData}
+            medicalRecord={medicalRecord}
             tokenID={tokenID}
             isMedicalProvider={isMedicalProvider}
             setPersonalInfo={setPersonalInfo}
@@ -259,7 +259,7 @@ const MainPage = () => {
             )}
           </Container>
           <Routes>
-            <Route path="/" element={<HomePage userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} updateCombinedData={updateCombinedData} 
+            <Route path="/" element={<HomePage userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} updateMedicalRecord={updateMedicalRecord} 
               isOwner={isOwner} setIsMedicalProvider={setIsMedicalProvider} setTokenID={setTokenID}></HomePage>} />
             <Route path="/Profile" element={
               <>
@@ -311,7 +311,7 @@ const MainPage = () => {
                 </Container>
               </>
             } />
-            <Route path="/RecList" element={<RecList userWalletAddress={userWalletAddress} updateCombinedData={updateCombinedData} setTokenID={setTokenID} />} />
+            <Route path="/RecList" element={<RecList userWalletAddress={userWalletAddress} updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} />} />
             <Route path="/Providers" element={<Providers />} />
             <Route path="/Agencies" element={<Agencies/>} />
           </Routes>

@@ -13,7 +13,7 @@ import './Agencies.css';
 const Agencies = () => {
   const [AddShow, setAddShow] = useState(false); //Variable to control if the adding modal is visible
   const [name, setName] = useState<string>(""); //Variable to store the name of the agency to be added
-  const [address, setAddress] = useState<string>(""); //Variable to store the wallet address of the agency to be added
+  const [walletAddress, setWalletAddress] = useState<string>(""); //Variable to store the wallet address of the agency to be added
   const [AgencyNames, setAgencyNames] = useState<string[]>([]); //Variable to store the list of agency names taken from the smart contract.
   const [AgencyAddresses, setAgencyAddresses] = useState<string[]>([]); //Variable to store the list of agency wallet addresses taken from the smart contract.
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null); //Variable to store the instace of metamask's web3Provider
@@ -87,13 +87,13 @@ const Agencies = () => {
                 <Modal.Body>
                   <Form>
                       <Form.Label className="modal-body-form-label">Enter Wallet Address</Form.Label>
-                      <Form.Control className="modal-body-form-control" placeholder='Wallet Address' onChange={(e) => setAddress(e.target.value)}></Form.Control>
+                      <Form.Control className="modal-body-form-control" placeholder='Wallet Address' onChange={(e) => setWalletAddress(e.target.value)} maxLength={42}></Form.Control>
                       <Form.Label className="modal-body-form-label">Enter Name of Address Owner</Form.Label>
-                      <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setName(e.target.value)}></Form.Control>
+                      <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setName(e.target.value)} maxLength={50}></Form.Control>
                   </Form>
                 </Modal.Body>
               <Modal.Footer>
-            <NewAgencyButton address={address} agencyName={name} setAddShow={handleAddShow}/>
+            <NewAgencyButton walletAddress={walletAddress} name={name} setAddShow={handleAddShow}/>
           </Modal.Footer>
         </Modal>
         <Card className="card-agencies">
@@ -104,7 +104,7 @@ const Agencies = () => {
                 <ListGroup.Item className="list-group-agencies">
                   <Col>
                     {data}
-                    <RemoveAgencyButton address={AgencyAddresses[index]}/>
+                    <RemoveAgencyButton walletAddress={AgencyAddresses[index]}/>
                   </Col>
                 </ListGroup.Item>
               </ListGroup>

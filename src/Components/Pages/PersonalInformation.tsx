@@ -18,7 +18,7 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
     setPersonalInfo({
       ...personalInfo,
       birthday: inputDate, // The original date input
-      age: age.toString()  // Calculated age as a string
+      age: age // Calculated age as a string
     });
   }
 
@@ -40,6 +40,7 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
               <Form.Control
                 defaultValue={personalInfo.patientName}
                 className="name-input"
+                maxLength={50}
                 onChange={(e) => handlePersonalInfoChange('patientName', e.target.value)}
               />
             </Form.Group>
@@ -92,6 +93,7 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
               <Form.Control
                 defaultValue={personalInfo.address}
                 className="address-input"
+                maxLength={200}
                 onChange={(e) => handlePersonalInfoChange('address', e.target.value)}
               />
             </Form.Group>
@@ -100,6 +102,7 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
               <Form.Control
                 defaultValue={personalInfo.email}
                 className="email-input"
+                maxLength={50}
                 onChange={(e) => handlePersonalInfoChange('email', e.target.value)}
               />
             </Form.Group>
@@ -108,6 +111,7 @@ const PersInfo = ({ personalInfo, setPersonalInfo }) => {
               <Form.Control
                 defaultValue={personalInfo.phonenum}
                 className="phone-input"
+                maxLength={13}
                 onChange={(e) => handlePersonalInfoChange('phonenum', e.target.value)}
               />
             </Form.Group>

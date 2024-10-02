@@ -6,11 +6,11 @@ import './RemoveProvider.css';
 
 //Type setting of inherited variables and functions
 interface RemoveAgencyButtonProps {
-  address: string;
+  walletAddress: string;
 }
 
 //Button to remove an agency from the smart contract
-const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ address }) => {
+const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ walletAddress }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ address }) => {
 
     try {
       // Call the removeAgency function of the smart contract
-      await contract.removeAgency(address);
+      await contract.removeAgency(walletAddress);
 
     } catch (error) {
       console.error('Error Removing Provider:', error);

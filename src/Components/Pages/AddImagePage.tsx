@@ -79,6 +79,7 @@ const AddImagePage = ({setPatientImages}) => {
               placeholder='Description'
               value={description}
               className="input-description"
+              maxLength={50}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>

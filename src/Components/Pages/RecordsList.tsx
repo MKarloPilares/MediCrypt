@@ -13,15 +13,15 @@ import './RecordsList.css';
 import GetRecordFromContractButton from '../Buttons/GetRecordFromContractButton';
 
 //Page to list owned and shared records, and to control access to owned one
-const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
+const RecList = ({ userWalletAddress,updateMedicalRecord, setTokenID}) => {
   const [AddShow, setAddShow] = useState<boolean>(false); //Controls the visibility of the adding modal
   const [whiteListModalShow, setWhiteListModalShow] = useState<boolean>(false); //Controls the visibility of the whitelist modal
-  const [ownedNames, setOwnedNames] = useState<string[]>([]); //Stores the names of the NFTs owned by the user
-  const [ownedIds, setOwnedIds] = useState<number[]>([]); //Stores the IDs of the NFTs owned by the user
-  const [sharedNames, setSharedNames] = useState<string[]>([]); //Stores the names of the NFTs shared to the user
-  const [sharedIds, setSharedIds] = useState<number[]>([]); //Stores the IDs of the NFTs shared to the user
+  const [ownedNFTNames, setOwnedNames] = useState<string[]>([]); //Stores the names of the NFTs owned by the user
+  const [ownedTokenIds, setOwnedIds] = useState<number[]>([]); //Stores the IDs of the NFTs owned by the user
+  const [sharedNFTNames, setSharedNames] = useState<string[]>([]); //Stores the names of the NFTs shared to the user
+  const [sharedTokenIds, setSharedIds] = useState<number[]>([]); //Stores the IDs of the NFTs shared to the user
   const [chosenTokenId, setChosenTokenId] = useState<number>(0); //Stores the ID of the NFT chosen to be shared or unshared
-  const [chosenTokenName, setChosenTokenName] = useState<string>(""); //Stores the name of the NFT chosen to be shared or unshared
+  const [chosenNFTName, setChosenTokenName] = useState<string>(""); //Stores the name of the NFT chosen to be shared or unshared
   const [address, setAddress] = useState<string>(""); //Stores the wallet address which will be added to an NFT's whitelist
   const [whiteListName, setWhiteListName] = useState<string>(""); //Stores the name which will be added to an NFT's whitelist
   const [whiteListNames, setWhiteListNames] = useState<string[]>([]); //Stores the names whitelisted for an NFT taken from the smart contract
@@ -111,7 +111,7 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
           <h3 className="records-heading">Records</h3>
         </Col>
         <Col>
-          <NewRecordButton updateCombinedData={updateCombinedData} setTokenID={setTokenID} className={"recList-button-newRecord"}/>
+          <NewRecordButton updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} className={"recList-button-newRecord"}/>
         </Col>
         <Modal show={AddShow} onHide={() => setAddShow(!AddShow)} dialogClassName="custom-modal" backdropClassName="custom-modal-backdrop"> 
           <Modal.Header closeButton>
@@ -120,13 +120,13 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
           <Modal.Body>
             <Form>
               <Form.Label className="modal-body-form-label">Enter Wallet Address</Form.Label>
-              <Form.Control className="modal-body-form-control" placeholder='Wallet Address' onChange={(e) => setAddress(e.target.value)}></Form.Control>
+              <Form.Control className="modal-body-form-control" placeholder='Wallet Address' onChange={(e) => setAddress(e.target.value)} maxLength={42}></Form.Control>
               <Form.Label className="modal-body-form-label">Enter Name of Address Owner</Form.Label>
-              <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setWhiteListName(e.target.value)}></Form.Control>
+              <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setWhiteListName(e.target.value)} maxLength={50}></Form.Control>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <WhiteListButton address={address} tokenID={chosenTokenId} whiteListName={whiteListName} tokenName={chosenTokenName} setAddShow={() => setAddShow(!AddShow)}/>
+            <WhiteListButton walletAddress={address} tokenID={chosenTokenId} name={whiteListName} nftName={chosenNFTName} setAddShow={() => setAddShow(!AddShow)}/>
           </Modal.Footer>
         </Modal>
               <Modal show={whiteListModalShow} onHide={() => setWhiteListModalShow(!whiteListModalShow)} dialogClassName="custom-modal" backdropClassName="custom-modal-backdrop">
@@ -136,7 +136,7 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
               {whiteListNames.map((data: any, index: number) =>
                 <Modal.Body key={index} className="modal-body-row">
                     <Col md='8' className="modal-body-col">{index+1}. {data}</Col>
-                    <Col><RemoveFromWhiteListButton tokenID={chosenTokenId} address={whiteListAddresses[index]} tokenName={chosenTokenName} 
+                    <Col><RemoveFromWhiteListButton tokenID={chosenTokenId} walletAddress={whiteListAddresses[index]} nftName={chosenNFTName} 
                       setWhiteListModalShow={() => setWhiteListModalShow(!whiteListModalShow)}/></Col>
                 </Modal.Body>
               )}
@@ -147,15 +147,15 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
         <h4 className="ownedRecords-heading">Owned Records</h4>
         <Card className="card-ownedRecords">
           <Card.Body>
-            {ownedNames.map((data: any, index: number) =>
+            {ownedNFTNames.map((data: any, index: number) =>
             <>
               <ListGroup key={index}>
                 <ListGroup.Item className="list-group-item">
                   <Col>
                     {data}
-                    <GetRecordFromContractButton tokenID={ownedIds[index]} className="recList-openButton-ownedRecord" updateCombinedData={updateCombinedData} setTokenID={setTokenID}/>
-                    <Button size='sm' variant="success" className="button-share-access" onClick={() => {openAddModal(ownedIds[index], data)}}>SHARE</Button>
-                    <GetWhiteListedNamesButton tokenID={ownedIds[index]} setWhiteListNames={setWhiteListNames} setWhiteListAddresses ={setWhiteListAddresses} openWhiteListModal={() => openWhiteListModal(ownedIds[index], data)}/>
+                    <GetRecordFromContractButton tokenID={ownedTokenIds[index]} className="recList-openButton-ownedRecord" updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID}/>
+                    <Button size='sm' variant="success" className="button-share-access" onClick={() => {openAddModal(ownedTokenIds[index], data)}}>SHARE</Button>
+                    <GetWhiteListedNamesButton tokenID={ownedTokenIds[index]} setWhiteListNames={setWhiteListNames} setWhiteListAddresses ={setWhiteListAddresses} openWhiteListModal={() => openWhiteListModal(ownedTokenIds[index], data)}/>
                   </Col>
                 </ListGroup.Item>
               </ListGroup>
@@ -166,13 +166,13 @@ const RecList = ({ userWalletAddress,updateCombinedData, setTokenID}) => {
         <h4 className="sharedRecords-heading">Shared Records</h4>
         <Card className="card-sharedRecords">
           <Card.Body>
-          {sharedNames.map((data: any, index: number) =>
+          {sharedNFTNames.map((data: any, index: number) =>
             <>
           <ListGroup>
                 <ListGroup.Item className="list-group-item">
                   <Col>
                     {data}
-                    <GetRecordFromContractButton tokenID={sharedIds[index]} className="recList-openButton-sharedRecord" updateCombinedData={updateCombinedData} setTokenID={setTokenID}/>
+                    <GetRecordFromContractButton tokenID={sharedTokenIds[index]} className="recList-openButton-sharedRecord" updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID}/>
                   </Col>
                 </ListGroup.Item>
               </ListGroup>

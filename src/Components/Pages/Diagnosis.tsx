@@ -68,6 +68,7 @@ const Diagnosis = ({ setDiagDetails }) => {
                 placeholder='Diagnosis'
                 value={diagDiagnosis}
                 className="form-control"
+                maxLength={30}
                 onChange={(e) => setDiagDiagnosis(e.target.value)}
               />
             </Form.Group>
@@ -77,6 +78,7 @@ const Diagnosis = ({ setDiagDetails }) => {
                 placeholder='Prognosis'
                 value={prognosis}
                 className="form-control"
+                maxLength={30}
                 onChange={(e) => setPrognosis(e.target.value)}
               />
             </Form.Group>
@@ -86,6 +88,7 @@ const Diagnosis = ({ setDiagDetails }) => {
                 placeholder='Treatment'
                 value={treatment}
                 className="form-control"
+                maxLength={30}
                 onChange={(e) => setTreatment(e.target.value)}
               />
             </Form.Group>
@@ -107,6 +110,7 @@ const Diagnosis = ({ setDiagDetails }) => {
                 placeholder='Doctor'
                 value={diagDoctor}
                 className="form-control"
+                maxLength={50}
                 onChange={(e) => setDiagDoctor(e.target.value)}
               />
             </Form.Group>
@@ -116,6 +120,7 @@ const Diagnosis = ({ setDiagDetails }) => {
                 placeholder='Facility'
                 value={facility}
                 className="form-control"
+                maxLength={50}
                 onChange={(e) => setFacility(e.target.value)}
               />
             </Form.Group>

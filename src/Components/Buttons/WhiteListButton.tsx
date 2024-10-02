@@ -5,15 +5,15 @@ import MyAbi from './MyAbi.json';
 
 //Type setting of inherited variables and functions
 interface WhiteListButtonProps {
-  address: string;
+  walletAddress: string;
   tokenID: number | null;
-  whiteListName: string;
-  tokenName: string
+  name: string;
+  nftName: string
   setAddShow: () => void;
 }
 
 //Button to whitelist an address for an NFT
-const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whiteListName, tokenName, setAddShow }) => {
+const WhiteListButton: React.FC<WhiteListButtonProps> = ({ walletAddress, tokenID, name, nftName, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whi
       return;
     }
 
-    if (!address) {
+    if (!walletAddress) {
       console.error('Invalid address.');
       return;
     }
@@ -58,7 +58,7 @@ const WhiteListButton: React.FC<WhiteListButtonProps> = ({ address, tokenID, whi
 
     try {
       // Call the whitelistAddress function of the smart contract
-      await contract.whitelistAddress(tokenID, address, whiteListName, tokenName);
+      await contract.whitelistAddress(tokenID, walletAddress, name, nftName);
       setAddShow();
     } catch (error) {
       console.error('Error whitelisting address:', error);

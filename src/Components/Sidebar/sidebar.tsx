@@ -7,7 +7,7 @@ import UploadToIPFSButton from '../Buttons/UploadToIPFSButton';
 import './sidebar.css';
 
 //The sidebar contains the mint button, the patient's profile picture and the button to change it
-const Sidebar = ({combinedData, tokenID, isMedicalProvider, setPersonalInfo, personalInfo, isOpen, setIsOpen}) => {
+const Sidebar = ({medicalRecord, tokenID, isMedicalProvider, setPersonalInfo, personalInfo, isOpen, setIsOpen}) => {
   const [newImage, setnewImage] = useState<Boolean>(false);
   const [file, setFile] = useState<any>([]);
   const [ownerWalletAddress, setOwnerWalletAddress] = useState<string>("")
@@ -43,7 +43,7 @@ const Sidebar = ({combinedData, tokenID, isMedicalProvider, setPersonalInfo, per
             {tokenID === null &&
               <Form.Control placeholder='Input Owner Wallet Address' className="wallet-input" onChange={(e) => setOwnerWalletAddress(e.target.value)}></Form.Control>
             }
-              <MintButton account={ownerWalletAddress} combinedData={combinedData} tokenID={tokenID}></MintButton>
+              <MintButton ownerWalletAddress={ownerWalletAddress} medicalRecord={medicalRecord} tokenID={tokenID}></MintButton>
             </>
           ) : (
             <h5 className="view-only-mode">VIEW ONLY MODE</h5>

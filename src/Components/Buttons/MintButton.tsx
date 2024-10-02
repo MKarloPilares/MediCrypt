@@ -7,13 +7,13 @@ import './MintButton.css';
 
 //Type setting of inherited variables and functions
 interface MintButtonProps {
-  account: string | null;
-  combinedData: any;
+  ownerWalletAddress: string | null;
+  medicalRecord: any;
   tokenID: Number | null;
 }
 
 //Button to encrypt and upload a record then mint an NFT from it, or if the NFT already exists this button functions to reencrypt a record and edit the NFT's metadata
-const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID }) => {
+const MintButton: React.FC<MintButtonProps> = ({ ownerWalletAddress, medicalRecord, tokenID }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   //Imports environment variables
@@ -37,14 +37,15 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
 
   const combineAndEncryptData = async () => {
     // Convert combined data to a JSON string
-    const jsonString = JSON.stringify(combinedData);
+    const jsonString = JSON.stringify(medicalRecord);
 
     // Generate a random encryption key
-    const encryptionKey = CryptoJS.lib.WordArray.random(16).toString(); // 16 bytes = 128 bits
+    const encryptionKey = CryptoJS.lib.WordArray.random(32).toString(); // 32 bytes = 256 bits = 64 Characters
 
     // Encrypt the JSON string using the encryption key
     const encryptedData = CryptoJS.AES.encrypt(jsonString, encryptionKey).toString();
 
+    //Creates a an object from the encrypted data then pins it into the IPFS
     try {
       const blob = new Blob([encryptedData], { type: 'text/plain' });
       const file = new File([blob], 'encrypted.txt');
@@ -59,7 +60,7 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
         body: data,
       });
       const resData = await res.json();
-      const fileUrl = `${pinataGateway}/ipfs/${resData.IpfsHash}?pinataGatewayToken=${pinataGatewayToken}`;
+      const nftURI = `${pinataGateway}/ipfs/${resData.IpfsHash}?pinataGatewayToken=${pinataGatewayToken}`;
       if (!provider) {
         console.error('User is not connected to an Ethereum wallet.');
         return;
@@ -75,7 +76,7 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
       try {
         //Mints a new NFT if it's a new record
         if (tokenID === null) {
-          await contract.mint(account, fileUrl, combinedData.personalInfo.patientName, encryptionKey,{ value: paymentAmount} );
+          await contract.mint(ownerWalletAddress, nftURI, medicalRecord.personalInfo.patientName, encryptionKey,{ value: paymentAmount} );
         } else {
           //If a record already exists the old content hash is unpinned and deleted from the IPFS
           const record =  await contract.getTokenMetadata(tokenID);
@@ -94,7 +95,7 @@ const MintButton: React.FC<MintButtonProps> = ({ account, combinedData, tokenID 
             console.log('Error deleting from IPFS: error');
           }
           //The NFT's metadata is editted with the new content hash and encryption key
-          await contract.editTokenMetadata(tokenID, fileUrl, combinedData.personalInfo.patientName, encryptionKey, { value: paymentAmount } );
+          await contract.editTokenMetadata(tokenID, nftURI, medicalRecord.personalInfo.patientName, encryptionKey, { value: paymentAmount } );
           }
         }
        catch (error) {

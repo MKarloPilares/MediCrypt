@@ -5,13 +5,13 @@ import MyAbi from './MyAbi.json';
 
 //Type setting of inherited variables and functions
 interface NewAgencyButtonProps {
-  address: string;
-  agencyName: string;
+  walletAddress: string;
+  name: string;
   setAddShow: () => void;
 }
 
 //Button to commit the addition of a new agency to the contract
-const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ address, agencyName, setAddShow }) => {
+const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ walletAddress, name, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ address, agencyName, 
       return;
     }
 
-    if (!address) {
+    if (!walletAddress) {
       console.error('Invalid address.');
       return;
     }
@@ -50,7 +50,7 @@ const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ address, agencyName, 
 
     try {
       // Call the addAgency function of the smart contract
-      await contract.addAgency(address, agencyName);
+      await contract.addAgency(walletAddress, name);
       setAddShow();
     } catch (error) {
       console.error('Error Adding Medical Provider:', error);

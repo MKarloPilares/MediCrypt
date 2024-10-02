@@ -9,7 +9,7 @@ import NewRecordButton from '../Buttons/NewRecordButton';
 import './Home.css'
 
 //Medicrypt's homepage
-const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCombinedData, isOwner, setIsMedicalProvider, setTokenID }) => {
+const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateMedicalRecord, isOwner, setIsMedicalProvider, setTokenID }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,7 +24,7 @@ const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateCo
             <ConnectMetaMaskButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"home-button-connectToMetamask"}/>
           ) : (
             <>
-              <NewRecordButton updateCombinedData={updateCombinedData} setTokenID={setTokenID} className={"home-button-newRecord"}/>
+              <NewRecordButton updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} className={"home-button-newRecord"}/>
               <Button variant='success' className="button-recordList" onClick={() => navigate("/RecList")}>Records List</Button>
               {isOwner === true && <Button variant='success' className='button-providerList' onClick={() => navigate("/Providers")}>Provider List</Button>}
               {isOwner === true && <Button variant='success' className='button-agencyList' onClick={() => navigate("/Agencies")}>Agency List</Button>}

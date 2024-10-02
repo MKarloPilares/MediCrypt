@@ -7,13 +7,13 @@ import MyAbi from './MyAbi.json';
 //Type setting of inherited variables and functions
 interface RemoveFromWhiteListButtonProps {
   tokenID: number;
-  address: string;
-  tokenName: string;
+  walletAddress: string;
+  nftName: string;
   setWhiteListModalShow: () => void;
 }
 
 //Button to remove an address from an NFT's whitelist
-const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ tokenID, address, tokenName, setWhiteListModalShow }) => {
+const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ tokenID, walletAddress, nftName, setWhiteListModalShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
 
     try {
       // Call the removeWhitelistedAddress function of the smart contract
-      await contract.removeWhitelistedAddress(tokenID, address, tokenName);
+      await contract.removeWhitelistedAddress(tokenID, walletAddress, nftName);
       setWhiteListModalShow();
     } catch (error) {
       console.error('Error whitelisting address:', error);

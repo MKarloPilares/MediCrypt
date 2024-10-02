@@ -10,12 +10,12 @@ import './GetRecordFromContractButton.css'
 interface GetRecordFromContractButtonProps {
   tokenID: number;
   className: string;
-  updateCombinedData: (a) => void;
+  updateMedicalRecord: (a) => void;
   setTokenID: (a) => void;
  }
 
 //Button to get an NFT's metadata from the contract and fetch the corresponding record from the IPFS
-const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = ({ tokenID, className, updateCombinedData, setTokenID}) => {
+const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = ({ tokenID, className, updateMedicalRecord, setTokenID}) => {
   const navigate = useNavigate();
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
@@ -60,7 +60,7 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
       const decryptedData = JSON.parse(decryptedJsonString);
     
       setTokenID(tokenID) 
-      updateCombinedData(decryptedData)
+      updateMedicalRecord(decryptedData)
 
       navigate("/Profile");
 

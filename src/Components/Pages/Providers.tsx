@@ -13,7 +13,7 @@ import RemoveProviderButton from '../Buttons/RemoveProvider';
 const Providers = () => {
   const [AddShow, setAddShow] = useState<boolean>(false); //Controls the adding modal's visibility
   const [name, setName] = useState<string>(""); //Stores the name of the provider to be added
-  const [address, setAddress] = useState<string>(""); //Stores the wallet address of the provider to be added
+  const [walletAddress, setWalletAddress] = useState<string>(""); //Stores the wallet address of the provider to be added
   const [ProviderNames, setProviderNames] = useState<string[]>([]); //Stores the list of names of providers taken from the smart contract
   const [ProviderAddresses, setProviderAddresses] = useState<string[]>([]); //Stores the list of wallet addresses of providers taken from the smart contract
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null); //Stores the instance of Metamask
@@ -88,13 +88,13 @@ const Providers = () => {
                 <Modal.Body>
                   <Form>
                       <Form.Label className="modal-body-form-label">Enter Wallet Address</Form.Label>
-                      <Form.Control className="modal-body-form-control" placeholder='Wallet Address' onChange={(e) => setAddress(e.target.value)}></Form.Control>
+                      <Form.Control className="modal-body-form-control" placeholder='Wallet Address' onChange={(e) => setWalletAddress(e.target.value)} maxLength={42}></Form.Control>
                       <Form.Label className="modal-body-form-label">Enter Name of Address Owner</Form.Label>
-                      <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setName(e.target.value)}></Form.Control>
+                      <Form.Control className="modal-body-form-control" placeholder='Address Owner' onChange={(e) => setName(e.target.value)} maxLength={50}></Form.Control>
                   </Form>
                 </Modal.Body>
               <Modal.Footer>
-            <NewProviderButton address={address} providerName={name} setAddShow={handleAddShow}/>
+            <NewProviderButton walletAddress={walletAddress} name={name} setAddShow={handleAddShow}/>
           </Modal.Footer>
         </Modal>
         <Card className="card-providers">
@@ -105,7 +105,7 @@ const Providers = () => {
                 <ListGroup.Item className="list-group-providers">
                   <Col>
                     {data}
-                    <RemoveProviderButton address={ProviderAddresses[index]}/>
+                    <RemoveProviderButton walletAddress={ProviderAddresses[index]}/>
                   </Col>
                 </ListGroup.Item>
               </ListGroup>

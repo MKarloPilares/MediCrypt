@@ -5,13 +5,13 @@ import MyAbi from './MyAbi.json';
 
 //Type setting of inherited variables and functions
 interface NewProviderButtonProps {
-  address: string;
-  providerName: string;
+  walletAddress: string;
+  name: string;
   setAddShow: () => void;
 }
 
 //Button to commit the addition of a new provider to the contract
-const NewProviderButton: React.FC<NewProviderButtonProps> = ({ address, providerName, setAddShow }) => {
+const NewProviderButton: React.FC<NewProviderButtonProps> = ({ walletAddress, name, setAddShow }) => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const NewProviderButton: React.FC<NewProviderButtonProps> = ({ address, provider
       return;
     }
 
-    if (!address) {
+    if (!walletAddress) {
       console.error('Invalid address.');
       return;
     }
@@ -50,7 +50,7 @@ const NewProviderButton: React.FC<NewProviderButtonProps> = ({ address, provider
 
     try {
       // Call the whitelistAddress function of the smart contract
-      await contract.addMedicalProvider(address, providerName);
+      await contract.addMedicalProvider(walletAddress, name);
       setAddShow();
     } catch (error) {
       console.error('Error Adding Medical Provider:', error);

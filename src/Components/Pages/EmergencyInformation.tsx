@@ -21,15 +21,15 @@ const EmerInfo = ({ emergencyInfo, setEmergencyInfo }) => {
           <Col>
             <Form.Group className='mb-3'>
               <Form.Label>Emergency Contact</Form.Label>
-              <Form.Control defaultValue={emergencyInfo.emName} className="input-field" onChange={(e) => handleEmergencyInfoChange('emName', e.target.value)} />
+              <Form.Control defaultValue={emergencyInfo.emName} className="input-field" onChange={(e) => handleEmergencyInfoChange('emName', e.target.value)} maxLength={50} />
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Label>Emergency Contact Number</Form.Label>
-              <Form.Control defaultValue={emergencyInfo.emNum} className="input-field" onChange={(e) => handleEmergencyInfoChange('emNum', e.target.value)} />
+              <Form.Control defaultValue={emergencyInfo.emNum} className="input-field" onChange={(e) => handleEmergencyInfoChange('emNum', e.target.value)} maxLength={13}/>
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Label>Relationship With Patient</Form.Label>
-              <Form.Control defaultValue={emergencyInfo.relationship} className="input-field" onChange={(e) => handleEmergencyInfoChange('relationship', e.target.value)} />
+              <Form.Control defaultValue={emergencyInfo.relationship} className="input-field" onChange={(e) => handleEmergencyInfoChange('relationship', e.target.value)} maxLength={10}/>
             </Form.Group>
           </Col>
         </Row>

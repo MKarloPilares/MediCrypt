@@ -66,21 +66,21 @@ const Medication = ({ setMedicationDetails }) => {
           <Col>
             <Form.Group className='mb-3'>
               <Form.Label>Generic Name</Form.Label>
-              <Form.Control placeholder='Generic Name' value={generic} className="input-field" onChange={(e) => setGeneric(e.target.value)} />
+              <Form.Control placeholder='Generic Name' value={generic} className="input-field" onChange={(e) => setGeneric(e.target.value)} maxLength={30}/>
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Label>Brand Name</Form.Label>
-              <Form.Control placeholder='Brand Name' value={brand} className="input-field" onChange={(e) => setBrand(e.target.value)} />
+              <Form.Control placeholder='Brand Name' value={brand} className="input-field" onChange={(e) => setBrand(e.target.value)} maxLength={30} />
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Label>Dosage</Form.Label>
-              <Form.Control placeholder='Dosage' value={dose} className="input-field" onChange={(e) => setDose(e.target.value)} />
+              <Form.Control placeholder='Dosage' value={dose} className="input-field" onChange={(e) => setDose(e.target.value)} maxLength={6}/>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className='mb-3'>
               <Form.Label>Diagnosis</Form.Label>
-              <Form.Control placeholder='Diagnosis' value={medDiag} className="input-field" onChange={(e) => setMedDiag(e.target.value)} />
+              <Form.Control placeholder='Diagnosis' value={medDiag} className="input-field" onChange={(e) => setMedDiag(e.target.value)} maxLength={30} />
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Label>Date of Prescription</Form.Label>
@@ -88,7 +88,7 @@ const Medication = ({ setMedicationDetails }) => {
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Label>Prescribing Doctor</Form.Label>
-              <Form.Control placeholder='Name of Doctor' value={medDoctor} className="input-field" onChange={(e) => setMedDoctor(e.target.value)} />
+              <Form.Control placeholder='Name of Doctor' value={medDoctor} className="input-field" onChange={(e) => setMedDoctor(e.target.value)} maxLength={50} />
             </Form.Group>
           </Col>
         </Row>
