@@ -14,14 +14,11 @@
   display: flex;
   background: mintcream;
   position: fixed;
-  padding: 0;
-  margin: 0;
   width: 100%;
   height: 20px;
   bottom: 0px;
   color: green;
   font-family: 'Arial', sans-serif; 
-  min-height: 100vh;
 }
 
 .main-container {
@@ -51,7 +48,7 @@
 .profile-container {
   border: 1px solid green;
   position: absolute;
-  top: 20vh;
+  top: 21vh;
   left: 25vw;
   height: 32vh;
   width: 50vw;
@@ -70,7 +67,7 @@
 .emergency-container {
   border: 1px solid green;
   position: absolute;
-  top: 20vh;
+  top: 21vh;
   left: 77vw;
   height: 32vh;
   width: 20vw;
@@ -89,7 +86,7 @@
 .medical-container {
   border: 1px solid green;
   position: absolute;
-  top: 60vh;
+  top: 61vh;
   left: 25vw;
   height: 32vh;
   width: 50vw;
@@ -108,7 +105,7 @@
 .vitals-container {
   border: 1px solid green;
   position: absolute;
-  top: 60vh;
+  top: 61vh;
   left: 77vw;
   height: 32vh;
   width: 20vw;
@@ -127,7 +124,7 @@
 .diagnosis-container {
   border: 1px solid green;
   position: absolute;
-  top: 20vh;
+  top: 21vh;
   left: 25vw;
   height: 35vh;
   width: 50vw;
@@ -146,7 +143,7 @@
 .diagnosis-history-container {
   border: 1px solid green;
   position: absolute;
-  top: 20vh;
+  top: 21vh;
   left: 77vw;
   height: 35vh;
   width: 20vw;
@@ -165,7 +162,7 @@
 .medications-container {
   border: 1px solid green;
   position: absolute;
-  top: 62vh;
+  top: 63vh;
   left: 25vw;
   height: 35vh;
   width: 50vw;
@@ -184,7 +181,7 @@
 .medication-history-container {
   border: 1px solid green;
   position: absolute;
-  top: 62vh;
+  top: 63vh;
   left: 77vw;
   height: 35vh;
   width: 20vw;

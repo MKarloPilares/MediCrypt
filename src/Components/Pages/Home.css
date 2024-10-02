@@ -35,17 +35,6 @@
   left: 38vw;
 }
 
-@media (max-width: 1919px) {
-  .container-home{
-    position: absolute;
-    width: 100vw;
-    left: 18vw;
-    top: 55vh;
-    display: flex;
-    align-items: center;
-  }
-  
-}
 
 @media (max-width: 768px){
   .container-home{
