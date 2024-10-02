@@ -53,9 +53,14 @@
   height: 32vh;
   width: 50vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.profile-container::-webkit-scrollbar {
+  display: none;
 }
 
 .emergency-heading {
@@ -72,9 +77,14 @@
   height: 32vh;
   width: 20vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.emergency-container::-webkit-scrollbar {
+  display: none;
 }
 
 .medical-heading {
@@ -91,9 +101,14 @@
   height: 32vh;
   width: 50vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.medical-container::-webkit-scrollbar {
+  display: none;
 }
 
 .vitals-heading {
@@ -110,9 +125,14 @@
   height: 32vh;
   width: 20vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.vitals-container::-webkit-scrollbar {
+  display: none;
 }
 
 .diagnosis-heading {
@@ -129,9 +149,14 @@
   height: 35vh;
   width: 50vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.diagnosis-container::-webkit-scrollbar {
+  display: none;
 }
 
 .diagnosis-history-heading {
@@ -148,9 +173,14 @@
   height: 35vh;
   width: 20vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.diagnosis-history-container::-webkit-scrollbar {
+  display: none;
 }
 
 .medications-heading {
@@ -167,9 +197,14 @@
   height: 35vh;
   width: 50vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.medications-container::-webkit-scrollbar {
+  display: none;
 }
 
 .medication-history-heading {
@@ -186,9 +221,14 @@
   height: 35vh;
   width: 20vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
+  scrollbar-width: none;
+}
+
+.medication-history-container::-webkit-scrollbar {
+  display: none;
 }
 
 .add-image-container {
@@ -199,7 +239,7 @@
   height: 13vh;
   width: 70vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
 }
@@ -212,7 +252,7 @@
   height: 55vh;
   width: 70vw;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow-y: auto;
   padding-left: 1vw;
 }
