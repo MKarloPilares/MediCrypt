@@ -20,27 +20,27 @@ const Vitals = ({ vitals, setVitals }) => {
         <Row>
           <Col md="5">
             <Form.Group className="mb-3">
-              <Form.Label>Weight</Form.Label>
-              <Form.Control defaultValue={vitals.weight} className="form-group-width-50" onChange={(e) => handleVitalsChange("weight", e.target.value)} maxLength={5}/>
+              <Form.Label>Weight (kg)</Form.Label>
+                <Form.Control defaultValue={vitals.weight} className="form-group-width-50" onChange={(e) => handleVitalsChange("weight", e.target.value)} maxLength={3}/>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Height</Form.Label>
-              <Form.Control defaultValue={vitals.height} className="form-group-width-50" onChange={(e) => handleVitalsChange("height", e.target.value)} maxLength={5}/>
+              <Form.Label>Height (cm)</Form.Label>
+                <Form.Control defaultValue={vitals.height} className="form-group-width-50" onChange={(e) => handleVitalsChange("height", e.target.value)} maxLength={3}/>
             </Form.Group>
           </Col>
         </Row>
         <Row>
           <Col md="5">
             <Form.Group className="mb-3">
-              <Form.Label>Blood Pressure</Form.Label>
-              <Form.Control defaultValue={vitals.bp} className="form-group-width-80" onChange={(e) => handleVitalsChange("bp", e.target.value)} maxLength={11}/>
+              <Form.Label>Blood Pressure (mmHg)</Form.Label>
+              <Form.Control defaultValue={vitals.bp} className="form-group-width-80" onChange={(e) => handleVitalsChange("bp", e.target.value)} maxLength={7}/>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="temp-form">
-              <Form.Label>Temperature</Form.Label>
+              <Form.Label>Temperature(°C)</Form.Label>
               <Form.Control defaultValue={vitals.temp} className="form-group-width-50" onChange={(e) => handleVitalsChange("temp", e.target.value)} maxLength={2}/>
             </Form.Group>
           </Col>
@@ -48,14 +48,14 @@ const Vitals = ({ vitals, setVitals }) => {
         <Row>
           <Col md="5">
             <Form.Group className="pr-form">
-              <Form.Label>Pulse Rate</Form.Label>
+              <Form.Label>Pulse Rate(ppm)</Form.Label>
               <Form.Control defaultValue={vitals.pr} className="form-group-width-60" onChange={(e) => handleVitalsChange("pr", e.target.value)} maxLength={3} />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="rr-form">
-              <Form.Label>Respiration Rate</Form.Label>
-              <Form.Control defaultValue={vitals.rr} className="form-group-width-60" onChange={(e) => handleVitalsChange("rr", e.target.value)} maxLength={3} />
+              <Form.Label>Respiration Rate(rpm)</Form.Label>
+              <Form.Control defaultValue={vitals.rr} className="form-group-width-60" onChange={(e) => handleVitalsChange("rr", e.target.value)} maxLength={2} />
             </Form.Group>
           </Col>
         </Row>

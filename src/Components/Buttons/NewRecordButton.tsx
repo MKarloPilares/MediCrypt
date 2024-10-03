@@ -38,12 +38,12 @@ type medicalInfo = {
 };
 
 type vitals = {
-  weight: string;
-  height: string;
+  weight: number;
+  height: number;
   bp: string;
-  temp: string;
-  pr: string;
-  rr: string;
+  temp: number;
+  pr: number;
+  rr: number;
 };
 
 type diagDetails = {
@@ -113,12 +113,12 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateMedicalRecord, 
   });
 
   const [vitals] = useState<vitals>({
-    weight: 'kg',
-    height: 'ft',
+    weight: 0,
+    height: 0,
     bp: 'mmHG',
-    temp: 'C',
-    pr: 'ppM',
-    rr: 'rpM',
+    temp: 0,
+    pr: 0,
+    rr: 0,
   });
 
   const [diagDetails] = useState<diagDetails>({
