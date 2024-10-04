@@ -12,8 +12,15 @@ import NewRecordButton from '../Buttons/NewRecordButton';
 import './RecordsList.css';
 import GetRecordFromContractButton from '../Buttons/GetRecordFromContractButton';
 
+interface RecListProps {
+  userWalletAddress: string;
+  updateMedicalRecord: (a: any) => void;
+  setTokenID: React.Dispatch<React.SetStateAction<number | null>>
+}
+
+
 //Page to list owned and shared records, and to control access to owned one
-const RecList = ({ userWalletAddress,updateMedicalRecord, setTokenID}) => {
+const RecList: React.FC<RecListProps> = ({ userWalletAddress,updateMedicalRecord, setTokenID}) => {
   const [AddShow, setAddShow] = useState<boolean>(false); //Controls the visibility of the adding modal
   const [whiteListModalShow, setWhiteListModalShow] = useState<boolean>(false); //Controls the visibility of the whitelist modal
   const [ownedNFTNames, setOwnedNames] = useState<string[]>([]); //Stores the names of the NFTs owned by the user
@@ -144,7 +151,7 @@ const RecList = ({ userWalletAddress,updateMedicalRecord, setTokenID}) => {
               <Button variant="success" onClick={() => setWhiteListModalShow(!whiteListModalShow)}>OK</Button>
             </Modal.Footer>
           </Modal>
-        <h4 className="ownedRecords-heading">Owned Records</h4>
+        <h4 className="ownedRecords-heading">{ownedTokenIds.length} Owned Records</h4>
         <Card className="card-ownedRecords">
           <Card.Body>
             {ownedNFTNames.map((data: any, index: number) =>
@@ -163,7 +170,7 @@ const RecList = ({ userWalletAddress,updateMedicalRecord, setTokenID}) => {
             )}
           </Card.Body>
         </Card>
-        <h4 className="sharedRecords-heading">Shared Records</h4>
+        <h4 className="sharedRecords-heading">{sharedTokenIds.length} Shared Records</h4>
         <Card className="card-sharedRecords">
           <Card.Body>
           {sharedNFTNames.map((data: any, index: number) =>

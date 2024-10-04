@@ -6,9 +6,9 @@ import './ConnectMetaMaskButton.css'; // Import the CSS file
 
 //Type setting of inherited variables and functions
 interface ConnectMetaMaskButtonProps {
-  setUserWalletAddress: (a: string) => void;
-  setIsOwner: (a: boolean) => void;
-  setIsMedicalProvider: (a: boolean) => void;
+  setUserWalletAddress: React.Dispatch<React.SetStateAction<string>>;
+  setIsOwner: React.Dispatch<React.SetStateAction<boolean>>
+  setIsMedicalProvider: React.Dispatch<React.SetStateAction<boolean>>;
   className: string;
 }
 

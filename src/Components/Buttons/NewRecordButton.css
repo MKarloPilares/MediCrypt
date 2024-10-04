@@ -6,8 +6,8 @@
 }
 
 .recList-button-newRecord {
-  position: fixed;
-  left: 74.3vw;
+  position: absolute;
+  left: 61vw;
   width: 8vw
 }
 

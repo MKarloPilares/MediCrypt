@@ -23,18 +23,18 @@ type emergencyInfo = {
 };
 
 type medicalInfo = {
-  heart: string;
-  lung: string;
-  kidney: string;
-  extremities: string;
-  cancer: string;
-  digestive: string;
-  std: string;
-  head: string;
-  mental: string;
-  drug: string;
-  preg: string;
-  smoke: string;
+  heart: boolean | null;
+  lung: boolean | null;
+  kidney: boolean | null;
+  extremities: boolean | null;
+  cancer: boolean | null;
+  digestive: boolean | null;
+  std: boolean | null;
+  head: boolean | null;
+  mental: boolean | null;
+  drug: boolean | null;
+  preg: boolean | null;
+  smoke: boolean | null;
 };
 
 type vitals = {
@@ -58,7 +58,7 @@ type diagDetails = {
 type medicationDetails = {
   generic: string[];
   brand: string[];
-  dose: string[];
+  dose: number[];
   medDiag: string[];
   medDate: string[];
   medDoctor: string[];
@@ -72,9 +72,9 @@ type patientImages = {
 
 //Type setting of inherited variables and functions
 interface NewRecordButtonProps {
-  updateMedicalRecord: (a) => void;
+  updateMedicalRecord: (a: any) => void;
   className: string;
-  setTokenID: (a) => void;
+  setTokenID: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 //Button to reset the contents of the global variables from the main page
@@ -98,18 +98,18 @@ const NewRecordButton: React.FC<NewRecordButtonProps> = ({ updateMedicalRecord, 
   });
 
   const [medicalInfo] = useState<medicalInfo>({
-    heart: 'heart',
-    lung: 'lung',
-    kidney: 'kid',
-    extremities: 'extr',
-    cancer: 'canc',
-    digestive: 'dige',
-    std: 'std',
-    head: 'head',
-    mental: 'ment',
-    drug: 'drg',
-    preg: 'prg',
-    smoke: 'smk',
+    heart: null,
+    lung: null,
+    kidney: null,
+    extremities: null,
+    cancer: null,
+    digestive: null,
+    std: null,
+    head: null,
+    mental: null,
+    drug: null,
+    preg: null,
+    smoke: null,
   });
 
   const [vitals] = useState<vitals>({

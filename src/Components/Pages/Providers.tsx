@@ -76,7 +76,7 @@ const Providers = () => {
     >
       <Container className="container-providers">
         <Col>
-          <h2 className="providers-heading">Providers</h2>
+          <h2 className="providers-heading">{ProviderAddresses.length} Providers</h2>
         </Col>
         <Col>
           <Button variant='success' className="button-addProvider" onClick={handleAddShow}>Add Provider</Button>

@@ -43,18 +43,18 @@ type emergencyInfo = {
 };
 
 type medicalInfo = {
-  heart: string;
-  lung: string;
-  kidney: string;
-  extremities: string;
-  cancer: string;
-  digestive: string;
-  std: string;
-  head: string;
-  mental: string;
-  drug: string;
-  preg: string;
-  smoke: string;
+  heart: boolean | null;
+  lung: boolean | null;
+  kidney: boolean | null;
+  extremities: boolean | null;
+  cancer: boolean | null;
+  digestive: boolean | null;
+  std: boolean | null;
+  head: boolean | null;
+  mental: boolean | null;
+  drug: boolean | null;
+  preg: boolean | null;
+  smoke: boolean | null;
 };
 
 type vitals = {
@@ -78,7 +78,7 @@ type diagDetails = {
 type medicationDetails = {
   generic: string[];
   brand: string[];
-  dose: string[];
+  dose: number[];
   medDiag: string[];
   medDate: string[];
   medDoctor: string[];
@@ -96,9 +96,9 @@ const MainPage = () => {
   let location = useLocation();
   const [userWalletAddress, setUserWalletAddress] = useState<string>(""); //Wallet address of the user, acting as their user identifier
   const [tokenID, setTokenID] = useState<number | null>(null); //NFT ID variable to be passed around the pages
-  const [isOwner, setIsOwner] = useState<Boolean>(false); //Variable to check if the user is the owner of the smart contract
-  const [isMedicalProvider, setIsMedicalProvider] = useState<Boolean>(false); //Variable to check if the user is a medical provider
-  const [isOpen, setIsOpen] = useState<Boolean>(false); //Variable to control if the sidebar is open
+  const [isOwner, setIsOwner] = useState<boolean>(false); //Variable to check if the user is the owner of the smart contract
+  const [isMedicalProvider, setIsMedicalProvider] = useState<boolean>(false); //Variable to check if the user is a medical provider
+  const [isOpen, setIsOpen] = useState<boolean>(false); //Variable to control if the sidebar is open
 
   //Import of environment variables
   const pinataGatewayToken = import.meta.env.VITE_REACT_APP_GATEWAY_TOKEN;
@@ -125,18 +125,18 @@ const MainPage = () => {
 
   //Declarration of patients medical information variables
   const [medicalInfo, setMedicalInfo] = useState<medicalInfo>({
-    heart: "heart",
-    lung: "lung",
-    kidney: "kid",
-    extremities: "extr",
-    cancer: "canc",
-    digestive: "dige",
-    std: "std",
-    head: "head",
-    mental: "ment",
-    drug: "drg",
-    preg: "prg",
-    smoke: "smk"
+    heart: null,
+    lung: null,
+    kidney: null,
+    extremities: null,
+    cancer: null,
+    digestive: null,
+    std: null,
+    head: null,
+    mental: null,
+    drug: null,
+    preg: null,
+    smoke: null
   });
 
   //Declaration of patient's vitals variables

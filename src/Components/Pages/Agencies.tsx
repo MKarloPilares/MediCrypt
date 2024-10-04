@@ -75,7 +75,7 @@ const Agencies = () => {
     >
       <Container className="container-agencies">
         <Col>
-          <h3 className="agencies-heading">Agencies</h3>
+          <h3 className="agencies-heading">{AgencyAddresses.length} Agencies</h3>
         </Col>
         <Col>
           <Button variant='success' className="button-addAgencies" onClick={handleAddShow}>Add Agency</Button>

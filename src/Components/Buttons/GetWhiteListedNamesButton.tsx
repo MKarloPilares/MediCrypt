@@ -7,8 +7,8 @@ import './GetWhiteListedNamesButton.css';
 //Type setting of inherited variables and functions
 interface WhiteListButtonProps {
   tokenID: number | null;
-  setWhiteListNames: any;
-  setWhiteListAddresses: any;
+  setWhiteListNames: React.Dispatch<React.SetStateAction<string[]>>;
+  setWhiteListAddresses: React.Dispatch<React.SetStateAction<string[]>>
   openWhiteListModal: () => void;
 }
 

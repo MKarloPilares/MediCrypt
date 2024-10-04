@@ -5,8 +5,12 @@ import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import UploadToIPFSButton from '../Buttons/UploadToIPFSButton';
 import './AddImagePage.css';
 
+interface AddImagePageProps {
+  setPatientImages: React.Dispatch<React.SetStateAction<any>>
+}
+
 //Page that accepts file input for images related to the medical record
-const AddImagePage = ({setPatientImages}) => {
+const AddImagePage: React.FC<AddImagePageProps> = ({setPatientImages}) => {
   const [file, setFile] = useState<any>(null); //Variable that stores the file uploaded
   const [description, setDescription] = useState<string>(''); //A description for the file
   const [imageDate, setImageDate] = useState<string>(''); //Date of the file
@@ -33,7 +37,7 @@ const AddImagePage = ({setPatientImages}) => {
   };
 
   //Function to append the content hash from the IPFS to the record data.
-  const appendImageUri = (link) => {
+  const appendImageUri = (link: string) => {
     setPatientImages(prevDetails => ({
       ...prevDetails,
       imageUri: [...prevDetails.imageUri, link],

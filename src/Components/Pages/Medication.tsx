@@ -7,8 +7,12 @@ import { Col } from 'react-bootstrap';
 import { ThemeProvider } from 'react-bootstrap';
 import './Medication.css';
 
+interface MedicationProps {
+  setMedicationDetails: React.Dispatch<React.SetStateAction<any>>
+}
+
 //Page to add medications to the medicationDetails
-const Medication = ({ setMedicationDetails }) => {
+const Medication: React.FC<MedicationProps> = ({ setMedicationDetails }) => {
   const [generic, setGeneric] = useState<string>(''); //Generic name of the drug
   const [brand, setBrand] = useState<string>(''); //Brand name of the drug
   const [dose, setDose] = useState<string>(''); //Dosage indicated
@@ -74,7 +78,8 @@ const Medication = ({ setMedicationDetails }) => {
             </Form.Group>
             <Form.Group className='mb-3'>
               <Form.Label>Dosage</Form.Label>
-              <Form.Control placeholder='Dosage' value={dose} className="input-field" onChange={(e) => setDose(e.target.value)} maxLength={6}/>
+              <Form.Control placeholder='Dosage' value={dose} className="input-field" onChange={(e) => setDose(e.target.value)} 
+                maxLength={4} pattern="\d*" onInput={(e) => {const input = e.target as HTMLInputElement; input.value  = input.value .replace(/\D/, '');}}/>
             </Form.Group>
           </Col>
           <Col>

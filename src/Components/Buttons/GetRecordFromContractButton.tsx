@@ -10,8 +10,8 @@ import './GetRecordFromContractButton.css'
 interface GetRecordFromContractButtonProps {
   tokenID: number;
   className: string;
-  updateMedicalRecord: (a) => void;
-  setTokenID: (a) => void;
+  updateMedicalRecord: (a: any) => void;
+  setTokenID: React.Dispatch<React.SetStateAction<number | null>>;
  }
 
 //Button to get an NFT's metadata from the contract and fetch the corresponding record from the IPFS

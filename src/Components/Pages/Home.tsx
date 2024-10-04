@@ -8,8 +8,18 @@ import ConnectMetaMaskButton from '../Buttons/ConnectMetaMaskButton';
 import NewRecordButton from '../Buttons/NewRecordButton';
 import './Home.css'
 
+interface HomePageProps {
+  userWalletAddress: string;
+  setUserWalletAddress: React.Dispatch<React.SetStateAction<string>>;
+  setIsOwner: React.Dispatch<React.SetStateAction<boolean>>;
+  updateMedicalRecord: (a: any) => void;
+  isOwner: boolean;
+  setIsMedicalProvider: React.Dispatch<React.SetStateAction<boolean>>
+  setTokenID: React.Dispatch<React.SetStateAction<number | null>>
+}
+
 //Medicrypt's homepage
-const HomePage = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateMedicalRecord, isOwner, setIsMedicalProvider, setTokenID }) => {
+const HomePage: React.FC<HomePageProps>  = ({userWalletAddress, setUserWalletAddress, setIsOwner, updateMedicalRecord, isOwner, setIsMedicalProvider, setTokenID }) => {
   const navigate = useNavigate();
 
   return (

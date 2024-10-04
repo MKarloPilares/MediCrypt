@@ -3,8 +3,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './MedicationHist.css';
 
+interface medicationDetails {
+  generic: string[];
+  brand: string[];
+  dose: number[];
+  medDiag: string[];
+  medDate: string[];
+  medDoctor: string[];
+}
+
+interface MedicationHistProps {
+  medicationDetails: medicationDetails;
+}
+
 //Page to list the medications in medicationDetails
-const MedicationHist = ({ medicationDetails }) => {
+const MedicationHist: React.FC<MedicationHistProps> = ({ medicationDetails }) => {
   const entries = medicationDetails.generic.map((_, index) => ({ //Maps medicationDetails to be iterable.
     generic: medicationDetails.generic[index],
     brand: medicationDetails.brand[index],
@@ -36,7 +49,7 @@ const MedicationHist = ({ medicationDetails }) => {
               <Form.Group className='mb-3'>
                 <Form.Label>Dosage</Form.Label>
                 <br />
-                <Form.Text>{item.dose}</Form.Text>
+                <Form.Text>{item.dose}mg</Form.Text>
               </Form.Group>
             </Col>
             <Col>

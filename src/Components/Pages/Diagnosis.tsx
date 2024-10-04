@@ -5,8 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './Diagnosis.css';
 
+interface diagnosisProps {
+  setDiagDetails: React.Dispatch<React.SetStateAction<any>>
+}
+
 //Page to input and append a new diagnosis to the diagDetails variable.
-const Diagnosis = ({ setDiagDetails }) => {
+const Diagnosis: React.FC<diagnosisProps> = ({ setDiagDetails }) => {
   const [diagDiagnosis, setDiagDiagnosis] = useState<string>(''); //Stores the diagnosis
   const [prognosis, setPrognosis] = useState<string>(''); //Stores the expected result
   const [treatment, setTreatment] = useState<string>(''); //Stores the treatment done

@@ -3,8 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, ThemeProvider } from 'react-bootstrap';
 import './EmergencyInformation.css'
 
+interface emergencyInfo {
+  emName: string;
+  emNum: string;
+  relationship: string;
+}
+
+interface EmerInfoProps {
+  emergencyInfo: emergencyInfo;
+  setEmergencyInfo: React.Dispatch<React.SetStateAction<any>>
+}
+
 //Page to accept and show the patient's emergency information
-const EmerInfo = ({ emergencyInfo, setEmergencyInfo }) => {
+const EmerInfo: React.FC<EmerInfoProps> = ({ emergencyInfo, setEmergencyInfo }) => {
 
   //Edits the patient's emergency information in the record
   const handleEmergencyInfoChange = (field, value) => {

@@ -3,7 +3,14 @@ import ConnectMetaMaskButton from "../Buttons/ConnectMetaMaskButton";
 import { useNavigate } from "react-router-dom";
 import logoSolo from '../Images/MEDICRYPT LOGO_SOLO.png';
 
-const NavbarComponent = ({userWalletAddress, setUserWalletAddress, setIsOwner, setIsMedicalProvider}) => {
+interface NavBarProps {
+  userWalletAddress: string;
+  setUserWalletAddress: React.Dispatch<React.SetStateAction<string>>;
+  setIsOwner: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsMedicalProvider: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const NavbarComponent: React.FC<NavBarProps> = ({userWalletAddress, setUserWalletAddress, setIsOwner, setIsMedicalProvider}) => {
   const navigate = useNavigate();
 
   return (

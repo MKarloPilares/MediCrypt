@@ -3,7 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './DisplayImagePage.css';
 import { Row, Col, ThemeProvider, Image, Form, Modal } from 'react-bootstrap';
 
-const ImagePage = ({ patientImages }) => {
+interface patientImages {
+  imageUri: string[];
+  description: string[];
+  imageDate: string[];
+}
+
+interface imagePageProps {
+  patientImages: patientImages;
+}
+
+const ImagePage: React.FC<imagePageProps>  = ({ patientImages }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState({ imageUri: '', description: '', imageDate: '' });
 

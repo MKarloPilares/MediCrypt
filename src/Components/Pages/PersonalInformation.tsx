@@ -2,9 +2,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider, Row, Col, Form } from 'react-bootstrap';
 import moment from 'moment';
 import './PersonalInformation.css';
+import React from 'react';
+
+interface personalInfo {
+  patientName: string;
+  gender: string;
+  age: number;
+  birthday: string;
+  address: string;
+  email: string;
+  phonenum: string;
+  profilePictureUri: string;
+}
+
+interface PersInfoProps {
+  personalInfo: personalInfo;
+  setPersonalInfo: React.Dispatch<React.SetStateAction<any>>
+}
 
 //Page that shows and accepts input of the patient's personal information.
-const PersInfo = ({ personalInfo, setPersonalInfo }) => {
+const PersInfo: React.FC<PersInfoProps> = ({ personalInfo, setPersonalInfo }) => {
 
   //Calculates the users age through their birthday
   const calcAge = (e) => {

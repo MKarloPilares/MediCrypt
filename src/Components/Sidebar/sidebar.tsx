@@ -6,8 +6,32 @@ import MintButton from '../Buttons/MintButton';
 import UploadToIPFSButton from '../Buttons/UploadToIPFSButton';
 import './sidebar.css';
 
+interface medicalRecord {
+  personalInfo: object,
+  emergencyInfo: object,
+  medicalInfo: object,
+  vitals: object,
+  diagDetails: object,
+  medicationDetails: object,
+  patientImages: object
+}
+
+interface personalInfo {
+  profilePictureUri: string;
+}
+
+interface SidebarProps {
+  medicalRecord: medicalRecord;
+  tokenID: number | null;
+  isMedicalProvider: boolean;
+  setPersonalInfo: React.Dispatch<React.SetStateAction<any>>;
+  personalInfo: personalInfo;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 //The sidebar contains the mint button, the patient's profile picture and the button to change it
-const Sidebar = ({medicalRecord, tokenID, isMedicalProvider, setPersonalInfo, personalInfo, isOpen, setIsOpen}) => {
+const Sidebar: React.FC<SidebarProps> = ({medicalRecord, tokenID, isMedicalProvider, setPersonalInfo, personalInfo, isOpen, setIsOpen}) => {
   const [newImage, setnewImage] = useState<Boolean>(false);
   const [file, setFile] = useState<any>([]);
   const [ownerWalletAddress, setOwnerWalletAddress] = useState<string>("")
@@ -41,7 +65,7 @@ const Sidebar = ({medicalRecord, tokenID, isMedicalProvider, setPersonalInfo, pe
           {isMedicalProvider ? (
             <>
             {tokenID === null &&
-              <Form.Control placeholder='Input Owner Wallet Address' className="wallet-input" onChange={(e) => setOwnerWalletAddress(e.target.value)}></Form.Control>
+              <Form.Control placeholder='Input Owner Wallet Address' className="wallet-input" maxLength={42} onChange={(e) => setOwnerWalletAddress(e.target.value)}></Form.Control>
             }
               <MintButton ownerWalletAddress={ownerWalletAddress} medicalRecord={medicalRecord} tokenID={tokenID}></MintButton>
             </>
