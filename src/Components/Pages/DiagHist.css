@@ -4,5 +4,6 @@
 }
 
 .diag-row {
+  margin-right: 1px;
   border-bottom: 1px solid green;
 }

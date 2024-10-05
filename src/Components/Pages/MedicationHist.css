@@ -5,4 +5,5 @@
 
 .row-border {
   border-bottom: 1px solid green;
+  margin-right: 1px;
 }
