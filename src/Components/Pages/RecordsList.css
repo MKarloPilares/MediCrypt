@@ -18,7 +18,7 @@
 
 .card-ownedRecords {
   position: absolute;
-  width: 45%;
+  width: 35vw;
   top: 15vh;
   left: 1%;
 }
@@ -31,7 +31,7 @@
 
 .card-sharedRecords {
   position: absolute;
-  width: 45%;
+  width: 35vw;
   left: 55%;
   top: 15vh;
 }

@@ -11,11 +11,10 @@
 
 .main-body {
   overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
   background: mintcream;
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 100vw;
   height: 20px;
   bottom: 0px;
   color: green;
