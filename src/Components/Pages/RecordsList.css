@@ -1,36 +1,39 @@
 .row-records {
-  position: relative;
-  bottom: 180px;
+  position: absolute;
+  bottom: 55vh;
+  width: 69vw;
   height: 30vh;
 }
 
 .records-heading {
+  position: absolute;
+  top: 2vh;
   margin-bottom: 30px;
 }
 
 .ownedRecords-heading{
   position: absolute;
-  top: 25%;
+  top: 10vh;
 }
 
 .card-ownedRecords {
   position: absolute;
   width: 45%;
-  top: 42%;
+  top: 15vh;
   left: 1%;
 }
 
 .sharedRecords-heading {
   position: absolute;
   left: 54%;
-  top: 25%;
+  top: 10vh;
 }
 
 .card-sharedRecords {
   position: absolute;
   width: 45%;
   left: 55%;
-  top: 42%
+  top: 15vh;
 }
 
 .button-share-access {
