@@ -11,6 +11,7 @@
 
 .main-body {
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   background: mintcream;
   position: fixed;
