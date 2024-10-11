@@ -6,6 +6,7 @@
   height: 100vh;
   background-color: green;
   z-index: 99;
+  
 }
 
 .sidebar-image {
@@ -99,6 +100,15 @@
     visibility: visible; 
   }
 
+  .sidebar-image {
+    position: absolute;
+    width: 50%;
+    height: 19%;
+    top: 16vh;
+    left: 25%;
+    border: 5px solid white;
+  }
+  
   .x-icon {
     color: white;
     width: 100%;
@@ -107,7 +117,8 @@
   .view-only-mode {
     position: absolute;
     top: 90vh;
-    left: 25%;
+    left: 6.5vw;
+    width: 100%;
     color: white;
   }
 }
