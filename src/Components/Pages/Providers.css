@@ -1,6 +1,6 @@
 .container-providers {
   position: relative;
-  bottom: 180px;
+  bottom: 25vh;
   height: 30vh;
 }
 
@@ -53,6 +53,12 @@
 }
 
 @media (max-width: 768px) {
+  .container-providers {
+    position: relative;
+    bottom: 25vh;
+    height: 30vh;
+  }
+
   .providers-heading {
     position: absolute;
     top: 35%;

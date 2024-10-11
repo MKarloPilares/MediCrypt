@@ -1,6 +1,6 @@
 .container-agencies {
   position: relative;
-  bottom: 180px;
+  bottom: 25vh;
   height: 30vh;
 }
 
@@ -53,6 +53,13 @@
 }
 
 @media (max-width: 768px) {
+  .container-agencies {
+    position: relative;
+    bottom: 25vh;
+    height: 30vh;
+  }
+  
+
   .agencies-heading {
     position: absolute;
     top: 35%;

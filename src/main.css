@@ -272,11 +272,14 @@
 
   .open-sidebar-button{
     position: relative;
-    top: 0vh;
+    top: 39vw;
     width: 20vw;
     background-color: transparent;
-    z-index: 1;
     visibility: visible; 
+  }
+
+  .not-profile {
+    visibility: hidden;
   }
 
   .user-icon {
@@ -304,7 +307,7 @@
   .profile-heading {
     position: relative;
     top: 52vh;
-    left: 5vw;
+    left: 15vw;
   }
 
   .profile-container {

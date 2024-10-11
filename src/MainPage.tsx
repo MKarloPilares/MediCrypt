@@ -235,7 +235,7 @@ const MainPage = () => {
           <Container className={`button-group-container ${location.pathname === "/Images" ? 'images' : ''}`}>
             {shouldRenderSidebar && (
               <>
-                <button className='open-sidebar-button' onClick={() => {setIsOpen(!isOpen)}}>
+                <button className={`open-sidebar-button  ${location.pathname === "/Profile" ? '' : 'not-profile'}`} onClick={() => {setIsOpen(!isOpen)}}>
                   <CIcon icon={cilUser} className='user-icon'/>
                 </button>
                 <ButtonGroup>

@@ -12,6 +12,13 @@
 }
 
 @media (max-width: 768px){
+  .sidebar-button-upload {
+    position: absolute;
+    top: 44%;
+    left: 27%;
+    width: 45%;
+  }
+
   .addImagePage-button-upload {
     position: sticky;
     width: 40%;
