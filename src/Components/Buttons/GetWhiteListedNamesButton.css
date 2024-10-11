@@ -9,8 +9,9 @@
 
 @media (max-width: 768px) {
   .whitelist-button {
-    position: sticky;
-    left: 0%;
-    width: 35%;
+    display: inline-block; 
+    left: 68%;
+    top: 48%;
+    width: 30.7%;
   }
 }

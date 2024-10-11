@@ -15,8 +15,9 @@
 
 @media (max-width: 768px) {
   .recList-openButton-ownedRecord {
-    position: sticky;
-    left: 100%;
-    width: 30%;
+    display: inline-block;
+    top: 48%;
+    width: 60%;
+    left: 5%;
   }
 }

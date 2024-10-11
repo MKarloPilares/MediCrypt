@@ -271,8 +271,8 @@
 @media (max-width: 768px) {
 
   .open-sidebar-button{
-    position: sticky;
-    top: 12vh;
+    position: relative;
+    top: 0vh;
     width: 20vw;
     background-color: transparent;
     z-index: 1;
@@ -288,13 +288,13 @@
   .button-group-container {
     position: relative;
     top: 50vh;
-    left: -2.7vw;
+    left: -5.2vw;
   }
 
   .images{
     position: relative;
-    top: 10vh;
-    left: -2.7vw;
+    top: 7.9vh;
+    left: -5.2vw;
   }
 
   .toggle-button {
