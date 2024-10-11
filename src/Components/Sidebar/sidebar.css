@@ -92,7 +92,7 @@
 
   .close-sidebar-button{
     position: absolute;
-    top: 15%;
+    top: 18vh;
     left: -5%;
     width: 30%;
     background-color: transparent;
@@ -102,13 +102,20 @@
 
   .sidebar-image {
     position: absolute;
-    width: 50%;
+    width: 55%;
     height: 19%;
-    top: 16vh;
-    left: 25%;
+    top: 20vh;
+    left: 22%;
     border: 5px solid white;
   }
   
+  .sidebar-container .file-input {
+    position: absolute;
+    top: 40vh;
+    left: 8%;
+    width: 80%;
+  }
+
   .x-icon {
     color: white;
     width: 100%;
