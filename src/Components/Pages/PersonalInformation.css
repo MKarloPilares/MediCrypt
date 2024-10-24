@@ -3,11 +3,11 @@
   top: 2vh;
 }
 
-.name-input,
-.birthday-input,
-.address-input,
-.email-input,
-.phone-input {
+.form-container  .name-input,
+.form-container  .birthday-input,
+.form-container  .address-input,
+.form-container  .email-input,
+.form-container  .phone-input {
   width: 20vw;
 }
 
@@ -21,4 +21,12 @@
     top: 2%;
     left: 5%
   }
+
+.form-container  .name-input,
+.form-container  .birthday-input,
+.form-container  .address-input,
+.form-container  .email-input,
+.form-container  .phone-input {
+  width: 35vw;
+}
 }

@@ -15,4 +15,8 @@
   .add-button {
     margin-left: 32vw;
   }
+
+  .form-control {
+    width: 35vw;
+  }
 }

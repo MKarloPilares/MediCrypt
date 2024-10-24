@@ -15,5 +15,9 @@
   .submit-button {
     margin-left: 35vw;
   }
+
+  .input-field {
+    width: 35vw;
+  }
 }
 

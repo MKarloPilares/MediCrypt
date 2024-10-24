@@ -51,7 +51,7 @@ const Vitals: React.FC<VitalsProps> = ({ vitals, setVitals }) => {
         <Row>
           <Col md="5">
             <Form.Group className="mb-3">
-              <Form.Label>Blood Pressure (mmHg)</Form.Label>
+              <Form.Label>BP(mmHg)</Form.Label>
               <Form.Control defaultValue={vitals.bp} className="form-group-width-80" onChange={(e) => handleVitalsChange("bp", e.target.value)} maxLength={7}/>
             </Form.Group>
           </Col>
