@@ -38,7 +38,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
       <Form className="medinfo-form-container">
         <Row>
           <Col>
-            <Form.Label>Heart Problems</Form.Label>
+            <Form.Label>Cardiovascular Problems</Form.Label>
             {['radio'].map((type) => (
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
@@ -61,7 +61,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
             ))}
           </Col>
           <Col>
-            <Form.Label>Lung Problems</Form.Label>
+            <Form.Label>Respiratory Problems</Form.Label>
             {['radio'].map((type) => (
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
@@ -84,7 +84,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
             ))}
           </Col>
           <Col>
-            <Form.Label>Kidney Problems</Form.Label>
+            <Form.Label>Urinary Problems</Form.Label>
             {['radio'].map((type) => (
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
@@ -203,7 +203,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
             ))}
           </Col>
           <Col>
-            <Form.Label>Head Problems</Form.Label>
+            <Form.Label>Cranial Problems</Form.Label>
             {['radio'].map((type) => (
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
