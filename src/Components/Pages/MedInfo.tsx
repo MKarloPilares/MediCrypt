@@ -38,7 +38,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
       <Form className="medinfo-form-container">
         <Row>
           <Col>
-            <Form.Label>Cardiovascular</Form.Label>
+            <Form.Label>Cardio</Form.Label>
             {['radio'].map((type) => (
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
