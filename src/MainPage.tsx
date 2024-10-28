@@ -260,7 +260,7 @@ const MainPage = () => {
           </Container>
           <Routes>
             <Route path="/" element={<HomePage userWalletAddress={userWalletAddress} setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} updateMedicalRecord={updateMedicalRecord} 
-              isOwner={isOwner} setIsMedicalProvider={setIsMedicalProvider} setTokenID={setTokenID}></HomePage>} />
+               isMedicalProvider={isMedicalProvider} isOwner={isOwner} setIsMedicalProvider={setIsMedicalProvider} setTokenID={setTokenID}></HomePage>} />
             <Route path="/Profile" element={
               <>
                 <h2 className="profile-heading">Patient Information</h2>
@@ -311,7 +311,7 @@ const MainPage = () => {
                 </Container>
               </>
             } />
-            <Route path="/RecList" element={<RecList userWalletAddress={userWalletAddress} updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} />} />
+            <Route path="/RecList" element={<RecList userWalletAddress={userWalletAddress} updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} isMedicalProvider={isMedicalProvider}/>}/>
             <Route path="/Providers" element={<Providers />} />
             <Route path="/Agencies" element={<Agencies/>} />
           </Routes>

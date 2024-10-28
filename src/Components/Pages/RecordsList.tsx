@@ -16,11 +16,12 @@ interface RecListProps {
   userWalletAddress: string;
   updateMedicalRecord: (a: any) => void;
   setTokenID: React.Dispatch<React.SetStateAction<number | null>>
+  isMedicalProvider: boolean;
 }
 
 
 //Page to list owned and shared records, and to control access to owned one
-const RecList: React.FC<RecListProps> = ({ userWalletAddress,updateMedicalRecord, setTokenID}) => {
+const RecList: React.FC<RecListProps> = ({ userWalletAddress,updateMedicalRecord, setTokenID, isMedicalProvider}) => {
   const [AddShow, setAddShow] = useState<boolean>(false); //Controls the visibility of the adding modal
   const [whiteListModalShow, setWhiteListModalShow] = useState<boolean>(false); //Controls the visibility of the whitelist modal
   const [ownedNFTNames, setOwnedNames] = useState<string[]>([]); //Stores the names of the NFTs owned by the user
@@ -118,7 +119,7 @@ const RecList: React.FC<RecListProps> = ({ userWalletAddress,updateMedicalRecord
           <h3 className="records-heading">Records</h3>
         </Col>
         <Col>
-          <NewRecordButton updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} className={"recList-button-newRecord"}/>
+          {isMedicalProvider === true && <NewRecordButton updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} className={"recList-button-newRecord"}/>}
         </Col>
         <Modal show={AddShow} onHide={() => setAddShow(!AddShow)} dialogClassName="custom-modal" backdropClassName="custom-modal-backdrop"> 
           <Modal.Header closeButton>

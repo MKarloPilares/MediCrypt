@@ -30,11 +30,19 @@
   left: 38vw;
 }
 
-.button-recordList {
+.button-recordList-provider {
   position: absolute;
   width: 10vw;
   top: 30vh;
   left: 38vw;
+}
+
+
+.button-recordList-patient {
+  position: absolute;
+  width: 10vw;
+  top: 30vh;
+  left: 29vw;
 }
 
 @media (max-width: 768px){
@@ -57,10 +65,17 @@
     top: -95vh;
   }
 
-  .button-recordList {
+  .button-recordList-provider {
     position: absolute;
     width: 70vw;
     top: -25vh;
+    left: 45vw;
+  }
+
+  .button-recordList-patient {
+    position: absolute;
+    width: 70vw;
+    top: -30vh;
     left: 45vw;
   }
 
