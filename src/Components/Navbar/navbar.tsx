@@ -1,5 +1,6 @@
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import ConnectMetaMaskButton from "../Buttons/ConnectMetaMaskButton";
+import LogOutButton from "../Buttons/LogOutButton";
 import { useNavigate } from "react-router-dom";
 import logoSolo from '../Images/MEDICRYPT LOGO_SOLO.png';
 
@@ -38,7 +39,10 @@ const NavbarComponent: React.FC<NavBarProps> = ({userWalletAddress, setUserWalle
         {userWalletAddress === "" ? (
           <ConnectMetaMaskButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider} className={"navbar-button-connectToMetamask"} />
         ) : (
-          <h6>Logged in as: {userWalletAddress}</h6>
+          <>
+            <LogOutButton setUserWalletAddress={setUserWalletAddress} setIsOwner={setIsOwner} setIsMedicalProvider={setIsMedicalProvider}/>
+            <h6> Logged in as: {userWalletAddress}</h6>
+          </>
         )}
       </Navbar>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ethers, Signer } from 'ethers';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import MyAbi from './MyAbi.json';
 import './ConnectMetaMaskButton.css'; // Import the CSS file
 
@@ -14,6 +15,7 @@ interface ConnectMetaMaskButtonProps {
 
 //Button to connect to Metamask
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider, className }) => {
+  const navigate = useNavigate();
 
   const connectMetamaskWallet = async () => {
     const provider = (window as any).ethereum;
@@ -40,6 +42,7 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
 
       // Check if the connected account is the contract owner or a medical provider
       checkContractOwner(web3Provider, accounts[0]);
+      navigate("/");
     } catch (error) {
       alert(`Something went wrong: ${error}`);
     }
