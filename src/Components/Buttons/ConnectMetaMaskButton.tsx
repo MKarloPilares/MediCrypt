@@ -40,7 +40,6 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
 
       // Check if the connected account is the contract owner or a medical provider
       checkContractOwner(web3Provider, accounts[0]);
-      window.location.reload();
     } catch (error) {
       alert(`Something went wrong: ${error}`);
     }
@@ -73,6 +72,10 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
     // Check if the account is a registered medical provider
     if (await contract.isMedicalProvider(account)) {
       setIsMedicalProvider(true);
+    }
+
+    if  (window.location.pathname !== "/") {
+      window.location.reload();
     }
   };
 
