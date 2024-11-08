@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import './LogoutButton.css'; // Import the CSS file
 
 //Type setting of inherited variables and functions
@@ -12,13 +11,12 @@ interface ConnectMetaMaskButtonProps {
 
 //Button to connect to Metamask
 const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWalletAddress, setIsOwner, setIsMedicalProvider}) => {
-  const navigate = useNavigate();
 
   const logOut = () => {
     setUserWalletAddress("")
     setIsOwner(false)
     setIsMedicalProvider(false)
-    navigate("/")
+    window.location.reload();
   }
 
   return (

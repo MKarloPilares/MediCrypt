@@ -94,11 +94,33 @@ const MainPage = () => {
   //Global variable and state declarations
   let navigate = useNavigate();
   let location = useLocation();
-  const [userWalletAddress, setUserWalletAddress] = useState<string>(""); //Wallet address of the user, acting as their user identifier
-  const [tokenID, setTokenID] = useState<number | null>(null); //NFT ID variable to be passed around the pages
-  const [isOwner, setIsOwner] = useState<boolean>(false); //Variable to check if the user is the owner of the smart contract
-  const [isMedicalProvider, setIsMedicalProvider] = useState<boolean>(false); //Variable to check if the user is a medical provider
-  const [isOpen, setIsOpen] = useState<boolean>(false); //Variable to control if the sidebar is open
+
+  //Loads states when page is reloaded
+  const loadState = (key, defaultValue) => {
+    const savedState = sessionStorage.getItem(key);
+    return savedState ? JSON.parse(savedState) : defaultValue;
+  };
+
+  //Wallet address of the user, acting as their user identifier
+  const [userWalletAddress, setUserWalletAddress] = useState(
+    loadState('userWalletAddress', "")
+  );
+  //NFT ID variable to be passed around the pages
+  const [tokenID, setTokenID] = useState(
+    loadState('tokenID', null)
+  );
+  //Variable to check if the user is the owner of the smart contract
+  const [isOwner, setIsOwner] = useState(
+    loadState('isOwner', false)
+  );
+  //Variable to check if the user is a medical provider
+  const [isMedicalProvider, setIsMedicalProvider] = useState(
+    loadState('isMedicalProvider', false)
+  );
+  //Variable to control if the sidebar is open
+  const [isOpen, setIsOpen] = useState(
+    loadState('isOpen', false)
+  );
 
   //Import of environment variables
   const pinataGatewayToken = import.meta.env.VITE_REACT_APP_GATEWAY_TOKEN;
@@ -197,6 +219,21 @@ const MainPage = () => {
     setMedicationDetails(newData.medicationDetails);
     setPatientImages(newData.patientImages)
   };
+
+    // Save state to sessionStorage whenever it changes
+  useEffect(() => {
+    sessionStorage.setItem('userWalletAddress', JSON.stringify(userWalletAddress));
+    sessionStorage.setItem('tokenID', JSON.stringify(tokenID));
+    sessionStorage.setItem('isOwner', JSON.stringify(isOwner));
+    sessionStorage.setItem('isMedicalProvider', JSON.stringify(isMedicalProvider));
+    sessionStorage.setItem('isOpen', JSON.stringify(isOpen));
+  }, [
+    userWalletAddress,
+    tokenID,
+    isOwner,
+    isMedicalProvider,
+    isOpen,
+  ]);
 
   //Changes tab name to MediCrypt
   useEffect(() => {
