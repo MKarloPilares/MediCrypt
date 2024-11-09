@@ -21,6 +21,7 @@ import HomePage from './Components/Pages/Home';
 import NavbarComponent from './Components/Navbar/navbar';
 import Providers from './Components/Pages/Providers';
 import Agencies from './Components/Pages/Agencies';
+import FAQ from './Components/Pages/FAQ'
 import './main.css';
 
 
@@ -351,6 +352,7 @@ const MainPage = () => {
             <Route path="/RecList" element={<RecList userWalletAddress={userWalletAddress} updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID} isMedicalProvider={isMedicalProvider}/>}/>
             <Route path="/Providers" element={<Providers />} />
             <Route path="/Agencies" element={<Agencies/>} />
+            <Route path="/FAQ" element={<FAQ/>} />
           </Routes>
         </Container>
       </body>

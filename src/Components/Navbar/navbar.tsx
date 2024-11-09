@@ -34,6 +34,7 @@ const NavbarComponent: React.FC<NavBarProps> = ({userWalletAddress, setUserWalle
               <NavDropdown.Item onClick={() => navigate("Profile")}>Record Page</NavDropdown.Item>
               <NavDropdown.Item onClick={() => navigate("RecList")}>Records List </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link onClick={() => navigate("/FAQ")}>FAQ</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         {userWalletAddress === "" ? (
