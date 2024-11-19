@@ -8,9 +8,9 @@
   .logOut-button {
     position: absolute;
     width: 35vw;
-    height: 5vh;
+    height: 6vh;
     left: 45vw;
-    top: 1.57vh;
+    top: 1vh;
     align-items: center;
   }
 }
