@@ -1,10 +1,11 @@
-import { Accordion } from "react-bootstrap";
+import { Accordion, Container } from "react-bootstrap";
+import "./FAQ.css";
 
 const FAQ = () => {
   return (
-    <div>
+    <Container>
       <h2>Frequently Asked Questions</h2>
-      <Accordion>
+      <Accordion className="faq-container">
         <Accordion.Item eventKey="0">
           <Accordion.Header>What is MediCrypt?</Accordion.Header>
           <Accordion.Body>
@@ -83,7 +84,7 @@ const FAQ = () => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-    </div>
+    </Container>
   );
 }
 
