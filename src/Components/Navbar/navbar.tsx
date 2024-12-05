@@ -3,6 +3,7 @@ import ConnectMetaMaskButton from "../Buttons/ConnectMetaMaskButton";
 import LogOutButton from "../Buttons/LogOutButton";
 import { useNavigate } from "react-router-dom";
 import logoSolo from '../Images/MEDICRYPT LOGO_SOLO.png';
+import './navbar.css'
 
 interface NavBarProps {
   userWalletAddress: string;
@@ -30,7 +31,7 @@ const NavbarComponent: React.FC<NavBarProps> = ({userWalletAddress, setUserWalle
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
-            <Nav.Link onClick={() => navigate("/RecList")}>Home</Nav.Link>
+            <Nav.Link onClick={() => navigate("/RecList")}>Records</Nav.Link>
             <Nav.Link onClick={() => navigate("/FAQ")}>FAQ</Nav.Link>
           </Nav>
         </Navbar.Collapse>
