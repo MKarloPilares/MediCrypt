@@ -1,4 +1,4 @@
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import ConnectMetaMaskButton from "../Buttons/ConnectMetaMaskButton";
 import LogOutButton from "../Buttons/LogOutButton";
 import { useNavigate } from "react-router-dom";
@@ -30,10 +30,7 @@ const NavbarComponent: React.FC<NavBarProps> = ({userWalletAddress, setUserWalle
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
-            <NavDropdown title="Records" id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={() => navigate("Profile")}>Record Page</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate("RecList")}>Records List </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link onClick={() => navigate("/RecList")}>Home</Nav.Link>
             <Nav.Link onClick={() => navigate("/FAQ")}>FAQ</Nav.Link>
           </Nav>
         </Navbar.Collapse>
