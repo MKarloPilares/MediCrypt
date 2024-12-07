@@ -82,14 +82,14 @@
   .button-providerList {
     position: absolute;
     width: 70vw;
-    top: -18vh;
+    top: -23vh;
     left: 45vw;
   }
   
   .button-agencyList {
     position: absolute;
     width: 70vw;
-    top: -11vh;
+    top: -16vh;
     left: 45vw;
   }
 }
