@@ -24,12 +24,12 @@ const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ walletAddress, name, 
 
   const AddAgency = async () => {
     if (!provider) {
-      console.error('User is not connected to an Ethereum wallet.');
+      alert('User is not connected to an Ethereum wallet.');
       return;
     }
 
     if (!walletAddress) {
-      console.error('Invalid address.');
+      alert('Invalid address.');
       return;
     }
 
@@ -41,7 +41,7 @@ const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ walletAddress, name, 
     const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
 
     if (!contractAddress) {
-      console.error('Contract address is not defined.');
+      alert('Contract address is not defined.');
       return;
     }
 
@@ -53,7 +53,7 @@ const NewAgencyButton: React.FC<NewAgencyButtonProps> = ({ walletAddress, name, 
       await contract.addAgency(walletAddress, name);
       setAddShow();
     } catch (error) {
-      console.error('Error Adding Medical Provider:', error);
+      alert(`Error Adding Medical Agency: ${error}`);
     }
   };
 

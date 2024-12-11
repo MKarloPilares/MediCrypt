@@ -23,7 +23,7 @@ const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ walletAddress }
 
   const removeAgency = async () => {
     if (!provider) {
-      console.error('User is not connected to an Ethereum wallet.');
+      alert('User is not connected to an Ethereum wallet.');
       return;
     }
 
@@ -42,7 +42,7 @@ const RemoveAgencyButton: React.FC<RemoveAgencyButtonProps> = ({ walletAddress }
       await contract.removeAgency(walletAddress);
 
     } catch (error) {
-      console.error('Error Removing Provider:', error);
+      alert(`Error Removing Agency: ${error}`);
     }
   };
 

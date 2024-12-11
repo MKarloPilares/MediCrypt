@@ -62,7 +62,7 @@ const MintButton: React.FC<MintButtonProps> = ({ ownerWalletAddress, medicalReco
       const resData = await res.json();
       const nftURI = `${pinataGateway}/ipfs/${resData.IpfsHash}?pinataGatewayToken=${pinataGatewayToken}`;
       if (!provider) {
-        console.error('User is not connected to an Ethereum wallet.');
+        alert('User is not connected to an Ethereum wallet.');
         return;
       }
 
@@ -99,10 +99,10 @@ const MintButton: React.FC<MintButtonProps> = ({ ownerWalletAddress, medicalReco
           }
         }
        catch (error) {
-        console.error('Error minting NFT:', error);
+        alert(`Error minting NFT: ${error}`);
       }
     } catch (error) {
-      console.error('Uploading to IPFS:', error);
+      alert(`Uploading to IPFS: ${error}`);
   }
 }
   return (

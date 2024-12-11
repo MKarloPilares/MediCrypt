@@ -48,7 +48,7 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
   //Checks if the user that logged in is the owner of the contract
   const checkContractOwner = async (web3Provider: ethers.providers.Web3Provider, account: string) => {
     if (!web3Provider) {
-      console.error('User is not connected to an Ethereum wallet.');
+      alert('User is not connected to an Ethereum wallet.');
       return;
     }
 
@@ -57,7 +57,7 @@ const ConnectMetaMaskButton: React.FC<ConnectMetaMaskButtonProps> = ({ setUserWa
     const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS; //Imports the smart contract's address from env variables
 
     if (!contractAddress) {
-      console.error('Contract address is not defined.');
+      alert('Contract address is not defined.');
       return;
     }
 

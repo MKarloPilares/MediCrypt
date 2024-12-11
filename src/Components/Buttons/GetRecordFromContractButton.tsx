@@ -30,7 +30,7 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
 
   const getRecordFromContract = async () => {
     if (!provider) {
-      console.error('User is not connected to an Ethereum wallet.');
+      alert('User is not connected to an Ethereum wallet.');
       return;
     }
 
@@ -39,7 +39,7 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
 
 
     if (!contractAddress) {
-      console.error('Contract address is not defined.');
+      alert('Contract address is not defined.');
       return;
     }
 
@@ -66,7 +66,7 @@ const GetRecordFromContractButton: React.FC<GetRecordFromContractButtonProps> = 
 
 
     } catch (error) {
-      console.error('Error Getting Record:', error);
+      alert(`Error Getting Record: ${error}`);
     }
   };
 

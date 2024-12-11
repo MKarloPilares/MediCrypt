@@ -39,7 +39,7 @@ const UploadToIPFSButton: React.FC<UploadToIPFSButtonProps> = ({ appendImageUri,
       ActionAfterAppend();
       
     } catch (error) {
-      console.log(error);
+      alert(`Error Uploading To IPFS: ${error}`);
     } 
   }
   

@@ -26,13 +26,13 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
 
   const getWhiteListedNames = async () => {
     if (!provider) {
-      console.error('User is not connected to an Ethereum wallet.');
+      alert('User is not connected to an Ethereum wallet.');
       return;
     }
 
     // Ensure tokenID and address are valid
     if (tokenID === null) {
-      console.error('Invalid tokenID.');
+      alert('Invalid tokenID.');
       return;
     }
 
@@ -44,7 +44,7 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
     const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
 
     if (!contractAddress) {
-      console.error('Contract address is not defined.');
+      alert('Contract address is not defined.');
       return;
     }
 
@@ -58,7 +58,7 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
       setWhiteListNames(result.names);
       setWhiteListAddresses(result.addresses);
     } catch (error) {
-      console.error('Error whitelisting address:', error);
+      alert(`Error whitelisting address: ${error}`);
     }
   };
 

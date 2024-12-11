@@ -26,13 +26,13 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
 
   const removeFromWhiteList = async () => {
     if (!provider) {
-      console.error('User is not connected to an Ethereum wallet.');
+      alert('User is not connected to an Ethereum wallet.');
       return;
     }
 
     // Ensure tokenID and address are valid
     if (tokenID === null) {
-      console.error('Invalid tokenID.');
+      alert('Invalid tokenID.');
       return;
     }
 
@@ -43,7 +43,7 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
     const contractAddress = import.meta.env.VITE_REACT_APP_CONTRACT_ADDRESS;
 
     if (!contractAddress) {
-      console.error('Contract address is not defined.');
+      alert('Contract address is not defined.');
       return;
     }
 
@@ -55,7 +55,7 @@ const RemoveFromWhiteListButton: React.FC<RemoveFromWhiteListButtonProps> = ({ t
       await contract.removeWhitelistedAddress(tokenID, walletAddress, nftName);
       setWhiteListModalShow();
     } catch (error) {
-      console.error('Error whitelisting address:', error);
+      alert(`Error whitelisting address: ${error}`);
     }
   };
 
