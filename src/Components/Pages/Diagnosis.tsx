@@ -72,7 +72,7 @@ const Diagnosis: React.FC<diagnosisProps> = ({ setDiagDetails }) => {
                 placeholder='Diagnosis'
                 value={diagDiagnosis}
                 className="form-control"
-                maxLength={30}
+                maxLength={100}
                 onChange={(e) => setDiagDiagnosis(e.target.value)}
               />
             </Form.Group>
