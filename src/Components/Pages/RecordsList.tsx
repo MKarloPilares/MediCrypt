@@ -177,7 +177,7 @@ const RecList: React.FC<RecListProps> = ({ userWalletAddress,updateMedicalRecord
           {sharedNFTNames.map((data: any, index: number) =>
             <>
           <ListGroup>
-                <ListGroup.Item className="list-group-item">
+                <ListGroup.Item className="shared-list-group-item">
                   <Col>
                     {data}
                     <GetRecordFromContractButton tokenID={sharedTokenIds[index]} className="recList-openButton-sharedRecord" updateMedicalRecord={updateMedicalRecord} setTokenID={setTokenID}/>

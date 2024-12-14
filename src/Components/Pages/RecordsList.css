@@ -70,9 +70,13 @@
     width: 100vw;
     height: 30vh;
   }
-
+  
   .list-group-item{
     height: 25vw;
+  }
+
+  .shared-list-group-item{
+    height: 14vw;
   }
 
   .records-heading {

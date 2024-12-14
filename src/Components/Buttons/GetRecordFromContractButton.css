@@ -20,4 +20,10 @@
     width: 60%;
     left: 5%;
   }
+
+  .recList-openButton-sharedRecord {
+    position: sticky;
+    left: 80%;
+    width: 25%;
+  }
 }
