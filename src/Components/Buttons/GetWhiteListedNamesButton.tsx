@@ -52,13 +52,14 @@ const GetWhiteListedNamesButton: React.FC<WhiteListButtonProps> = ({ tokenID, se
     const contract = new ethers.Contract(contractAddress, MyAbi, signer);
 
     try {
-      // Call the whitelistAddress function of the smart contract
+      // Call the getWhitelistAddressandNames function of the smart contract
       const result = await contract.getWhitelistedAddressesAndNames(tokenID);
 
       setWhiteListNames(result.names);
-      setWhiteListAddresses(result.addresses);
+      setWhiteListAddresses(result.walletAddressess);
+
     } catch (error) {
-      alert(`Error whitelisting address: ${error}`);
+      alert(`Error Getting Whitelist: ${error}`);
     }
   };
 
