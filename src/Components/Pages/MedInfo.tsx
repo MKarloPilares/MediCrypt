@@ -36,7 +36,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
       minBreakpoint="xxs"
     >
       <Form className="medinfo-form-container">
-        <Row>
+        <Row className="medinfo-row">
           <Col>
             <Form.Label>Cardio</Form.Label>
             {['radio'].map((type) => (
@@ -107,7 +107,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
             ))}
           </Col>
         </Row>
-        <Row>
+        <Row className="medinfo-row">
           <Col>
             <Form.Label>Extremities</Form.Label>
             {['radio'].map((type) => (
@@ -178,7 +178,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
             ))}
           </Col>
         </Row>
-        <Row>
+        <Row className="medinfo-row">
           <Col>
             <Form.Label>STD</Form.Label>
             {['radio'].map((type) => (
@@ -226,7 +226,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
             ))}
           </Col>
           <Col>
-            <Form.Label>Mental Problems</Form.Label>
+            <Form.Label>Mental</Form.Label>
             {['radio'].map((type) => (
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
@@ -249,7 +249,7 @@ const MedInfo: React.FC<MedInfoProps> = ({ medicalInfo, setMedicalInfo }) => {
             ))}
           </Col>
         </Row>
-        <Row>
+        <Row className="medinfo-row">
           <Col>
             <Form.Label>Drug Abuse</Form.Label>
             {['radio'].map((type) => (

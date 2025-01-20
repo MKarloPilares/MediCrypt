@@ -4,3 +4,14 @@
   margin-left: 20px;
 }
 
+.medinfo-row {
+  margin-bottom: 65px;
+}
+
+@media (max-width: 768px) {
+  .medinfo-row {
+    margin-bottom: 0px;
+  }
+}
+
+

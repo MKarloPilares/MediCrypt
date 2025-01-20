@@ -66,17 +66,17 @@
 
 .emergency-heading {
   position: absolute;
-  top: 16vh;
-  left: 78vw;
+  top: 56vh;
+  left: 26vw;
 }
 
 .emergency-container {
   border: 1px solid green;
   position: absolute;
-  top: 21vh;
-  left: 77vw;
+  top: 61vh;
+  left: 25vw;
   height: 32vh;
-  width: 20vw;
+  width: 26vw;
   background-color: white;
   border-radius: 15px;
   overflow-y: auto;
@@ -90,17 +90,17 @@
 
 .medical-heading {
   position: absolute;
-  top: 56vh;
-  left: 26vw;
+  top: 16vh;
+  left: 78vw;
 }
 
 .medical-container {
   border: 1px solid green;
   position: absolute;
-  top: 61vh;
-  left: 25vw;
-  height: 32vh;
-  width: 50vw;
+  top: 21vh;
+  left: 77vw;
+  height: 72vh;
+  width: 20vw;
   background-color: white;
   border-radius: 15px;
   overflow-y: auto;
@@ -115,14 +115,14 @@
 .vitals-heading {
   position: absolute;
   top: 56vh;
-  left: 78vw;
+  left: 55vw;
 }
 
 .vitals-container {
   border: 1px solid green;
   position: absolute;
   top: 61vh;
-  left: 77vw;
+  left: 55vw;
   height: 32vh;
   width: 20vw;
   background-color: white;
