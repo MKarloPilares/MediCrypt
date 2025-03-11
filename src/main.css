@@ -31,7 +31,7 @@
 }
 
 .button-group-container {
-  position: fixed;
+  position: absolute;
   top: 10vh;
   left: 28vw;
 }
@@ -51,11 +51,10 @@
   position: absolute;
   top: 21vh;
   left: 25vw;
-  height: 32vh;
+  height: 39vh;
   width: 50vw;
   background-color: white;
   border-radius: 15px;
-  overflow-y: auto;
   padding-left: 1vw;
   scrollbar-width: none;
 }
@@ -66,20 +65,19 @@
 
 .emergency-heading {
   position: absolute;
-  top: 56vh;
+  top: 64vh;
   left: 26vw;
 }
 
 .emergency-container {
   border: 1px solid green;
   position: absolute;
-  top: 61vh;
+  top: 70vh;
   left: 25vw;
-  height: 32vh;
+  height: 39vh;
   width: 26vw;
   background-color: white;
   border-radius: 15px;
-  overflow-y: auto;
   padding-left: 1vw;
   scrollbar-width: none;
 }
@@ -90,20 +88,19 @@
 
 .medical-heading {
   position: absolute;
-  top: 16vh;
+  top: 18vh;
   left: 78vw;
 }
 
 .medical-container {
   border: 1px solid green;
   position: absolute;
-  top: 21vh;
+  top: 24vh;
   left: 77vw;
-  height: 72vh;
+  height: 83vh;
   width: 20vw;
   background-color: white;
   border-radius: 15px;
-  overflow-y: auto;
   padding-left: 1vw;
   scrollbar-width: none;
 }
@@ -114,20 +111,19 @@
 
 .vitals-heading {
   position: absolute;
-  top: 56vh;
+  top: 64vh;
   left: 55vw;
 }
 
 .vitals-container {
   border: 1px solid green;
   position: absolute;
-  top: 61vh;
+  top: 70vh;
   left: 55vw;
-  height: 32vh;
+  height: 39vh;
   width: 20vw;
   background-color: white;
   border-radius: 15px;
-  overflow-y: auto;
   padding-left: 1vw;
   scrollbar-width: none;
 }
@@ -147,11 +143,10 @@
   position: absolute;
   top: 21vh;
   left: 25vw;
-  height: 35vh;
+  height: 43vh;
   width: 50vw;
   background-color: white;
   border-radius: 15px;
-  overflow-y: auto;
   padding-left: 1vw;
   scrollbar-width: none;
 }
@@ -162,14 +157,14 @@
 
 .diagnosis-history-heading {
   position: absolute;
-  top: 16vh;
+  top: 21vh;
   left: 78vw;
 }
 
 .diagnosis-history-container {
   border: 1px solid green;
   position: absolute;
-  top: 21vh;
+  top: 26vh;
   left: 77vw;
   height: 35vh;
   width: 20vw;
@@ -186,20 +181,19 @@
 
 .medications-heading {
   position: absolute;
-  top: 58vh;
+  top: 67vh;
   left: 26vw;
 }
 
 .medications-container {
   border: 1px solid green;
   position: absolute;
-  top: 63vh;
+  top: 72vh;
   left: 25vw;
-  height: 35vh;
+  height: 43vh;
   width: 50vw;
   background-color: white;
   border-radius: 15px;
-  overflow-y: auto;
   padding-left: 1vw;
   scrollbar-width: none;
 }
@@ -210,14 +204,14 @@
 
 .medication-history-heading {
   position: absolute;
-  top: 58vh;
+  top: 71vh;
   left: 78vw;
 }
 
 .medication-history-container {
   border: 1px solid green;
   position: absolute;
-  top: 63vh;
+  top: 76vh;
   left: 77vw;
   height: 35vh;
   width: 20vw;
