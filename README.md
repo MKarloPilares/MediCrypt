@@ -3,6 +3,7 @@ MediCrypt is a decentralized application built with the purpose of storing medic
 MediCrypt is a fullstack project that:
 
   1.Has a frontend application built with Typescript and ReactTS.
+  
   2.Has a smart contract made with Solidity and deployed with hardhat to the Arbitrum Sepolia test network.
 
 This repository contains the project's frontend application only for the smart contract see: https://github.com/MKarloPilares/MediCrypt
